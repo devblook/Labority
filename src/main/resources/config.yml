@@ -1,7 +1,15 @@
+#
+# Config
 
-
-
-
+# List of jobs.
 jobs:
+
+  # Miner
   miner:
-    type:
+
+    # Type [PLAYER_BREAK_BLOCK, PLAYER_PLACE_BLOCK, PLAYER_KILL_ENTITY]
+    type: PLAYER_BREAK_BLOCK
+
+    # List of items
+    items:
+      - COBBLESTONE

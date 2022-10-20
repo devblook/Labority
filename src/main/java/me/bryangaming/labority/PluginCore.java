@@ -8,7 +8,7 @@ import me.bryangaming.labority.loader.ListenersLoader;
 
 public class PluginCore implements Core{
 
-    private Labority plugin;
+    private final Labority plugin;
 
     private FilesLoader filesLoader;
 
@@ -18,11 +18,12 @@ public class PluginCore implements Core{
 
     @Override
     public void init() {
+
         filesLoader = new FilesLoader(plugin);
         filesLoader.load();
 
         initLoaders(
-                new CommandsLoader(),
+                new CommandsLoader(this),
                 new ListenersLoader(this));
     }
 

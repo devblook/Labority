@@ -2,15 +2,10 @@ package me.bryangaming.labority.listener.plugin;
 
 import me.bryangaming.labority.PluginCore;
 import me.bryangaming.labority.action.Action;
-import me.bryangaming.labority.action.JobType;
 import me.bryangaming.labority.event.JobsEvent;
 import me.bryangaming.labority.manager.FileManager;
-import org.bukkit.command.PluginCommand;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-
-import javax.print.attribute.standard.JobState;
-import java.awt.event.ActionListener;
 
 public class JobListener implements Listener {
 

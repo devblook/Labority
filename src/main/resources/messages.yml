@@ -1,0 +1,21 @@
+#
+# Message of the plugin
+
+jobs:
+
+  # Help format.
+  help:
+    - ""
+    - ""
+
+  # Reload message.
+  reload: "&a[Server] &8| &FPlugin recargado."
+
+
+error:
+
+  # When the player is using the console.
+  console: "Error - No puedes hacer esto en la consola."
+
+  # When the player is using a unknown argument.
+  unknown-argument: "&a[Server] &8| &fArgumento desconocido. Usa &a/jobs help &fpara ver los argumentos disponibles."

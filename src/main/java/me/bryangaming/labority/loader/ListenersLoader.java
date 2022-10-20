@@ -20,12 +20,14 @@ public class ListenersLoader implements Loader {
 
     @Override
     public void load() {
+
         registerListeners(
                 new PlayerBreakListener(),
                 new JobListener(pluginCore));
     }
 
     public void registerListeners(Listener... listeners){
+
         PluginManager pluginManager = Bukkit.getPluginManager();
         Labority labority = pluginCore.getPlugin();
 

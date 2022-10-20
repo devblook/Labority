@@ -1,4 +1,4 @@
 name: Labority
 version: ${project.version}
 main: me.bryangaming.labority.Labority
-api-version: 1.17
+api-version: 1.13

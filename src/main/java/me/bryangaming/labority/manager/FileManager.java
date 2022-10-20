@@ -12,43 +12,44 @@ import java.util.logging.Level;
 public class FileManager extends YamlConfiguration {
 
     private final String fileName;
-
     private final Plugin plugin;
 
-    private final File folder;
     private final File file;
 
     public FileManager(Plugin plugin, String fileName, String fileExtension, File folder) {
-        this.folder = folder;
+
         this.plugin = plugin;
         this.fileName = fileName + (fileName.endsWith(fileExtension) ? "" : fileExtension);
         this.file = new File(folder, fileName);
+
         createFile();
+
     }
 
     public FileManager(Plugin plugin, String fileName) {
-        this(plugin, fileName, ".yml");
+        this(plugin, fileName, ".yml", plugin.getDataFolder());
     }
 
-    public FileManager(Plugin plugin, String fileName, String fileExtension) {
-        this(plugin, fileName, fileExtension, plugin.getDataFolder());
-    }
 
     private void createFile() {
+
         try {
+
             if (file.exists()) {
                 load(file);
-                save(file);
                 return;
             }
-            if (this.plugin.getResource(this.fileName) != null) {
-                this.plugin.saveResource(this.fileName, false);
+
+            if (plugin.getResource(fileName) != null) {
+                plugin.saveResource(fileName, false);
             } else {
                 save(file);
             }
+
             load(file);
+
         } catch (InvalidConfigurationException | IOException e) {
-            this.plugin.getLogger().log(Level.SEVERE, "Creation of Configuration '" + this.fileName + "' failed.", e);
+            plugin.getLogger().log(Level.SEVERE, "Creation of Configuration '" + this.fileName + "' failed.", e);
         }
     }
 
@@ -56,7 +57,7 @@ public class FileManager extends YamlConfiguration {
         try {
             save(file);
         } catch (IOException e) {
-            this.plugin.getLogger().log(Level.SEVERE, "Save of the file '" + this.fileName + "' failed.", e);
+            plugin.getLogger().log(Level.SEVERE, "Save of the file '" + this.fileName + "' failed.", e);
         }
     }
 
