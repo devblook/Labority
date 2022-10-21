@@ -3,7 +3,8 @@ package me.bryangaming.labority.commands;
 import me.bryangaming.labority.PluginCore;
 import me.bryangaming.labority.data.PlayerData;
 import me.bryangaming.labority.loader.DataLoader;
-import me.bryangaming.labority.manager.FileManager;
+import me.bryangaming.labority.manager.file.FileDataManager;
+import me.bryangaming.labority.manager.file.FileManager;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -16,12 +17,17 @@ public class JobsCommand implements CommandExecutor {
     private final FileManager configFile;
     private final FileManager messagesFile;
 
+    private final FileDataManager playersFile;
+
     private final DataLoader dataLoader;
 
     public JobsCommand(PluginCore pluginCore){
 
         this.configFile = pluginCore.getFilesLoader().getConfigFile();
         this.messagesFile = pluginCore.getFilesLoader().getMessagesFile();
+
+        this.playersFile = pluginCore.getFilesLoader().getPlayersFile();
+
         this.dataLoader = pluginCore.getDataLoader();
     }
 
@@ -92,7 +98,9 @@ public class JobsCommand implements CommandExecutor {
                 }
 
                 playerData.addJob(jobName);
-
+                playersFile.setJobData(sender.getName(), "job-list." + jobName + ".level", 0);
+                playersFile.setJobData(sender.getName(), "job-list." + jobName + ".xp", 0);
+                
             default:
                 sender.sendMessage(messagesFile.getString("error.unknown-argument"));
         }

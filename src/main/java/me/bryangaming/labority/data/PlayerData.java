@@ -2,6 +2,7 @@ package me.bryangaming.labority.data;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
 public class PlayerData {
 
@@ -25,5 +26,9 @@ public class PlayerData {
 
     public int getJobSize(){
         return jobList.size();
+    }
+
+    public Set<String> getJobsNames(){
+        return jobList.keySet();
     }
 }

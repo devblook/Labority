@@ -2,7 +2,8 @@ package me.bryangaming.labority.loader;
 
 import me.bryangaming.labority.Labority;
 import me.bryangaming.labority.api.Loader;
-import me.bryangaming.labority.manager.FileManager;
+import me.bryangaming.labority.manager.file.FileDataManager;
+import me.bryangaming.labority.manager.file.FileManager;
 
 public class FilesLoader implements Loader {
 
@@ -10,6 +11,8 @@ public class FilesLoader implements Loader {
 
     private FileManager configFile;
     private FileManager messagesFile;
+
+    private FileDataManager playersFile;
 
     public FilesLoader(Labority plugin){
 
@@ -23,6 +26,7 @@ public class FilesLoader implements Loader {
         configFile = new FileManager(plugin, "config");
         messagesFile = new FileManager(plugin, "messages");
 
+        playersFile = new FileDataManager(plugin, "players");
     }
 
 
@@ -34,4 +38,7 @@ public class FilesLoader implements Loader {
         return messagesFile;
     }
 
+    public FileDataManager getPlayersFile(){
+        return playersFile;
+    }
 }

@@ -3,7 +3,7 @@ package me.bryangaming.labority.listener.plugin;
 import me.bryangaming.labority.PluginCore;
 import me.bryangaming.labority.action.Action;
 import me.bryangaming.labority.event.JobsEvent;
-import me.bryangaming.labority.manager.FileManager;
+import me.bryangaming.labority.manager.file.FileManager;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 
