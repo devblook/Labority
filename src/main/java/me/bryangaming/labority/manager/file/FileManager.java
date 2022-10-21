@@ -1,4 +1,4 @@
-package me.bryangaming.labority.manager;
+package me.bryangaming.labority.manager.file;
 
 import org.bukkit.ChatColor;
 import org.bukkit.configuration.InvalidConfigurationException;
