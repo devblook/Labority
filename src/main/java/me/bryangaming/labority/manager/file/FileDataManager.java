@@ -23,19 +23,19 @@ public class FileDataManager extends FileManager {
 
     public void setJobData(String playerName, String path, String result){
         set("players.jobs." + playerName + "." + path, result);
-        save();
+
 
     }
 
     public void setJobData(String playerName, String path, List<String> result){
         set("players.jobs." + playerName + "." + path, result);
-        save();
+
 
     }
 
     public void setJobData(String playerName, String path, int result){
         set("players.jobs." + playerName + "." + path, result);
-        save();
+
 
     }
 
