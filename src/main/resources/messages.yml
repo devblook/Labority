@@ -19,3 +19,15 @@ error:
 
   # When the player is using a unknown argument.
   unknown-argument: "&a[Server] &8| &fArgumento desconocido. Usa &a/jobs help &fpara ver los argumentos disponibles."
+
+  # When the player is not putting a necessary argument.
+  no-argument: "&a[Server] &8| &fNo has puesto un argumento. Uso: &a%usage%&f."
+
+
+# Job error messages:
+#
+
+  # When the player is not putting a job.
+  unknown-job: "&a[Server] &| &fTrabajo desconocido: &a%job%&f."
+
+  already-have-job: "&a[Server] &8| &fYa te uniste a este trabajo: &a%job%&f."

@@ -3,14 +3,18 @@ package me.bryangaming.labority;
 import me.bryangaming.labority.api.Core;
 import me.bryangaming.labority.api.Loader;
 import me.bryangaming.labority.loader.CommandsLoader;
+import me.bryangaming.labority.loader.DataLoader;
 import me.bryangaming.labority.loader.FilesLoader;
 import me.bryangaming.labority.loader.ListenersLoader;
+
+import java.nio.file.Files;
 
 public class PluginCore implements Core{
 
     private final Labority plugin;
 
     private FilesLoader filesLoader;
+    private DataLoader dataLoader;
 
     public PluginCore(Labority plugin){
         this.plugin = plugin;
@@ -39,6 +43,9 @@ public class PluginCore implements Core{
         return filesLoader;
     }
 
+    public DataLoader getDataLoader(){
+        return dataLoader;
+    }
     public Labority getPlugin(){
         return plugin;
     }

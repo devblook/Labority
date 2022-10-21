@@ -1,4 +1,17 @@
+main: me.bryangaming.labority.Labority
 name: Labority
 version: ${project.version}
-main: me.bryangaming.labority.Labority
+
 api-version: 1.13
+
+depend:
+  - Vault
+
+commands:
+  jobs:
+    description: Main command.
+    aliases:
+      - labority
+      - labor
+
+    usage: /jobs help.

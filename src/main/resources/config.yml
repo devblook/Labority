@@ -1,6 +1,12 @@
 #
 # Config
 
+config:
+
+  # Limit of jobs each player.
+  limit-jobs: 3
+
+#
 # List of jobs.
 jobs:
 
