@@ -103,6 +103,7 @@ public class JobsCommand implements CommandExecutor {
                 playersFile.setJobData(sender.getName(), "job-list." + jobName + ".xp", 0);
                 playersFile.save();
 
+                sender.sendMessage();
             default:
                 sender.sendMessage(messagesFile.getString("error.unknown-argument"));
         }

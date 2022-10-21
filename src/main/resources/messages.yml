@@ -11,6 +11,10 @@ jobs:
   # Reload message.
   reload: "&a[Server] &8| &FPlugin recargado."
 
+  join:
+    # Message when you join to a job.
+    message: "&a[Server] &8| &fTe uniste a este trabajo. &a%job%"
+
 
 error:
 
