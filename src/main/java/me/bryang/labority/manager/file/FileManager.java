@@ -47,7 +47,6 @@ public class FileManager extends YamlConfiguration {
                 save(file);
             }
 
-            save(file);
             load(file);
 
         } catch (InvalidConfigurationException | IOException e) {
