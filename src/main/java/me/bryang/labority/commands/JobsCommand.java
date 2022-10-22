@@ -160,6 +160,7 @@ public class JobsCommand implements CommandExecutor {
                 }
 
                 break;
+                
             case "stats":
                 PlayerData playerDataStats = dataLoader.getPlayerJob(sender.getUniqueId());
 

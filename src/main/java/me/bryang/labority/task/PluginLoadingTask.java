@@ -23,7 +23,7 @@ public class PluginLoadingTask {
 
         this.configFile = pluginCore.getFilesLoader().getConfigFile();
         this.playersFile = pluginCore.getFilesLoader().getPlayersFile();
-        
+
         this.dataLoader = pluginCore.getDataLoader();
 
     }
