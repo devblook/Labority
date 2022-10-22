@@ -21,5 +21,6 @@ jobs:
     type: PLAYER_BREAK_BLOCK
 
     # List of items
+    # Format: ITEM, GAIN_MONEY, GAIN_XP_JOB: Example: COBBLESTONE, 5, 5
     items:
-      - COBBLESTONE
+      - COBBLESTONE, 5, 2
