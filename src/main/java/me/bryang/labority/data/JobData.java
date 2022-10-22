@@ -12,8 +12,7 @@ public class JobData {
     private int maxXP = 0;
 
     private int level = 1;
-
-
+    
     public String getName(){
         return jobName;
     }
