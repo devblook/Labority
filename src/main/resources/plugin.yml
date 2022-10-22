@@ -1,4 +1,4 @@
-main: me.bryangaming.labority.Labority
+main: me.bryang.labority.Labority
 name: Labority
 version: ${project.version}
 
