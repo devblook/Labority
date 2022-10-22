@@ -8,6 +8,8 @@ import me.bryang.labority.loader.DataLoader;
 import me.bryang.labority.manager.VaultHookManager;
 import me.bryang.labority.manager.file.FileManager;
 import me.bryang.labority.utils.TextUtils;
+import net.md_5.bungee.api.ChatMessageType;
+import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -70,6 +72,9 @@ public class JobListener implements Listener {
             jobData.setXPPoints(TextUtils.calculateNumber(configFile.getString("config.formula.gain-xp")
                     .replace("%xp%", jobValue[2]), jobData.getLevel()));
 
+            player.spigot().sendMessage(ChatMessageType.ACTION_BAR, new TextComponent(configFile.getString("config.action-bar.gain-rewards")
+                    .replace("%money%", jobValue[1])
+                    .replace("%xp%", jobValue[2])));
             if (jobData.getMaxXP() <= jobData.getXpPoints()) {
 
                 jobData.setLevel(jobData.getLevel() + 1);

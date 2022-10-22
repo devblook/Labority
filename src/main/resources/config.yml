@@ -17,6 +17,10 @@ config:
     # Formula for max xp:
     max-xp: "%level * 5"
 
+  action-bar:
+
+    # Format to gain rewards:
+    gain-rewards: "&a%money%$+ &8- &a%xp%+"
 #
 # List of jobs.
 jobs:

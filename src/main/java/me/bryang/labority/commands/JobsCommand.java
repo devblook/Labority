@@ -53,6 +53,8 @@ public class JobsCommand implements CommandExecutor {
                 sender.sendMessage(message);
             }
 
+            return false;
+
         }
 
         switch (arguments[0]) {
