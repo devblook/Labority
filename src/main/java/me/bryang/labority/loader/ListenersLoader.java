@@ -34,5 +34,7 @@ public class ListenersLoader implements Loader {
         for (Listener listener : listeners){
             pluginManager.registerEvents(listener, labority);
         }
+
+        System.out.println("[Labority] Listeners loaded.");
     }
 }

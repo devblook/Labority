@@ -14,6 +14,7 @@ public class DataLoader implements Loader {
 
     @Override
     public void load() {
+        System.out.println("[Labority] Data loaded.");
 
     }
 

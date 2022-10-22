@@ -17,5 +17,8 @@ public class CommandsLoader implements Loader {
     @Override
     public void load() {
         Bukkit.getPluginCommand("jobs").setExecutor(new JobsCommand(pluginCore));
+
+        System.out.println("[Labority] Commands loaded.");
+
     }
 }

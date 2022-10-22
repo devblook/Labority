@@ -11,6 +11,9 @@ public class Labority extends JavaPlugin {
         pluginCore.init();
 
         pluginCore.getManagerLoader().getTaskManager().getPluginLoadingTask().loadTask();
+
+        System.out.println("[Labority] You are using " + getDescription().getVersion() + ".");
+
     }
 
     @Override

@@ -23,6 +23,9 @@ public class ManagerLoader implements Loader {
 
         vaultHookManager = new VaultHookManager(pluginCore.getPlugin());
         vaultHookManager.load();
+
+        System.out.println("[Labority] Managers loaded.");
+
     }
 
     public TaskManager getTaskManager(){
