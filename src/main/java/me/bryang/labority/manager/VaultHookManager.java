@@ -27,7 +27,7 @@ public class VaultHookManager {
         RegisteredServiceProvider<Economy> rsp = Bukkit.getServer().getServicesManager().getRegistration(Economy.class);
 
         if (rsp == null){
-            System.out.println("Server: The economy doesnt loaded correctly.");
+            System.out.println("Server: The economy doesn't loaded correctly.");
             return;
         }
 
