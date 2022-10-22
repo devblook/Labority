@@ -197,7 +197,7 @@ public class JobsCommand implements CommandExecutor {
                 }
 
                 String jobNameInfo = arguments[1];
-                
+
                 if (configFile.getConfigurationSection("jobs." + jobNameInfo) == null) {
 
                     sender.sendMessage(messagesFile.getString("error.unknown-job")
