@@ -27,6 +27,8 @@ public class FilesLoader implements Loader {
         messagesFile = new FileManager(plugin, "messages");
 
         playersFile = new FileDataManager(plugin, "players");
+
+        System.out.println("[Labority] Files loaded");
     }
 
 
