@@ -1,6 +1,7 @@
 package me.bryang.labority.commands;
 
 import me.bryang.labority.PluginCore;
+import me.bryang.labority.data.JobData;
 import me.bryang.labority.data.PlayerData;
 import me.bryang.labority.loader.DataLoader;
 import me.bryang.labority.manager.file.FileDataManager;
@@ -157,7 +158,25 @@ public class JobsCommand implements CommandExecutor {
                 }
 
                 break;
+            case "stats":
+                PlayerData playerDataStats = dataLoader.getPlayerJob(sender.getUniqueId());
 
+
+                for (String message : messagesFile.getStringList("jobs.stats.message")) {
+                    if (message.contains("%job-format%")) {
+                        for (String jobNameData : playerDataStats.getJobsNames()) {
+
+                            JobData jobData = playerDataStats.getJob(jobNameData);
+
+                            sender.sendMessage(message
+                                    .replace("%job-name%", jobData.getName())
+                                    .replace("%level%", String.valueOf(jobData.getLevel()))
+                                    .replace("%xp%", String.valueOf(jobData.getXpPoints())));
+                        }
+                    }
+
+                    sender.sendMessage(message);
+                }
             default:
                 sender.sendMessage(messagesFile.getString("error.unknown-argument"));
         }

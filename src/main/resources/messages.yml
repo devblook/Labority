@@ -30,6 +30,11 @@ jobs:
       - "&fLeñador &8: &fPara talar arboles."
       - "&fCazador &8: &fPara cazar mobs."
 
+  stats:
+    # Message when you see your stats.
+    message:
+      - "&a[Server] &8| &fEstadistcas:"
+      - "%job-format% &8- &f%job-name% &f8- &fNivel %level% &8: &f%xp%&8/&f%max-xp% "
 error:
 
   # When the player is using the console.
