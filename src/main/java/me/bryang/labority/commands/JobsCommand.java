@@ -77,15 +77,16 @@ public class JobsCommand implements CommandExecutor {
 
             case "join":
 
-                String jobName = arguments[1];
 
-                if (jobName == null) {
+
+                if (arguments.length < 2) {
 
                     sender.sendMessage(messagesFile.getString("error.no-argument")
-                            .replace("%usage%", "/jobs join [trabajo]"));
+                            .replace("%usage%", "/jobs join [job]"));
                      return true;
 
                 }
+                String jobName = arguments[1];
 
                 if (configFile.getConfigurationSection("jobs." + jobName) == null) {
 
@@ -118,15 +119,15 @@ public class JobsCommand implements CommandExecutor {
 
             case "leave":
 
-                String jobNameLeave = arguments[1];
-
-                if (jobNameLeave == null) {
+                if (arguments.length < 2) {
 
                     sender.sendMessage(messagesFile.getString("error.no-argument")
                             .replace("%usage%", "/jobs join [trabajo]"));
                      return true;
 
                 }
+
+                String jobNameLeave = arguments[1];
 
                 if (configFile.getConfigurationSection("jobs." + jobNameLeave) == null) {
 
@@ -187,9 +188,7 @@ public class JobsCommand implements CommandExecutor {
 
             case "info":
 
-                String jobNameInfo = arguments[1];
-
-                if (jobNameInfo == null) {
+                if (arguments.length < 2) {
 
                     sender.sendMessage(messagesFile.getString("error.no-argument")
                             .replace("%usage%", "/jobs info [trabajo]"));
@@ -197,6 +196,8 @@ public class JobsCommand implements CommandExecutor {
 
                 }
 
+                String jobNameInfo = arguments[1];
+                
                 if (configFile.getConfigurationSection("jobs." + jobNameInfo) == null) {
 
                     sender.sendMessage(messagesFile.getString("error.unknown-job")
