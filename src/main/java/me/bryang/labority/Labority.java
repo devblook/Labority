@@ -10,6 +10,7 @@ public class Labority extends JavaPlugin {
         PluginCore pluginCore = new PluginCore(this);
         pluginCore.init();
 
+        pluginCore.getManagerLoader().getTaskManager().getPluginLoadingTask().loadTask();
     }
 
     @Override

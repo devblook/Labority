@@ -5,7 +5,7 @@ import me.bryang.labority.task.PluginLoadingTask;
 
 public class TaskManager {
 
-    private PluginCore pluginCore;
+    private final PluginCore pluginCore;
 
     private PluginLoadingTask pluginLoadingTask;
 
@@ -14,7 +14,8 @@ public class TaskManager {
     }
 
     public void load(){
-        pluginLoadingTask = new PluginLoadingTask();
+        pluginLoadingTask = new PluginLoadingTask(pluginCore);
+
     }
 
     public PluginLoadingTask getPluginLoadingTask(){

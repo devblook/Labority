@@ -4,6 +4,8 @@ import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.plugin.Plugin;
 
 import java.util.List;
+import java.util.Set;
+import java.util.UUID;
 
 public class FileDataManager extends FileManager {
 
@@ -12,8 +14,8 @@ public class FileDataManager extends FileManager {
         super(plugin, fileName);
     }
 
-    public ConfigurationSection getJobData(String playerName){
-        return getConfigurationSection("players.jobs." + playerName);
+    public ConfigurationSection getJobData(UUID playerUniqueID){
+        return getConfigurationSection("players.jobs." + playerUniqueID);
 
     }
 
@@ -21,21 +23,29 @@ public class FileDataManager extends FileManager {
         return getConfigurationSection(("players.jobs")).getKeys(false).size();
     }
 
+    public Set<String> getPlayersKeys(){
+        return getConfigurationSection("players.job").getKeys(false);
+    }
 
-    public void setJobData(String playerName, String path, String result){
-        set("players.jobs." + playerName + "." + path, result);
+    public Set<String> getJobsKeys(UUID playerUniqueID){
+        return getConfigurationSection("players.job." + playerUniqueID + ".list-jobs").getKeys(false);
+    }
+
+
+    public void setJobData(UUID playerUniqueID, String path, String result){
+        set("players.jobs." + playerUniqueID + "." + path, result);
 
 
     }
 
-    public void setJobData(String playerName, String path, List<String> result){
-        set("players.jobs." + playerName + "." + path, result);
+    public void setJobData(UUID playerUniqueID, String path, List<String> result){
+        set("players.jobs." + playerUniqueID + "." + path, result);
 
 
     }
 
-    public void setJobData(String playerName, String path, int result){
-        set("players.jobs." + playerName + "." + path, result);
+    public void setJobData(UUID playerUniqueID, String path, int result){
+        set("players.jobs." + playerUniqueID + "." + path, result);
 
 
     }

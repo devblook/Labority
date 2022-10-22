@@ -6,7 +6,7 @@ import me.bryang.labority.manager.TaskManager;
 
 public class ManagerLoader implements Loader {
 
-    private PluginCore pluginCore;
+    private final PluginCore pluginCore;
 
     private TaskManager taskManager;
 
@@ -15,7 +15,10 @@ public class ManagerLoader implements Loader {
     }
 
     public void load(){
+
         taskManager = new TaskManager(pluginCore);
+        taskManager.load();
+
     }
 
     public TaskManager getTaskManager(){
