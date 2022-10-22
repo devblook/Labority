@@ -4,7 +4,7 @@ import me.bryang.labority.api.Core;
 import me.bryang.labority.api.Loader;
 import me.bryang.labority.loader.*;
 
-public class PluginCore implements Core{
+public class PluginCore implements Core {
 
     private final Labority plugin;
 
@@ -12,7 +12,7 @@ public class PluginCore implements Core{
     private DataLoader dataLoader;
     private ManagerLoader managerLoader;
 
-    public PluginCore(Labority plugin){
+    public PluginCore(Labority plugin) {
         this.plugin = plugin;
     }
 
@@ -33,12 +33,11 @@ public class PluginCore implements Core{
                 new ListenersLoader(this));
 
 
-
     }
 
 
-    private void initLoaders(Loader... loaders){
-        for (Loader loader : loaders){
+    private void initLoaders(Loader... loaders) {
+        for (Loader loader : loaders) {
             loader.load();
         }
     }
@@ -48,15 +47,15 @@ public class PluginCore implements Core{
         return filesLoader;
     }
 
-    public DataLoader getDataLoader(){
+    public DataLoader getDataLoader() {
         return dataLoader;
     }
 
-    public ManagerLoader getManagerLoader(){
+    public ManagerLoader getManagerLoader() {
         return managerLoader;
     }
 
-    public Labority getPlugin(){
+    public Labority getPlugin() {
         return plugin;
     }
 }

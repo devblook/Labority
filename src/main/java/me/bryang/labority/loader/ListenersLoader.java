@@ -14,7 +14,7 @@ public class ListenersLoader implements Loader {
 
     private final PluginCore pluginCore;
 
-    public ListenersLoader(PluginCore pluginCore){
+    public ListenersLoader(PluginCore pluginCore) {
         this.pluginCore = pluginCore;
     }
 
@@ -26,12 +26,12 @@ public class ListenersLoader implements Loader {
                 new JobListener(pluginCore));
     }
 
-    public void registerListeners(Listener... listeners){
+    public void registerListeners(Listener... listeners) {
 
         PluginManager pluginManager = Bukkit.getPluginManager();
         Labority labority = pluginCore.getPlugin();
 
-        for (Listener listener : listeners){
+        for (Listener listener : listeners) {
             pluginManager.registerEvents(listener, labority);
         }
 

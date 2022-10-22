@@ -8,15 +8,15 @@ public class PlayerData {
 
     private final Map<String, JobData> jobList = new HashMap<>();
 
-    public void addJob(String jobName){
+    public void addJob(String jobName) {
         jobList.put(jobName, new JobData(jobName));
     }
 
-    public void addJobData(String jobName, JobData jobData){
+    public void addJobData(String jobName, JobData jobData) {
         jobList.put(jobName, jobData);
     }
 
-    public JobData getJob(String jobName){
+    public JobData getJob(String jobName) {
         return jobList.get(jobName);
     }
 
@@ -24,15 +24,15 @@ public class PlayerData {
         jobList.remove(jobName);
     }
 
-    public boolean hasTheJob(String jobName){
+    public boolean hasTheJob(String jobName) {
         return jobList.containsKey(jobName);
     }
 
-    public int getJobSize(){
+    public int getJobSize() {
         return jobList.size();
     }
 
-    public Set<String> getJobsNames(){
+    public Set<String> getJobsNames() {
         return jobList.keySet();
     }
 }

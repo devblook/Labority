@@ -13,7 +13,7 @@ import org.bukkit.inventory.ItemStack;
 public class PlayerBreakListener implements Listener {
 
     @EventHandler
-    public void onBreak(BlockBreakEvent event){
+    public void onBreak(BlockBreakEvent event) {
 
         Block block = event.getBlock();
 

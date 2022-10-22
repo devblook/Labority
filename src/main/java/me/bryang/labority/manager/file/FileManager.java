@@ -73,10 +73,10 @@ public class FileManager extends YamlConfiguration {
     }
 
     @Override
-    public String getString(String path){
+    public String getString(String path) {
         String text = super.getString(path);
 
-        if (text == null){
+        if (text == null) {
             plugin.getLogger().info("Error: Path is null: " + path);
             return "Error 404 - The path is null: " + path;
         }

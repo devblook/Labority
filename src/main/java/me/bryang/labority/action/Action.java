@@ -18,7 +18,7 @@ public class Action {
         this.itemStack = null;
     }
 
-    public Action( JobType jobType, ItemStack itemStack){
+    public Action(JobType jobType, ItemStack itemStack) {
 
         this.jobType = jobType;
 

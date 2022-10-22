@@ -11,13 +11,13 @@ public class VaultHookManager {
 
     private Economy economy;
 
-    public VaultHookManager(Labority labority){
+    public VaultHookManager(Labority labority) {
         this.labority = labority;
     }
 
-    public void load(){
+    public void load() {
 
-        if (!Bukkit.getPluginManager().isPluginEnabled("Vault")){
+        if (!Bukkit.getPluginManager().isPluginEnabled("Vault")) {
 
             System.out.println("[Labority] Error: You need Vault to load the plugin");
             Bukkit.getPluginManager().disablePlugin(labority);
@@ -26,7 +26,7 @@ public class VaultHookManager {
 
         RegisteredServiceProvider<Economy> rsp = Bukkit.getServer().getServicesManager().getRegistration(Economy.class);
 
-        if (rsp == null){
+        if (rsp == null) {
             System.out.println("[Labority] Error: The economy doesn't loaded correctly.");
             return;
         }
@@ -35,7 +35,7 @@ public class VaultHookManager {
 
     }
 
-    public Economy getEconomy(){
+    public Economy getEconomy() {
         return economy;
     }
 

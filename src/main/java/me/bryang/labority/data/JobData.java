@@ -4,7 +4,7 @@ public class JobData {
 
     private final String jobName;
 
-    public JobData(String jobName){
+    public JobData(String jobName) {
         this.jobName = jobName;
     }
 
@@ -13,44 +13,44 @@ public class JobData {
 
     private int level = 1;
 
-    public String getName(){
+    public String getName() {
         return jobName;
     }
 
-    public void removeXPPoints(){
+    public void removeXPPoints() {
         xpPoints--;
     }
 
-    public int getXpPoints(){
+    public int getXpPoints() {
         return xpPoints;
     }
 
-    public void addLevel(){
+    public void addLevel() {
         level++;
     }
 
-    public void removeLevel(){
+    public void removeLevel() {
         level--;
     }
 
-    public int getLevel(){
+    public int getLevel() {
         return level;
     }
 
-    public void setXPPoints(int xpPoints){
+    public void setXPPoints(int xpPoints) {
         this.xpPoints = xpPoints;
     }
 
 
-    public void setLevel(int level){
+    public void setLevel(int level) {
         this.level = level;
     }
 
-    public int getMaxXP(){
+    public int getMaxXP() {
         return maxXP;
     }
 
-    public void setMaxXP(int maxXP){
+    public void setMaxXP(int maxXP) {
         this.maxXP = maxXP;
     }
 }

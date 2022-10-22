@@ -13,7 +13,7 @@ jobs:
     - "&8- &f/jobs browse"
     - "&8- &f/jobs info &a[trabajo]"
     -
-  # Reload message.
+    # Reload message.
   reload: "&a[Server] &8| &FPlugin recargado."
 
   join:
@@ -68,8 +68,8 @@ error:
   no-argument: "&a[Server] &8| &fNo has puesto un argumento. Uso: &a%usage%&f."
 
 
-# Job error messages:
-#
+  # Job error messages:
+  #
 
   # When the player is not putting a job.
   unknown-job: "&a[Server] &| &fTrabajo desconocido: &a%job%&f."

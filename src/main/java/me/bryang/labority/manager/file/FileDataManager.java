@@ -14,30 +14,30 @@ public class FileDataManager extends FileManager {
         super(plugin, fileName);
     }
 
-    public ConfigurationSection getJobData(UUID playerUniqueID){
+    public ConfigurationSection getJobData(UUID playerUniqueID) {
         return getConfigurationSection("players.jobs." + playerUniqueID);
 
     }
 
-    public int getPlayerSize(){
-        if (getConfigurationSection("players.job") == null){
+    public int getPlayerSize() {
+        if (getConfigurationSection("players.job") == null) {
             return 0;
         }
 
         return getConfigurationSection(("players.jobs")).getKeys(false).size();
     }
 
-    public Set<String> getPlayersKeys(){
-        if (getConfigurationSection("players.job") == null){
+    public Set<String> getPlayersKeys() {
+        if (getConfigurationSection("players.job") == null) {
             return null;
         }
 
         return getConfigurationSection("players.job").getKeys(false);
     }
 
-    public Set<String> getJobsKeys(UUID playerUniqueID){
+    public Set<String> getJobsKeys(UUID playerUniqueID) {
 
-        if (getConfigurationSection("players.job." + playerUniqueID + ".list-jobs") == null){
+        if (getConfigurationSection("players.job." + playerUniqueID + ".list-jobs") == null) {
             return null;
         }
 
@@ -45,19 +45,19 @@ public class FileDataManager extends FileManager {
     }
 
 
-    public void setJobData(UUID playerUniqueID, String path, String result){
+    public void setJobData(UUID playerUniqueID, String path, String result) {
         set("players.jobs." + playerUniqueID + "." + path, result);
 
 
     }
 
-    public void setJobData(UUID playerUniqueID, String path, List<String> result){
+    public void setJobData(UUID playerUniqueID, String path, List<String> result) {
         set("players.jobs." + playerUniqueID + "." + path, result);
 
 
     }
 
-    public void setJobData(UUID playerUniqueID, String path, int result){
+    public void setJobData(UUID playerUniqueID, String path, int result) {
         set("players.jobs." + playerUniqueID + "." + path, result);
 
 

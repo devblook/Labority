@@ -19,7 +19,7 @@ public class PluginLoadingTask {
     private final DataLoader dataLoader;
 
 
-    public PluginLoadingTask(PluginCore pluginCore){
+    public PluginLoadingTask(PluginCore pluginCore) {
 
         this.configFile = pluginCore.getFilesLoader().getConfigFile();
         this.playersFile = pluginCore.getFilesLoader().getPlayersFile();
@@ -28,14 +28,14 @@ public class PluginLoadingTask {
 
     }
 
-    public void loadTask(){
+    public void loadTask() {
 
-        if (playersFile.getPlayersKeys() == null){
+        if (playersFile.getPlayersKeys() == null) {
             System.out.println("[Labority] Thanks for using my plugin, don't forget check config.yml");
             return;
         }
 
-        for (String stringToUUID : playersFile.getPlayersKeys()){
+        for (String stringToUUID : playersFile.getPlayersKeys()) {
 
             UUID playerUniqueId = UUID.fromString(stringToUUID);
 
@@ -43,7 +43,7 @@ public class PluginLoadingTask {
 
             PlayerData playerData = dataLoader.getPlayerJob(playerUniqueId);
 
-            for (String jobName : playersFile.getJobsKeys(playerUniqueId)){
+            for (String jobName : playersFile.getJobsKeys(playerUniqueId)) {
 
                 JobData jobData = new JobData(jobName);
 

@@ -14,7 +14,7 @@ public class JobsEvent extends Event {
     private final UUID target;
     private final Action action;
 
-    public JobsEvent(UUID target, Action action){
+    public JobsEvent(UUID target, Action action) {
 
         this.action = action;
         this.target = target;
@@ -30,6 +30,7 @@ public class JobsEvent extends Event {
     public HandlerList getHandlers() {
         return handlerList;
     }
+
     public UUID getTarget() {
         return target;
     }

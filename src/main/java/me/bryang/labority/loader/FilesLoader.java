@@ -14,7 +14,7 @@ public class FilesLoader implements Loader {
 
     private FileDataManager playersFile;
 
-    public FilesLoader(Labority plugin){
+    public FilesLoader(Labority plugin) {
 
         this.plugin = plugin;
 
@@ -34,11 +34,11 @@ public class FilesLoader implements Loader {
         return configFile;
     }
 
-    public FileManager getMessagesFile(){
+    public FileManager getMessagesFile() {
         return messagesFile;
     }
 
-    public FileDataManager getPlayersFile(){
+    public FileDataManager getPlayersFile() {
         return playersFile;
     }
 }

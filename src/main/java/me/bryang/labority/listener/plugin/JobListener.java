@@ -22,7 +22,7 @@ public class JobListener implements Listener {
 
     private final DataLoader dataLoader;
 
-    public JobListener(PluginCore pluginCore){
+    public JobListener(PluginCore pluginCore) {
 
         this.vaultHookManager = pluginCore.getManagerLoader().getVaultHookManager();
 
@@ -33,29 +33,29 @@ public class JobListener implements Listener {
     }
 
     @EventHandler
-    public void onWork(JobsEvent event){
+    public void onWork(JobsEvent event) {
 
-        for (String jobs : configFile.getConfigurationSection("jobs").getKeys(false)){
+        for (String jobs : configFile.getConfigurationSection("jobs").getKeys(false)) {
 
             Action action = event.getAction();
-            if (!configFile.getString("jobs." + jobs + ".type").equalsIgnoreCase(action.getType())){
+            if (!configFile.getString("jobs." + jobs + ".type").equalsIgnoreCase(action.getType())) {
                 continue;
             }
 
             String dataRequired;
-            if (action.getEntity() == null){
+            if (action.getEntity() == null) {
                 dataRequired = action.getEntity().getType().name();
-            }else{
+            } else {
                 dataRequired = action.getItemStack().getType().name();
             }
 
-            if (configFile.getString("jobs." + jobs + ".items." + dataRequired) == null){
+            if (configFile.getString("jobs." + jobs + ".items." + dataRequired) == null) {
                 continue;
             }
 
             JobData jobData = dataLoader.getPlayerJob(event.getTarget()).getJob(jobs);
 
-            if (jobData == null){
+            if (jobData == null) {
                 return;
             }
 

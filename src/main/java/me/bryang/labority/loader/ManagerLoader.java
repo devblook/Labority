@@ -12,11 +12,11 @@ public class ManagerLoader implements Loader {
     private TaskManager taskManager;
     private VaultHookManager vaultHookManager;
 
-    public ManagerLoader(PluginCore pluginCore){
+    public ManagerLoader(PluginCore pluginCore) {
         this.pluginCore = pluginCore;
     }
 
-    public void load(){
+    public void load() {
 
         taskManager = new TaskManager(pluginCore);
         taskManager.load();
@@ -28,11 +28,11 @@ public class ManagerLoader implements Loader {
 
     }
 
-    public TaskManager getTaskManager(){
+    public TaskManager getTaskManager() {
         return taskManager;
     }
 
-    public VaultHookManager getVaultHookManager(){
+    public VaultHookManager getVaultHookManager() {
         return vaultHookManager;
     }
 }

@@ -18,12 +18,12 @@ public class DataLoader implements Loader {
 
     }
 
-    public void createPlayerJob(UUID uuid){
+    public void createPlayerJob(UUID uuid) {
         playerJobDataMap.put(uuid, new PlayerData());
     }
 
 
-    public PlayerData getPlayerJob(UUID uuid){
+    public PlayerData getPlayerJob(UUID uuid) {
         return playerJobDataMap.get(uuid);
     }
 

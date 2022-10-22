@@ -13,12 +13,12 @@ public class TaskManager {
         this.pluginCore = pluginCore;
     }
 
-    public void load(){
+    public void load() {
         pluginLoadingTask = new PluginLoadingTask(pluginCore);
 
     }
 
-    public PluginLoadingTask getPluginLoadingTask(){
+    public PluginLoadingTask getPluginLoadingTask() {
         return pluginLoadingTask;
     }
 

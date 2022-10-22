@@ -13,9 +13,9 @@ import org.bukkit.event.entity.EntityDamageByEntityEvent;
 public class PlayerKillEntityListener implements Listener {
 
     @EventHandler
-    public void PlayerKillMob(EntityDamageByEntityEvent event){
+    public void PlayerKillMob(EntityDamageByEntityEvent event) {
 
-        if (event.getDamager().getType() != EntityType.PLAYER){
+        if (event.getDamager().getType() != EntityType.PLAYER) {
             return;
         }
 

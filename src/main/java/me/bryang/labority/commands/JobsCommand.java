@@ -23,7 +23,7 @@ public class JobsCommand implements CommandExecutor {
 
     private final DataLoader dataLoader;
 
-    public JobsCommand(PluginCore pluginCore){
+    public JobsCommand(PluginCore pluginCore) {
 
         this.configFile = pluginCore.getFilesLoader().getConfigFile();
         this.messagesFile = pluginCore.getFilesLoader().getMessagesFile();
@@ -36,7 +36,7 @@ public class JobsCommand implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender commandSender, Command command, String idk, String[] arguments) {
 
-        if (!(commandSender instanceof Player)){
+        if (!(commandSender instanceof Player)) {
 
             System.out.println(messagesFile.getString("error.console"));
             return false;
@@ -45,11 +45,11 @@ public class JobsCommand implements CommandExecutor {
 
         Player sender = (Player) commandSender;
 
-        if (arguments.length < 1){
+        if (arguments.length < 1) {
 
-            List<String> helpCommandList =  messagesFile.getStringList("jobs.help");
+            List<String> helpCommandList = messagesFile.getStringList("jobs.help");
 
-            for (String message : helpCommandList){
+            for (String message : helpCommandList) {
                 sender.sendMessage(message);
             }
 
@@ -58,9 +58,9 @@ public class JobsCommand implements CommandExecutor {
         switch (arguments[0]) {
 
             case "help":
-                List<String> helpCommandList =  messagesFile.getStringList("jobs.help");
+                List<String> helpCommandList = messagesFile.getStringList("jobs.help");
 
-                for (String message : helpCommandList){
+                for (String message : helpCommandList) {
                     sender.sendMessage(message);
                 }
 
@@ -77,7 +77,7 @@ public class JobsCommand implements CommandExecutor {
 
                 String jobName = arguments[1];
 
-                if (jobName == null){
+                if (jobName == null) {
 
                     sender.sendMessage(messagesFile.getString("error.no-argument")
                             .replace("%usage%", "/jobs join [trabajo]"));
@@ -85,7 +85,7 @@ public class JobsCommand implements CommandExecutor {
 
                 }
 
-                if (configFile.getConfigurationSection("jobs." +  jobName) == null){
+                if (configFile.getConfigurationSection("jobs." + jobName) == null) {
 
                     sender.sendMessage(messagesFile.getString("error.unknown-job")
                             .replace("%job%", jobName));
@@ -95,7 +95,7 @@ public class JobsCommand implements CommandExecutor {
 
                 PlayerData playerData = dataLoader.getPlayerJob(sender.getUniqueId());
 
-                if (playerData.hasTheJob(jobName)){
+                if (playerData.hasTheJob(jobName)) {
 
                     sender.sendMessage(messagesFile.getString("error.already-have-job")
                             .replace("%job%", jobName));
@@ -118,7 +118,7 @@ public class JobsCommand implements CommandExecutor {
 
                 String jobNameLeave = arguments[1];
 
-                if (jobNameLeave == null){
+                if (jobNameLeave == null) {
 
                     sender.sendMessage(messagesFile.getString("error.no-argument")
                             .replace("%usage%", "/jobs join [trabajo]"));
@@ -126,7 +126,7 @@ public class JobsCommand implements CommandExecutor {
 
                 }
 
-                if (configFile.getConfigurationSection("jobs." +  jobNameLeave) == null){
+                if (configFile.getConfigurationSection("jobs." + jobNameLeave) == null) {
 
                     sender.sendMessage(messagesFile.getString("error.unknown-job")
                             .replace("%job%", jobNameLeave));
@@ -136,7 +136,7 @@ public class JobsCommand implements CommandExecutor {
 
                 PlayerData playerDataLeave = dataLoader.getPlayerJob(sender.getUniqueId());
 
-                if (!playerDataLeave.hasTheJob(jobNameLeave)){
+                if (!playerDataLeave.hasTheJob(jobNameLeave)) {
 
                     sender.sendMessage(messagesFile.getString("error.already-leave-job")
                             .replace("%job%", jobNameLeave));
@@ -156,7 +156,7 @@ public class JobsCommand implements CommandExecutor {
 
             case "browse":
 
-                for (String message : messagesFile.getStringList("jobs.browse.list")){
+                for (String message : messagesFile.getStringList("jobs.browse.list")) {
                     sender.sendMessage(message);
                 }
 
@@ -187,7 +187,7 @@ public class JobsCommand implements CommandExecutor {
 
                 String jobNameInfo = arguments[1];
 
-                if (jobNameInfo == null){
+                if (jobNameInfo == null) {
 
                     sender.sendMessage(messagesFile.getString("error.no-argument")
                             .replace("%usage%", "/jobs info [trabajo]"));
@@ -195,7 +195,7 @@ public class JobsCommand implements CommandExecutor {
 
                 }
 
-                if (configFile.getConfigurationSection("jobs." +  jobNameInfo) == null){
+                if (configFile.getConfigurationSection("jobs." + jobNameInfo) == null) {
 
                     sender.sendMessage(messagesFile.getString("error.unknown-job")
                             .replace("%job%", jobNameInfo));
@@ -205,7 +205,7 @@ public class JobsCommand implements CommandExecutor {
 
                 for (String message : messagesFile.getStringList("jobs.stats.message")) {
 
-                   if (message.contains("%job-format%")) {
+                    if (message.contains("%job-format%")) {
                         for (String item : configFile.getStringList("jobs." + jobNameInfo + ".items")) {
 
                             String[] valueItem = item.split(",");

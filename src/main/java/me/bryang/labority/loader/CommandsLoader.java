@@ -10,7 +10,7 @@ public class CommandsLoader implements Loader {
 
     private final PluginCore pluginCore;
 
-    public CommandsLoader(PluginCore pluginCore){
+    public CommandsLoader(PluginCore pluginCore) {
         this.pluginCore = pluginCore;
     }
 

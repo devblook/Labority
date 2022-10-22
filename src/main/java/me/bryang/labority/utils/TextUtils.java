@@ -5,7 +5,7 @@ import net.objecthunter.exp4j.ExpressionBuilder;
 
 public class TextUtils {
 
-    public static int calculateNumber(String format, int level){
+    public static int calculateNumber(String format, int level) {
         Expression expression = new ExpressionBuilder(format)
                 .variables("%j")
                 .build()
