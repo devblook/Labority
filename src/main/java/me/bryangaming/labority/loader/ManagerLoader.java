@@ -15,7 +15,7 @@ public class ManagerLoader implements Loader{
     }
 
     public void load(){
-        taskManager = new TaskManager();
+        taskManager = new TaskManager(pluginCore);
     }
 
     public TaskManager getTaskManager(){
