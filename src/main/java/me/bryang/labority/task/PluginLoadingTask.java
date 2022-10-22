@@ -30,8 +30,12 @@ public class PluginLoadingTask {
 
     public void loadTask(){
 
+        if (playersFile.getPlayersKeys() == null){
+            return;
+        }
+
         for (String stringToUUID : playersFile.getPlayersKeys()){
-            
+
             UUID playerUniqueId = UUID.fromString(stringToUUID);
 
             dataLoader.createPlayerJob(playerUniqueId);
