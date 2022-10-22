@@ -9,7 +9,10 @@ public class JobData {
     }
 
     private int xpPoints = 0;
-    private int level = 0;
+    private int maxXP = 0;
+
+    private int level = 1;
+
 
     public String getName(){
         return jobName;
@@ -18,6 +21,7 @@ public class JobData {
     public void addXPPoints(){
         xpPoints++;
     }
+
 
     public void removeXPPoints(){
         xpPoints--;
@@ -43,7 +47,16 @@ public class JobData {
         this.xpPoints = xpPoints;
     }
 
+
     public void setLevel(int level){
         this.level = level;
+    }
+
+    public int getMaxXP(){
+        return maxXP;
+    }
+
+    public void setMaxXP(int maxXP){
+        this.maxXP = maxXP;
     }
 }
