@@ -13,7 +13,7 @@ config:
 
     # Formula for gain xp per level:
     gain-xp: "%xp * %level%"
-    
+
   # Formula ror max xp:
     max-xp: "%j * 5"
 
