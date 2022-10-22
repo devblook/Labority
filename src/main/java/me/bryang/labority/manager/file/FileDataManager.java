@@ -17,6 +17,10 @@ public class FileDataManager extends FileManager {
 
     }
 
+    public int getPlayerSize(){
+        return getConfigurationSection(("players.jobs")).getKeys(false).size();
+    }
+
 
     public void setJobData(String playerName, String path, String result){
         set("players.jobs." + playerName + "." + path, result);
