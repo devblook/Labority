@@ -17,11 +17,6 @@ public class JobData {
         return jobName;
     }
 
-    public void addXPPoints(){
-        xpPoints++;
-    }
-
-
     public void removeXPPoints(){
         xpPoints--;
     }
