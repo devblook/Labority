@@ -9,7 +9,7 @@ public class TextUtils {
         Expression expression = new ExpressionBuilder(format)
                 .variables("%j")
                 .build()
-                .setVariable("%j", level);
+                .setVariable("%level", level);
 
         return (int) expression.evaluate();
     }
