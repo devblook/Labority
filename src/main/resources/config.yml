@@ -6,6 +6,10 @@ config:
   # Limit of jobs each player.
   limit-jobs: 3
 
+  formula:
+  # Formula por max xp:
+    max-xp: %j * 5
+
 #
 # List of jobs.
 jobs:
