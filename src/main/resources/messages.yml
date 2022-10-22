@@ -44,11 +44,18 @@ jobs:
 
   info:
 
+    # Message when you see the info.
     message:
 
       # Message when you see the info of your job.
       - "&a[Server] &8|  &fInfo de %job-name%:"
       - "%job-format% &8- &f%item_name% &8- &f%gain_money% &8- &f%gain_xp "
+
+  gain:
+
+    # Message when you increment level.
+    level: "&a[Server] &8| &fHas incrementado de nivel. &a%new_level%&f."
+
 error:
 
   # When the player is using the console.
