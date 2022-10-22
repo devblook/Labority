@@ -3,7 +3,6 @@ package me.bryang.labority.listener.plugin;
 import me.bryang.labority.PluginCore;
 import me.bryang.labority.action.Action;
 import me.bryang.labority.data.JobData;
-import me.bryang.labority.data.PlayerData;
 import me.bryang.labority.events.JobsEvent;
 import me.bryang.labority.loader.DataLoader;
 import me.bryang.labority.manager.VaultHookManager;
