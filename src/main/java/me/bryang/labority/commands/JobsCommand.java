@@ -160,7 +160,7 @@ public class JobsCommand implements CommandExecutor {
                 }
 
                 break;
-                
+
             case "stats":
                 PlayerData playerDataStats = dataLoader.getPlayerJob(sender.getUniqueId());
 
@@ -174,7 +174,8 @@ public class JobsCommand implements CommandExecutor {
                             sender.sendMessage(message
                                     .replace("%job-name%", jobData.getName())
                                     .replace("%level%", String.valueOf(jobData.getLevel()))
-                                    .replace("%xp%", String.valueOf(jobData.getXpPoints())));
+                                    .replace("%xp%", String.valueOf(jobData.getXpPoints()))
+                                    .replace("%max-xp%", String.valueOf(jobData.getMaxXP())));
                         }
                     }
 
