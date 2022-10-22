@@ -2,10 +2,7 @@ package me.bryangaming.labority;
 
 import me.bryangaming.labority.api.Core;
 import me.bryangaming.labority.api.Loader;
-import me.bryangaming.labority.loader.CommandsLoader;
-import me.bryangaming.labority.loader.DataLoader;
-import me.bryangaming.labority.loader.FilesLoader;
-import me.bryangaming.labority.loader.ListenersLoader;
+import me.bryangaming.labority.loader.*;
 
 public class PluginCore implements Core{
 
@@ -13,6 +10,7 @@ public class PluginCore implements Core{
 
     private FilesLoader filesLoader;
     private DataLoader dataLoader;
+    private ManagerLoader managerLoader;
 
     public PluginCore(Labority plugin){
         this.plugin = plugin;
@@ -21,12 +19,21 @@ public class PluginCore implements Core{
     @Override
     public void init() {
 
+        dataLoader = new DataLoader();
+        dataLoader.load();
+
         filesLoader = new FilesLoader(plugin);
         filesLoader.load();
+
+        managerLoader = new ManagerLoader(this);
+        managerLoader.load();
 
         initLoaders(
                 new CommandsLoader(this),
                 new ListenersLoader(this));
+
+
+
     }
 
 
@@ -44,6 +51,11 @@ public class PluginCore implements Core{
     public DataLoader getDataLoader(){
         return dataLoader;
     }
+
+    public ManagerLoader getManagerLoader(){
+        return managerLoader;
+    }
+
     public Labority getPlugin(){
         return plugin;
     }
