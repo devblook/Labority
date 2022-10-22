@@ -1,4 +1,4 @@
-package me.bryang.labority.event;
+package me.bryang.labority.events;
 
 
 import me.bryang.labority.action.Action;

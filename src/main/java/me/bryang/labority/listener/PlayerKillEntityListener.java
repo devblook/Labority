@@ -2,7 +2,7 @@ package me.bryang.labority.listener;
 
 import me.bryang.labority.action.Action;
 import me.bryang.labority.action.JobType;
-import me.bryang.labority.event.JobsEvent;
+import me.bryang.labority.events.JobsEvent;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;

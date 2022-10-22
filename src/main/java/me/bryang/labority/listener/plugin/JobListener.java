@@ -2,7 +2,7 @@ package me.bryang.labority.listener.plugin;
 
 import me.bryang.labority.PluginCore;
 import me.bryang.labority.action.Action;
-import me.bryang.labority.event.JobsEvent;
+import me.bryang.labority.events.JobsEvent;
 import me.bryang.labority.manager.file.FileManager;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
