@@ -11,55 +11,32 @@ import java.util.logging.Level;
 
 public class FileManager extends YamlConfiguration {
 
+
     private final String fileName;
     private final Plugin plugin;
-
     private final File file;
 
-    public FileManager(Plugin plugin, String fileName, String fileExtension, File folder) {
-
-        this.fileName = fileName + (fileName.endsWith(fileExtension) ? "" : fileExtension);
-
+    public FileManager(Plugin plugin, String fileName){
+        this.fileName = fileName + ".yml";
         this.plugin = plugin;
 
-        this.file = new File(folder, fileName);
-
+        this.file = new File(plugin.getDataFolder(), fileName + ".yml");
         createFile();
-
-    }
-
-    public FileManager(Plugin plugin, String fileName) {
-        this(plugin, fileName, ".yml", plugin.getDataFolder());
     }
 
 
     private void createFile() {
 
-        try {
-
-            if (file.exists()) {
-
-                if (plugin.getResource(fileName) != null) {
-                    plugin.saveResource(fileName, false);
-                }else{
-                    save(file);
-                }
-
-                load(file);
-                return;
-            }
-
-            if (plugin.getResource(fileName) != null) {
-                plugin.saveResource(fileName, false);
-            } else {
-                save(file);
-            }
-
-            load(file);
-
-        } catch (InvalidConfigurationException | IOException e) {
-            plugin.getLogger().log(Level.SEVERE, "Creation of Configuration '" + this.fileName + "' failed.", e);
+        if (!file.exists()) {
+            plugin.saveResource(fileName, false);
         }
+
+        try{
+            load(file);
+        } catch (InvalidConfigurationException | IOException e) {
+            plugin.getLogger().log(Level.SEVERE, "Creation of FileManager '" + fileName + "' failed.", e);
+        }
+
     }
 
     public void save() {
