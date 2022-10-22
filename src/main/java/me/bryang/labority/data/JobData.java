@@ -2,7 +2,7 @@ package me.bryang.labority.data;
 
 public class JobData {
 
-    private String jobName;
+    private final String jobName;
 
     public JobData(String jobName){
         this.jobName = jobName;
@@ -39,4 +39,11 @@ public class JobData {
         return level;
     }
 
+    public void setXPPoints(int xpPoints){
+        this.xpPoints = xpPoints;
+    }
+
+    public void setLevel(int level){
+        this.level = level;
+    }
 }
