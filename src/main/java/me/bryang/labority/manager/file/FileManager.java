@@ -18,8 +18,10 @@ public class FileManager extends YamlConfiguration {
 
     public FileManager(Plugin plugin, String fileName, String fileExtension, File folder) {
 
-        this.plugin = plugin;
         this.fileName = fileName + (fileName.endsWith(fileExtension) ? "" : fileExtension);
+
+        this.plugin = plugin;
+
         this.file = new File(folder, fileName);
 
         createFile();
@@ -36,8 +38,14 @@ public class FileManager extends YamlConfiguration {
         try {
 
             if (file.exists()) {
+
+                if (plugin.getResource(fileName) != null) {
+                    plugin.saveResource(fileName, false);
+                }else{
+                    save(file);
+                }
+
                 load(file);
-                save(file);
                 return;
             }
 

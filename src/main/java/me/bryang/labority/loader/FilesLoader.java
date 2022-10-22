@@ -17,7 +17,6 @@ public class FilesLoader implements Loader {
     public FilesLoader(Labority plugin) {
 
         this.plugin = plugin;
-
     }
 
     @Override
