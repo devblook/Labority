@@ -31,6 +31,7 @@ public class PluginLoadingTask {
     public void loadTask(){
 
         for (String stringToUUID : playersFile.getPlayersKeys()){
+            
             UUID playerUniqueId = UUID.fromString(stringToUUID);
 
             dataLoader.createPlayerJob(playerUniqueId);
