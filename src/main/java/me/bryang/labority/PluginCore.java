@@ -3,7 +3,6 @@ package me.bryang.labority;
 import me.bryang.labority.api.Core;
 import me.bryang.labority.api.Loader;
 import me.bryang.labority.loader.*;
-import me.bryangaming.labority.loader.*;
 
 public class PluginCore implements Core{
 
