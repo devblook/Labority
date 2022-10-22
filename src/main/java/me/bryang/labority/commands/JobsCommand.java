@@ -164,7 +164,6 @@ public class JobsCommand implements CommandExecutor {
             case "stats":
                 PlayerData playerDataStats = dataLoader.getPlayerJob(sender.getUniqueId());
 
-
                 for (String message : messagesFile.getStringList("jobs.stats.message")) {
                     if (message.contains("%job-format%")) {
                         for (String jobNameData : playerDataStats.getJobsNames()) {
