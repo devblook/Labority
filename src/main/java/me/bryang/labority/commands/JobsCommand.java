@@ -56,7 +56,7 @@ public class JobsCommand implements CommandExecutor {
         }
 
         switch (arguments[0]) {
-        
+
             case "help":
                 List<String> helpCommandList =  messagesFile.getStringList("jobs.help");
 
