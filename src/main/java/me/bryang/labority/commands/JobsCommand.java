@@ -52,8 +52,7 @@ public class JobsCommand implements CommandExecutor {
             for (String message : helpCommandList){
                 sender.sendMessage(message);
             }
-
-
+            
         }
 
         switch (arguments[0]){
@@ -63,6 +62,7 @@ public class JobsCommand implements CommandExecutor {
                 for (String message : helpCommandList){
                     sender.sendMessage(message);
                 }
+
                 break;
 
             case "reload":
