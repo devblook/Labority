@@ -1,11 +1,8 @@
 package me.bryangaming.labority.manager.file;
 
-import me.bryangaming.labority.Labority;
-import me.bryangaming.labority.loader.FilesLoader;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.plugin.Plugin;
 
-import java.io.File;
 import java.util.List;
 
 public class FileDataManager extends FileManager {
