@@ -21,6 +21,15 @@ jobs:
     # Message when you leave a job.
     message: "&a[Server] &8| &fTe saliste de este trabajo. &a%job%"
 
+  browse:
+
+    # Message when you browse the jobs.
+    list:
+      - "&a[Server] &8| &fLista de trabajos:"
+      - "&fMinero &8: &fPara minar bloques."
+      - "&fLeñador &8: &fPara talar arboles."
+      - "&fCazador &8: &fPara cazar mobs."
+
 error:
 
   # When the player is using the console.

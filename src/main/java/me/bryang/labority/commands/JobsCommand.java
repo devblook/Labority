@@ -108,6 +108,8 @@ public class JobsCommand implements CommandExecutor {
 
                 sender.sendMessage(messagesFile.getString("jobs.join.message")
                         .replace("%job%", jobName));
+                break;
+
             case "leave":
 
                 String jobNameLeave = arguments[1];
@@ -146,7 +148,15 @@ public class JobsCommand implements CommandExecutor {
 
                 sender.sendMessage(messagesFile.getString("jobs.leave.message")
                         .replace("%job%", jobNameLeave));
-                
+                break;
+
+            case "browse":
+
+                for (String message : messagesFile.getStringList("jobs.browse.list")){
+                    sender.sendMessage(message);
+                }
+
+                break;
 
             default:
                 sender.sendMessage(messagesFile.getString("error.unknown-argument"));
