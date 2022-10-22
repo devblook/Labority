@@ -12,6 +12,10 @@ public class PlayerData {
         jobList.put(jobName, new JobData(jobName));
     }
 
+    public void addJobData(String jobName, JobData jobData){
+        jobList.put(jobName, jobData);
+    }
+
     public JobData getJob(String jobName){
         return jobList.get(jobName);
     }
