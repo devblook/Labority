@@ -7,7 +7,14 @@ config:
   limit-jobs: 3
 
   formula:
-  # Formula por max xp:
+
+    # Formula for gain money per level:
+    gain-money: "%money * %level%"
+
+    # Formula for gain xp per level:
+    gain-xp: "%xp * %level%"
+    
+  # Formula ror max xp:
     max-xp: "%j * 5"
 
 #
