@@ -6,6 +6,7 @@ import me.bryang.labority.data.PlayerData;
 import me.bryang.labority.loader.DataLoader;
 import me.bryang.labority.manager.file.FileDataManager;
 import me.bryang.labority.manager.file.FileManager;
+import me.bryang.labority.utils.TextUtils;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -102,8 +103,9 @@ public class JobsCommand implements CommandExecutor {
                 }
 
                 playerData.addJob(jobName);
+                playerData.getJob(jobName).setMaxXP(TextUtils.calculateNumber(configFile.getString("jobs.formula.max-xp"), 1));
 
-                playersFile.setJobData(sender.getUniqueId(), "job-list." + jobName + ".level", 0);
+                playersFile.setJobData(sender.getUniqueId(), "job-list." + jobName + ".level", 1);
                 playersFile.setJobData(sender.getUniqueId(), "job-list." + jobName + ".xp", 0);
                 playersFile.save();
 
@@ -177,6 +179,8 @@ public class JobsCommand implements CommandExecutor {
 
                     sender.sendMessage(message);
                 }
+                break;
+
             default:
                 sender.sendMessage(messagesFile.getString("error.unknown-argument"));
         }
