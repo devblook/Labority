@@ -5,9 +5,14 @@ jobs:
 
   # Help format.
   help:
+    - "&a[Server] &8| &fLista de trabajos."
     - ""
-    - ""
-
+    - "&8- &f/jobs join &a[trabajo]"
+    - "&8- &f/jobs leave &a[trabajo]"
+    - "&8- &f/jobs stats"
+    - "&8- &f/jobs browse"
+    - "&8- &f/jobs info &a[trabajo]"
+    -
   # Reload message.
   reload: "&a[Server] &8| &FPlugin recargado."
 
