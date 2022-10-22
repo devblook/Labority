@@ -9,7 +9,7 @@ import java.util.UUID;
 
 public class JobsEvent extends Event {
 
-    private final HandlerList handlerList = new HandlerList();
+    private static final HandlerList handlerList = new HandlerList();
 
     private final UUID target;
     private final Action action;
@@ -21,11 +21,15 @@ public class JobsEvent extends Event {
 
     }
 
+
+    public static HandlerList getHandlerList() {
+        return handlerList;
+    }
+
     @Override
     public HandlerList getHandlers() {
         return handlerList;
     }
-
     public UUID getTarget() {
         return target;
     }
@@ -33,4 +37,6 @@ public class JobsEvent extends Event {
     public Action getAction() {
         return action;
     }
+
+
 }
