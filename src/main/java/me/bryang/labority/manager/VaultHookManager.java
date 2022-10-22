@@ -17,7 +17,7 @@ public class VaultHookManager {
 
     public void load(){
 
-        if (Bukkit.getPluginManager().isPluginEnabled("Vault")){
+        if (!Bukkit.getPluginManager().isPluginEnabled("Vault")){
 
             System.out.println("Error: You need Vault to load the plugin");
             Bukkit.getPluginManager().disablePlugin(labority);
