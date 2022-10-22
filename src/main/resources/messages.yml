@@ -72,7 +72,7 @@ error:
   #
 
   # When the player is not putting a job.
-  unknown-job: "&a[Server] &| &fTrabajo desconocido: &a%job%&f."
+  unknown-job: "&a[Server] &8| &fTrabajo desconocido: &a%job%&f."
 
   # When the player already have a job.
   already-have-job: "&a[Server] &8| &fYa te uniste a este trabajo: &a%job%&f."
