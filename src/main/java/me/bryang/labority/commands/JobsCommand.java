@@ -39,7 +39,7 @@ public class JobsCommand implements CommandExecutor {
         if (!(commandSender instanceof Player)) {
 
             System.out.println(messagesFile.getString("error.console"));
-            return false;
+            return true;
 
         }
 
@@ -53,7 +53,7 @@ public class JobsCommand implements CommandExecutor {
                 sender.sendMessage(message);
             }
 
-            return false;
+            return true;
 
         }
 
@@ -83,7 +83,7 @@ public class JobsCommand implements CommandExecutor {
 
                     sender.sendMessage(messagesFile.getString("error.no-argument")
                             .replace("%usage%", "/jobs join [trabajo]"));
-                    return false;
+                     return true;
 
                 }
 
@@ -91,7 +91,7 @@ public class JobsCommand implements CommandExecutor {
 
                     sender.sendMessage(messagesFile.getString("error.unknown-job")
                             .replace("%job%", jobName));
-                    return false;
+                     return true;
 
                 }
 
@@ -101,7 +101,7 @@ public class JobsCommand implements CommandExecutor {
 
                     sender.sendMessage(messagesFile.getString("error.already-have-job")
                             .replace("%job%", jobName));
-                    return false;
+                     return true;
 
                 }
 
@@ -124,7 +124,7 @@ public class JobsCommand implements CommandExecutor {
 
                     sender.sendMessage(messagesFile.getString("error.no-argument")
                             .replace("%usage%", "/jobs join [trabajo]"));
-                    return false;
+                     return true;
 
                 }
 
@@ -132,7 +132,7 @@ public class JobsCommand implements CommandExecutor {
 
                     sender.sendMessage(messagesFile.getString("error.unknown-job")
                             .replace("%job%", jobNameLeave));
-                    return false;
+                     return true;
 
                 }
 
@@ -142,7 +142,7 @@ public class JobsCommand implements CommandExecutor {
 
                     sender.sendMessage(messagesFile.getString("error.already-leave-job")
                             .replace("%job%", jobNameLeave));
-                    return false;
+                     return true;
 
                 }
 
@@ -193,7 +193,7 @@ public class JobsCommand implements CommandExecutor {
 
                     sender.sendMessage(messagesFile.getString("error.no-argument")
                             .replace("%usage%", "/jobs info [trabajo]"));
-                    return false;
+                     return true;
 
                 }
 
@@ -201,7 +201,7 @@ public class JobsCommand implements CommandExecutor {
 
                     sender.sendMessage(messagesFile.getString("error.unknown-job")
                             .replace("%job%", jobNameInfo));
-                    return false;
+                     return true;
 
                 }
 
@@ -226,6 +226,6 @@ public class JobsCommand implements CommandExecutor {
             default:
                 sender.sendMessage(messagesFile.getString("error.unknown-argument"));
         }
-        return false;
+         return true;
     }
 }
