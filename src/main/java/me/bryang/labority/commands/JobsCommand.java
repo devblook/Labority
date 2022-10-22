@@ -182,6 +182,44 @@ public class JobsCommand implements CommandExecutor {
                 }
                 break;
 
+            case "info":
+
+                String jobNameInfo = arguments[1];
+
+                if (jobNameInfo == null){
+
+                    sender.sendMessage(messagesFile.getString("error.no-argument")
+                            .replace("%usage%", "/jobs info [trabajo]"));
+                    return false;
+
+                }
+
+                if (configFile.getConfigurationSection("jobs." +  jobNameInfo) == null){
+
+                    sender.sendMessage(messagesFile.getString("error.unknown-job")
+                            .replace("%job%", jobNameInfo));
+                    return false;
+
+                }
+
+                for (String message : messagesFile.getStringList("jobs.stats.message")) {
+
+                   if (message.contains("%job-format%")) {
+                        for (String item : configFile.getStringList("jobs." + jobNameInfo + ".items")) {
+
+                            String[] valueItem = item.split(",");
+
+                            sender.sendMessage(message
+                                    .replace("%item_name%", String.valueOf(valueItem[0]))
+                                    .replace("%gain_money%", String.valueOf(valueItem[1]))
+                                    .replace("%gain_xp%", String.valueOf(valueItem[2])));
+                        }
+                    }
+
+                    sender.sendMessage(message.replace("%job-name%", arguments[1]));
+                }
+                break;
+
             default:
                 sender.sendMessage(messagesFile.getString("error.unknown-argument"));
         }
