@@ -37,6 +37,7 @@ public class FileManager extends YamlConfiguration {
 
             if (file.exists()) {
                 load(file);
+                save(file);
                 return;
             }
 
@@ -46,6 +47,7 @@ public class FileManager extends YamlConfiguration {
                 save(file);
             }
 
+            save(file);
             load(file);
 
         } catch (InvalidConfigurationException | IOException e) {
