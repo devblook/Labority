@@ -108,6 +108,46 @@ public class JobsCommand implements CommandExecutor {
 
                 sender.sendMessage(messagesFile.getString("jobs.join.message")
                         .replace("%job%", jobName));
+            case "leave":
+
+                String jobNameLeave = arguments[1];
+
+                if (jobNameLeave == null){
+
+                    sender.sendMessage(messagesFile.getString("error.no-argument")
+                            .replace("%usage%", "/jobs join [trabajo]"));
+                    return false;
+
+                }
+
+                if (configFile.getConfigurationSection("jobs." +  jobNameLeave) == null){
+
+                    sender.sendMessage(messagesFile.getString("error.unknown-job")
+                            .replace("%job%", jobNameLeave));
+                    return false;
+
+                }
+
+                PlayerData playerDataLeave = dataLoader.getPlayerJob(sender.getUniqueId());
+
+                if (!playerDataLeave.hasTheJob(jobNameLeave)){
+
+                    sender.sendMessage(messagesFile.getString("error.already-leave-job")
+                            .replace("%job%", jobNameLeave));
+                    return false;
+
+                }
+
+                playerDataLeave.removeJob(jobNameLeave);
+
+                playersFile.setJobData(sender.getUniqueId(), "job-list." + jobNameLeave + ".level", "");
+                playersFile.setJobData(sender.getUniqueId(), "job-list." + jobNameLeave + ".xp", "");
+                playersFile.save();
+
+                sender.sendMessage(messagesFile.getString("jobs.leave.message")
+                        .replace("%job%", jobNameLeave));
+                
+
             default:
                 sender.sendMessage(messagesFile.getString("error.unknown-argument"));
         }

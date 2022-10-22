@@ -12,9 +12,14 @@ jobs:
   reload: "&a[Server] &8| &FPlugin recargado."
 
   join:
+
     # Message when you join to a job.
     message: "&a[Server] &8| &fTe uniste a este trabajo. &a%job%"
 
+  leave:
+
+    # Message when you leave a job.
+    message: "&a[Server] &8| &fTe saliste de este trabajo. &a%job%"
 
 error:
 
@@ -34,4 +39,8 @@ error:
   # When the player is not putting a job.
   unknown-job: "&a[Server] &| &fTrabajo desconocido: &a%job%&f."
 
+  # When the player already have a job.
   already-have-job: "&a[Server] &8| &fYa te uniste a este trabajo: &a%job%&f."
+
+  # When the player already don't have a job.
+  already-leave-job: "&a[Server] &8| &fYa te saliste o no te uniste a este trabajo: &a%job%."
