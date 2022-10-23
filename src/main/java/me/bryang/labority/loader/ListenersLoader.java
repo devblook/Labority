@@ -4,6 +4,9 @@ import me.bryang.labority.Labority;
 import me.bryang.labority.PluginCore;
 import me.bryang.labority.api.Loader;
 import me.bryang.labority.listener.PlayerBreakListener;
+import me.bryang.labority.listener.PlayerJoinListener;
+import me.bryang.labority.listener.PlayerKillEntityListener;
+import me.bryang.labority.listener.PlayerPlaceListener;
 import me.bryang.labority.listener.plugin.JobListener;
 import org.bukkit.Bukkit;
 import org.bukkit.event.Listener;
@@ -22,7 +25,10 @@ public class ListenersLoader implements Loader {
     public void load() {
 
         registerListeners(
+                new PlayerPlaceListener(),
                 new PlayerBreakListener(),
+                new PlayerKillEntityListener(),
+                new PlayerJoinListener(pluginCore),
                 new JobListener(pluginCore));
     }
 
