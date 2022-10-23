@@ -86,7 +86,7 @@ public class JobsCommand implements CommandExecutor {
                      return true;
 
                 }
-                String jobName = arguments[1];
+                String jobName = arguments[1].toLowerCase();
 
                 if (!configFile.isConfigurationSection("jobs." + jobName)) {
 
@@ -127,7 +127,7 @@ public class JobsCommand implements CommandExecutor {
 
                 }
 
-                String jobNameLeave = arguments[1];
+                String jobNameLeave = arguments[1].toLowerCase();
 
                 if (configFile.isConfigurationSection("jobs." + jobNameLeave)) {
 
@@ -196,7 +196,7 @@ public class JobsCommand implements CommandExecutor {
 
                 }
 
-                String jobNameInfo = arguments[1];
+                String jobNameInfo = arguments[1].toLowerCase();
 
                 if (configFile.getConfigurationSection("jobs." + jobNameInfo) == null) {
 
