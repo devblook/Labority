@@ -38,8 +38,38 @@ jobs:
     items:
 
       # Format: money: GAIN_MONEY, xp: GAIN_XP_JOB:
+
       STONE:
 
         money: 1
         xp: 1
+
+      COAL_ORE:
+        money: 2
+        xp: 2
+
+
+      IRON_ORE:
+        money: 2
+        xp: 2
+
+      GOLD_ORE:
+        money: 3
+        xp: 3
+
+      DIAMOND_ORE:
+        money: 5
+        xp: 5
+
+      EMERALD_ORE:
+        money: 4
+        xp: 4
+
+      REDSTONE_ORE:
+        money: 3
+        xp: 4
+
+      LAPIZ_ORE:
+        money: 3
+        xp: 3
 
