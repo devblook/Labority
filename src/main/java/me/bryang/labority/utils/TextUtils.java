@@ -7,7 +7,7 @@ public class TextUtils {
 
     public static int calculateNumber(String format, int level) {
         Expression expression = new ExpressionBuilder(format)
-                .variables("%j")
+                .variables("%level")
                 .build()
                 .setVariable("%level", level);
 
