@@ -88,7 +88,7 @@ public class JobsCommand implements CommandExecutor {
                 }
                 String jobName = arguments[1];
 
-                if (configFile.getConfigurationSection("jobs." + jobName) == null) {
+                if (!configFile.isConfigurationSection("jobs." + jobName)) {
 
                     sender.sendMessage(messagesFile.getString("error.unknown-job")
                             .replace("%job%", jobName));
@@ -129,7 +129,7 @@ public class JobsCommand implements CommandExecutor {
 
                 String jobNameLeave = arguments[1];
 
-                if (configFile.getConfigurationSection("jobs." + jobNameLeave) == null) {
+                if (configFile.isConfigurationSection("jobs." + jobNameLeave)) {
 
                     sender.sendMessage(messagesFile.getString("error.unknown-job")
                             .replace("%job%", jobNameLeave));
