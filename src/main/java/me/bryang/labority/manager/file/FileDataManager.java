@@ -28,20 +28,20 @@ public class FileDataManager extends FileManager {
     }
 
     public Set<String> getPlayersKeys() {
-        if (getConfigurationSection("players.job") == null) {
+        if (getConfigurationSection("players.jobs") == null) {
             return null;
         }
 
-        return getConfigurationSection("players.job").getKeys(false);
+        return getConfigurationSection("players.jobs").getKeys(false);
     }
 
     public Set<String> getJobsKeys(UUID playerUniqueID) {
 
-        if (getConfigurationSection("players.job." + playerUniqueID + ".list-jobs") == null) {
+        if (getConfigurationSection("players.jobs." + playerUniqueID + ".job-list") == null) {
             return null;
         }
 
-        return getConfigurationSection("players.job." + playerUniqueID + ".list-jobs").getKeys(false);
+        return getConfigurationSection("players.jobs." + playerUniqueID + ".job-list").getKeys(false);
     }
 
 
