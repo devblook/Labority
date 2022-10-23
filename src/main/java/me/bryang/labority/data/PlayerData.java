@@ -32,7 +32,7 @@ public class PlayerData {
         return jobList.size();
     }
 
-    public Set<String> getJobsNames() {
-        return jobList.keySet();
+    public Map<String, JobData> getJobsData() {
+        return jobList;
     }
 }
