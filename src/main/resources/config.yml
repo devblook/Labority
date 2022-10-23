@@ -28,6 +28,9 @@ jobs:
   # Miner
   miner:
 
+    # Name of the job:
+    name: "Miner"
+
     # Type [PLAYER_BREAK_BLOCK, PLAYER_PLACE_BLOCK, PLAYER_KILL_ENTITY]
     type: PLAYER_BREAK_BLOCK
 

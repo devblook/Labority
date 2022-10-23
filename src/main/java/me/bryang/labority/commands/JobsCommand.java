@@ -114,7 +114,7 @@ public class JobsCommand implements CommandExecutor {
                 playersFile.save();
 
                 sender.sendMessage(messagesFile.getString("jobs.join.message")
-                        .replace("%job%", jobName));
+                        .replace("%job%", configFile.getString("job-list." + jobName + ".name")));
                 break;
 
             case "leave":
