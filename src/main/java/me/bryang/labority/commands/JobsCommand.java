@@ -90,7 +90,7 @@ public class JobsCommand implements CommandExecutor {
                 if (!configFile.isConfigurationSection("jobs." + jobName)) {
 
                     sender.sendMessage(messagesFile.getString("error.unknown-job")
-                            .replace("%job%", jobName));
+                            .replace("%job%", configFile.getString("jobs." + jobName + ".name")));
                     return true;
 
                 }
@@ -100,7 +100,7 @@ public class JobsCommand implements CommandExecutor {
                 if (playerData.hasTheJob(jobName)) {
 
                     sender.sendMessage(messagesFile.getString("error.already-have-job")
-                            .replace("%job%", jobName));
+                            .replace("%job%", configFile.getString("jobs." + jobName + ".name")));
                     return true;
 
                 }
@@ -128,10 +128,10 @@ public class JobsCommand implements CommandExecutor {
 
                 String jobNameLeave = arguments[1].toLowerCase();
 
-                if (configFile.isConfigurationSection("jobs." + jobNameLeave)) {
+                if (!(configFile.isConfigurationSection("jobs." + jobNameLeave))) {
 
                     sender.sendMessage(messagesFile.getString("error.unknown-job")
-                            .replace("%job%", jobNameLeave));
+                            .replace("%job%", configFile.getString("jobs." + jobNameLeave + ".name")));
                     return true;
 
                 }
@@ -141,20 +141,20 @@ public class JobsCommand implements CommandExecutor {
                 if (!playerDataLeave.hasTheJob(jobNameLeave)) {
 
                     sender.sendMessage(messagesFile.getString("error.already-leave-job")
-                            .replace("%job%", jobNameLeave));
+                            .replace("%job%", configFile.getString("jobs." + jobNameLeave + ".name")));
                     return true;
 
                 }
 
                 playerDataLeave.removeJob(jobNameLeave);
 
+
                 playersFile.setJobData(sender.getUniqueId(), "job-list." + jobNameLeave + ".level", "");
                 playersFile.setJobData(sender.getUniqueId(), "job-list." + jobNameLeave + ".xp", "");
                 playersFile.save();
 
                 sender.sendMessage(messagesFile.getString("jobs.leave.message")
-                        .replace("%job%", messagesFile.getString("jobs.join.message")
-                                .replace("%job%", configFile.getString("jobs." + jobNameLeave + ".name"))));
+                        .replace("%job%", configFile.getString("jobs." + jobNameLeave + ".name")));
                 break;
 
             case "browse":
@@ -168,21 +168,29 @@ public class JobsCommand implements CommandExecutor {
             case "stats":
                 PlayerData playerDataStats = dataLoader.getPlayerJob(sender.getUniqueId());
 
+                if (playerDataStats.getJobsData().values().isEmpty()){
+                    sender.sendMessage(messagesFile.getString("error.dont-join-any-jobs"));
+                    break;
+                }
+
                 for (String message : messagesFile.getStringList("jobs.stats.message")) {
-                    if (message.contains("%job-format%")) {
-                        for (String jobNameData : playerDataStats.getJobsNames()) {
 
-                            JobData jobData = playerDataStats.getJob(jobNameData);
-
-                            sender.sendMessage(message
-                                    .replace("%job-name%", jobData.getName())
-                                    .replace("%level%", String.valueOf(jobData.getLevel()))
-                                    .replace("%xp%", String.valueOf(jobData.getXpPoints()))
-                                    .replace("%max-xp%", String.valueOf(jobData.getMaxXP())));
-                        }
+                    if (!message.contains("%job_format%")) {
+                        sender.sendMessage(message);
+                        continue;
                     }
 
-                    sender.sendMessage(message);
+                    for (JobData jobData : playerDataStats.getJobsData().values()) {
+
+                        sender.sendMessage(message
+                                .replace("%job_format%", "")
+                                .replace("%job_name%", configFile.getString("jobs." + jobData.getName() + ".name"))
+                                .replace("%level%", String.valueOf(jobData.getLevel()))
+                                .replace("%xp%", String.valueOf(jobData.getXpPoints()))
+                                .replace("%max_xp%", String.valueOf(jobData.getMaxXP())));
+
+                    }
+
                 }
                 break;
 
@@ -201,29 +209,56 @@ public class JobsCommand implements CommandExecutor {
                 if (configFile.getConfigurationSection("jobs." + jobNameInfo) == null) {
 
                     sender.sendMessage(messagesFile.getString("error.unknown-job")
-                            .replace("%job%", jobNameInfo));
+                            .replace("%job%", configFile.getString("jobs." + jobNameInfo + ".name")));
                     return true;
 
                 }
 
-                for (String message : messagesFile.getStringList("jobs.stats.message")) {
+                PlayerData playerDataInfo = dataLoader.getPlayerJob(sender.getUniqueId());
 
-                    if (message.contains("%job-format%")) {
-                        for (String item : configFile.getStringList("jobs." + jobNameInfo + ".items")) {
+                if (playerDataInfo.getJob(jobNameInfo) == null){
+                    sender.sendMessage(messagesFile.getString("error.dont-join-job"));
 
-                            String[] valueItem = item.split(",");
+                    for (String message : messagesFile.getStringList("jobs.info.message")) {
+
+                        if (!message.contains("%job_format%")) {
+                            sender.sendMessage(message.replace("%job_name%", configFile.getString("jobs." + jobNameInfo + ".name")));
+                            continue;
+                        }
+
+                        for (String item : configFile.getConfigurationSection("jobs." + jobNameInfo + ".items").getKeys(false)) {
 
                             sender.sendMessage(message
-                                    .replace("%item_name%", String.valueOf(valueItem[0]))
-                                    .replace("%gain_money%", String.valueOf(valueItem[1]))
-                                    .replace("%gain_xp%", String.valueOf(valueItem[2])));
+                                    .replace("%job_format%", "")
+                                    .replace("%item_name%", item)
+                                    .replace("%gain_money%", String.valueOf(configFile.getInt("jobs." + jobNameInfo + "items." + item + ".money")))
+                                    .replace("%gain_xp%", String.valueOf(configFile.getInt("jobs." + jobNameInfo + "items." + item + ".xp"))));
                         }
                     }
 
-                    sender.sendMessage(message.replace("%job-name%", configFile.getString("jobs." + jobNameInfo + ".name")));
-                }
-                break;
 
+                    break;
+                }
+                for (String message : messagesFile.getStringList("jobs.info.message")) {
+
+                    if (!message.contains("%job_format%")) {
+                        sender.sendMessage(message.replace("%job_name%", configFile.getString("jobs." + jobNameInfo + ".name")));
+                        continue;
+                    }
+
+                    for (String item : configFile.getStringList("jobs." + jobNameInfo + ".items")) {
+
+                        String[] valueItem = item.split(",");
+
+                        sender.sendMessage(message
+                                .replace("%job_format%", "")
+                                .replace("%item_name%", String.valueOf(valueItem[0]))
+                                .replace("%gain_money%", String.valueOf(valueItem[1]))
+                                .replace("%gain_xp%", String.valueOf(valueItem[2])));
+                        }
+                }
+
+                break;
             default:
                 sender.sendMessage(messagesFile.getString("error.unknown-argument"));
         }
