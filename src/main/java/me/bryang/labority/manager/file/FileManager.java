@@ -18,7 +18,7 @@ public class FileManager extends YamlConfiguration {
     private final Plugin plugin;
     private final File file;
 
-    public FileManager(Plugin plugin, String fileName){
+    public FileManager(Plugin plugin, String fileName) {
         this.fileName = fileName + ".yml";
         this.plugin = plugin;
 
@@ -33,7 +33,7 @@ public class FileManager extends YamlConfiguration {
             plugin.saveResource(fileName, false);
         }
 
-        try{
+        try {
             load(file);
         } catch (InvalidConfigurationException | IOException e) {
             plugin.getLogger().log(Level.SEVERE, "Creation of FileManager '" + fileName + "' failed.", e);

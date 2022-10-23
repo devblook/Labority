@@ -78,12 +78,11 @@ public class JobsCommand implements CommandExecutor {
             case "join":
 
 
-
                 if (arguments.length < 2) {
 
                     sender.sendMessage(messagesFile.getString("error.no-argument")
                             .replace("%usage%", "/jobs join [job]"));
-                     return true;
+                    return true;
 
                 }
                 String jobName = arguments[1].toLowerCase();
@@ -92,7 +91,7 @@ public class JobsCommand implements CommandExecutor {
 
                     sender.sendMessage(messagesFile.getString("error.unknown-job")
                             .replace("%job%", jobName));
-                     return true;
+                    return true;
 
                 }
 
@@ -102,7 +101,7 @@ public class JobsCommand implements CommandExecutor {
 
                     sender.sendMessage(messagesFile.getString("error.already-have-job")
                             .replace("%job%", jobName));
-                     return true;
+                    return true;
 
                 }
 
@@ -123,7 +122,7 @@ public class JobsCommand implements CommandExecutor {
 
                     sender.sendMessage(messagesFile.getString("error.no-argument")
                             .replace("%usage%", "/jobs join [trabajo]"));
-                     return true;
+                    return true;
 
                 }
 
@@ -133,7 +132,7 @@ public class JobsCommand implements CommandExecutor {
 
                     sender.sendMessage(messagesFile.getString("error.unknown-job")
                             .replace("%job%", jobNameLeave));
-                     return true;
+                    return true;
 
                 }
 
@@ -143,7 +142,7 @@ public class JobsCommand implements CommandExecutor {
 
                     sender.sendMessage(messagesFile.getString("error.already-leave-job")
                             .replace("%job%", jobNameLeave));
-                     return true;
+                    return true;
 
                 }
 
@@ -193,7 +192,7 @@ public class JobsCommand implements CommandExecutor {
 
                     sender.sendMessage(messagesFile.getString("error.no-argument")
                             .replace("%usage%", "/jobs info [trabajo]"));
-                     return true;
+                    return true;
 
                 }
 
@@ -203,7 +202,7 @@ public class JobsCommand implements CommandExecutor {
 
                     sender.sendMessage(messagesFile.getString("error.unknown-job")
                             .replace("%job%", jobNameInfo));
-                     return true;
+                    return true;
 
                 }
 
@@ -221,13 +220,13 @@ public class JobsCommand implements CommandExecutor {
                         }
                     }
 
-                    sender.sendMessage(message.replace("%job-name%",configFile.getString("jobs." + jobNameInfo + ".name")));
+                    sender.sendMessage(message.replace("%job-name%", configFile.getString("jobs." + jobNameInfo + ".name")));
                 }
                 break;
 
             default:
                 sender.sendMessage(messagesFile.getString("error.unknown-argument"));
         }
-         return true;
+        return true;
     }
 }
