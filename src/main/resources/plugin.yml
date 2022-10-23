@@ -1,19 +1,24 @@
 main: me.bryang.labority.Labority
+
 name: Labority
 version: ${project.version}
 
 api-version: 1.13
 
 author: BryanG
+description: A job plugin.
 
 softdepend:
   - Vault
 
 commands:
+
   jobs:
+
     description: Main command.
     aliases:
       - labority
       - labor
 
     usage: /jobs help.
+
