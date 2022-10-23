@@ -30,16 +30,13 @@ public class PluginLoadingTask {
 
     public void loadTask() {
 
-        System.out.println("43434");
         if (playersFile.getPlayersKeys() == null) {
             System.out.println("[Labority] Thanks for using my plugin, don't forget check config.yml");
             return;
         }
 
-        System.out.println("543252345");
         for (String stringToUUID : playersFile.getPlayersKeys()) {
 
-            System.out.println("34234234");
             UUID playerUniqueId = UUID.fromString(stringToUUID);
 
             dataLoader.createPlayerJob(playerUniqueId);
