@@ -114,7 +114,7 @@ public class JobsCommand implements CommandExecutor {
                 playersFile.save();
 
                 sender.sendMessage(messagesFile.getString("jobs.join.message")
-                        .replace("%job%", configFile.getString("job." + jobName + ".name")));
+                        .replace("%job%", configFile.getString("jobs." + jobName + ".name")));
                 break;
 
             case "leave":
@@ -155,7 +155,7 @@ public class JobsCommand implements CommandExecutor {
 
                 sender.sendMessage(messagesFile.getString("jobs.leave.message")
                         .replace("%job%", messagesFile.getString("jobs.join.message")
-                                .replace("%job%", configFile.getString("job." + jobNameLeave + ".name"))));
+                                .replace("%job%", configFile.getString("jobs." + jobNameLeave + ".name"))));
                 break;
 
             case "browse":
@@ -221,7 +221,7 @@ public class JobsCommand implements CommandExecutor {
                         }
                     }
 
-                    sender.sendMessage(message.replace("%job-name%",configFile.getString("job." + jobNameInfo + ".name")));
+                    sender.sendMessage(message.replace("%job-name%",configFile.getString("jobs." + jobNameInfo + ".name")));
                 }
                 break;
 
