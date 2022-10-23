@@ -7,6 +7,7 @@ import me.bryang.labority.loader.DataLoader;
 import me.bryang.labority.manager.file.FileDataManager;
 import me.bryang.labority.manager.file.FileManager;
 import me.bryang.labority.utils.TextUtils;
+import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -60,15 +61,30 @@ public class JobsCommand implements CommandExecutor {
         switch (arguments[0]) {
 
             case "help":
-                List<String> helpCommandList = messagesFile.getStringList("jobs.help");
+                List<String> helpCommandList = messagesFile.getStringList("jobs.help.format");
 
                 for (String message : helpCommandList) {
                     sender.sendMessage(message);
                 }
 
+                if (sender.hasPermission("jobs.admin")){
+                    break;
+                }
+
+                List<String> helpCommandAdmin = messagesFile.getStringList("jobs.help.admin");
+
+                for (String message : helpCommandAdmin) {
+                    sender.sendMessage(message);
+                }
                 break;
 
             case "reload":
+
+                if (sender.hasPermission("jobs.admin")){
+                    sender.sendMessage(messagesFile.getString("error.no-permission"));
+                    break;
+                }
+
                 configFile.reload();
                 messagesFile.reload();
                 sender.sendMessage(messagesFile.getString("jobs.reload"));
@@ -105,6 +121,9 @@ public class JobsCommand implements CommandExecutor {
 
                 }
 
+                if (playerData.getJobSize() > configFile.getInt("config.limit-jobs")){
+                    sender.sendMessage(messagesFile.getString("error.limited-jobs"));
+                }
                 playerData.addJob(jobName);
                 playerData.getJob(jobName).setMaxXP(TextUtils.calculateNumber(configFile.getString("config.formula.max-xp"), 1));
 
@@ -259,6 +278,61 @@ public class JobsCommand implements CommandExecutor {
                 }
 
                 break;
+
+            case "set-level":
+                if (arguments.length < 2) {
+
+                    sender.sendMessage(messagesFile.getString("error.no-argument")
+                            .replace("%usage%", "/jobs set-level [player] [job] [level]"));
+                    return true;
+
+                }
+
+                Player target = Bukkit.getPlayer(arguments[1]);
+
+                if (target == null) {
+                    sender.sendMessage(messagesFile.getString("error.no-online"));
+                    return true;
+
+                }
+
+                if (arguments.length < 3) {
+
+                    sender.sendMessage(messagesFile.getString("error.no-argument")
+                            .replace("%usage%", "/jobs set-level [player] [level]"));
+                    return true;
+
+                }
+
+                PlayerData playerDataSet = dataLoader.getPlayerJob(target.getUniqueId());
+
+                String jobNameSet = arguments[2];
+
+                if (playersFile.isConfigurationSection("jobs." + jobNameSet)){
+                    sender.sendMessage(messagesFile.getString("error.unknown-job")
+                            .replace("%job%", configFile.getString("jobs." + jobNameSet + ".name")));
+                    return true;
+                }
+
+                String level = arguments[3];
+
+                if (playerDataSet.getJob(jobNameSet) == null) {
+                    playerDataSet.addJob(jobNameSet);
+                }
+
+                JobData jobData = playerDataSet.getJob(jobNameSet);
+
+                jobData.setLevel(Integer.parseInt(level));
+                jobData.setMaxXP(TextUtils.calculateNumber(configFile.getString("config.formula.max-xp"), Integer.parseInt(level)));
+
+                playersFile.setJobData(sender.getUniqueId(), "job-list." + jobNameSet + ".level", level);
+                playersFile.setJobData(sender.getUniqueId(), "job-list." + jobNameSet + ".xp", 0);
+                playersFile.save();
+
+                sender.sendMessage(messagesFile.getString("jobs.set.message")
+                        .replace("%level%", level)
+                        .replace("%job%", jobNameSet)
+                        .replace("%player%", target.getName()));
             default:
                 sender.sendMessage(messagesFile.getString("error.unknown-argument"));
         }
