@@ -45,7 +45,7 @@ public class JobListener implements Listener {
             }
 
             String dataRequired;
-            if (action.getEntity() == null) {
+            if (action.getEntity() != null) {
                 dataRequired = action.getEntity().getType().name();
             } else {
                 dataRequired = action.getItemStack().getType().name();
