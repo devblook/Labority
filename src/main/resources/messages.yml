@@ -39,8 +39,8 @@ jobs:
 
     # Message when you see your stats.
     message:
-      - "&a[Server] &8| &fEstadistcas:"
-      - "%job-format% &8- &f%job-name% &f8- &fNivel %level% &8: &f%xp%&8/&f%max-xp% "
+      - "&a[Server] &8| &fEstadisticas:"
+      - "%job_format% &8- &f%job_name% &8- &fNivel %level% &8: &f%xp%&8/&f%max_xp% "
 
   info:
 
@@ -48,8 +48,8 @@ jobs:
     message:
 
       # Message when you see the info of your job.
-      - "&a[Server] &8|  &fInfo de %job-name%:"
-      - "%job-format% &8- &f%item_name% &8- &f%gain_money% &8- &f%gain_xp "
+      - "&a[Server] &8|  &fInfo de %job_name%:"
+      - "%job_format% &8- &f%item_name% &8- &f%gain_money% &8- &f%gain_xp% "
 
   gain:
 
@@ -79,3 +79,10 @@ error:
 
   # When the player already don't have a job.
   already-leave-job: "&a[Server] &8| &fYa te saliste o no te uniste a este trabajo: &a%job%."
+
+  # When the player doesn't join a job.
+  dont-join-job: "&a[Server] &8| &fNo te uniste a este trabajo, pero te mostraremos la informacion desde el nivel 1."
+
+  # When the player doesn't join any jobs.
+  dont-join-any-jobs: "&a[Server] &8| &fNo te uniste a ningun trabajo."
+
