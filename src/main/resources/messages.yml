@@ -5,33 +5,45 @@ jobs:
 
   # Help format.
   help:
-    - "&a[Server] &8| &fLista de trabajos."
-    - ""
-    - "&8- &f/jobs join &a[trabajo]"
-    - "&8- &f/jobs leave &a[trabajo]"
-    - "&8- &f/jobs stats"
-    - "&8- &f/jobs browse"
-    - "&8- &f/jobs info &a[trabajo]"
-    -
+    format:
+      - "&a[Server] &8| &fList of player arguments."
+      - ""
+      - "&8- &f/jobs join &a[job]"
+      - "&8- &f/jobs leave &a[job]"
+      - "&8- &f/jobs stats"
+      - "&8- &f/jobs browse"
+      - "&8- &f/jobs info &a[job]"
+      - ""
+    admin:
+      - ""
+      - "&c[Admin] &fList of admin arguments"
+      - ""
+      - "&8- &f/jobs reload"
+      - "&8- &f/jobs set-level [player] [level]"
     # Reload message.
-  reload: "&a[Server] &8| &FPlugin recargado."
+  reload: "&a[Server] &8| &fPlugin reloaded."
 
   join:
 
     # Message when you join to a job.
-    message: "&a[Server] &8| &fTe uniste a este trabajo. &a%job%"
+    message: "&a[Server] &8| &fYou joined the job. &a%job%"
 
   leave:
 
     # Message when you leave a job.
-    message: "&a[Server] &8| &fTe saliste de este trabajo. &a%job%"
+    message: "&a[Server] &8| &fYou left the job. &a%job%"
+
+  set:
+
+    # Message when you set a level in job to a player.
+    message: "&a[Server] &8| &fYou set &a%level% &fin &a%job% &fto &a%player%&f."
 
   browse:
 
     # Message when you browse the jobs.
     list:
-      - "&a[Server] &8| &fLista de trabajos:"
-      - "&fMinero &8: &fPara minar bloques."
+      - "&a[Server] &8| &fList of jobs:"
+      - "&fMiner &8: &fTo break blocks."
       - "&fLeñador &8: &fPara talar arboles."
       - "&fCazador &8: &fPara cazar mobs."
 
@@ -39,7 +51,7 @@ jobs:
 
     # Message when you see your stats.
     message:
-      - "&a[Server] &8| &fEstadisticas:"
+      - "&a[Server] &8| &fYour stats:"
       - "%job_format% &8- &f%job_name% &8- &fNivel %level% &8: &f%xp%&8/&f%max_xp% "
 
   info:
@@ -48,13 +60,13 @@ jobs:
     message:
 
       # Message when you see the info of your job.
-      - "&a[Server] &8|  &fInfo de %job_name%:"
+      - "&a[Server] &8|  &fInfo of %job_name%:"
       - "%job_format% &8- &f%item_name% &8- &f%gain_money% &8- &f%gain_xp% "
 
   gain:
 
     # Message when you increment level.
-    level: "&a[Server] &8| &fHas incrementado de nivel. &a%new_level%&f."
+    level: "&a[Server] &8| &fYou incremented of level. &a%new_level%&f."
 
 error:
 
@@ -65,24 +77,32 @@ error:
   unknown-argument: "&a[Server] &8| &fArgumento desconocido. Usa &a/jobs help &fpara ver los argumentos disponibles."
 
   # When the player is not putting a necessary argument.
-  no-argument: "&a[Server] &8| &fNo has puesto un argumento. Uso: &a%usage%&f."
+  no-argument: "&a[Server] &8| &fYou doesn't put any argument. Use: &a%usage%&f."
 
+  # When the player doesn't have permission to use the command.
+  no-permission: "&a[Server] &8| &fYou don't have permission to use the command."
+
+  # When the player isn't online.
+  no-online: "&a[Server] &8| &fThe player isn't online."
 
   # Job error messages:
   #
 
   # When the player is not putting a job.
-  unknown-job: "&a[Server] &8| &fTrabajo desconocido: &a%job%&f."
+  unknown-job: "&a[Server] &8| &fUnknown job: &a%job%&f."
 
   # When the player already have a job.
-  already-have-job: "&a[Server] &8| &fYa te uniste a este trabajo: &a%job%&f."
+  already-have-job: "&a[Server] &8| &fYou have already joined this job: &a%job%&f."
 
   # When the player already don't have a job.
-  already-leave-job: "&a[Server] &8| &fYa te saliste o no te uniste a este trabajo: &a%job%."
+  already-leave-job: "&a[Server] &8| &fYou already left or did not join this job: &a%job%."
 
   # When the player doesn't join a job.
-  dont-join-job: "&a[Server] &8| &fNo te uniste a este trabajo, pero te mostraremos la informacion desde el nivel 1."
+  dont-join-job: "&a[Server] &8| &fYou did not join this job, but we will show you the information from level 1."
 
   # When the player doesn't join any jobs.
-  dont-join-any-jobs: "&a[Server] &8| &fNo te uniste a ningun trabajo."
+  dont-join-any-jobs: "&a[Server] &8| &fYou did not join any job."
+
+  # When you joined too much jobs.
+  limited-jobs: "&a[Server] &8| &fYou joined too much jobs."
 
