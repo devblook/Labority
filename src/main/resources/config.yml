@@ -9,13 +9,13 @@ config:
   formula:
 
     # Formula for gain money per level:
-    gain-money: "%money * %level"
+    gain-money: "%money * %level%"
 
     # Formula for gain xp per level:
-    gain-xp: "%xp * %level"
+    gain-xp: "%xp * %level%"
 
     # Formula for max xp:
-    max-xp: "%level * 5"
+    max-xp: "%level% * 5"
 
   action-bar:
 
