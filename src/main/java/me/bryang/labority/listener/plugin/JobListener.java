@@ -6,6 +6,7 @@ import me.bryang.labority.data.JobData;
 import me.bryang.labority.events.JobsEvent;
 import me.bryang.labority.loader.DataLoader;
 import me.bryang.labority.manager.VaultHookManager;
+import me.bryang.labority.manager.file.FileDataManager;
 import me.bryang.labority.manager.file.FileManager;
 import me.bryang.labority.utils.TextUtils;
 import net.md_5.bungee.api.ChatMessageType;
@@ -21,6 +22,7 @@ public class JobListener implements Listener {
 
     private final FileManager configFile;
     private final FileManager messagesFile;
+    private final FileDataManager playersFile;
 
     private final DataLoader dataLoader;
 
@@ -30,6 +32,7 @@ public class JobListener implements Listener {
 
         this.configFile = pluginCore.getFilesLoader().getConfigFile();
         this.messagesFile = pluginCore.getFilesLoader().getMessagesFile();
+        this.playersFile = pluginCore.getFilesLoader().getPlayersFile();
 
         this.dataLoader = pluginCore.getDataLoader();
     }
@@ -51,7 +54,7 @@ public class JobListener implements Listener {
                 dataRequired = action.getItemStack().getType().name();
             }
 
-            if (configFile.getString("jobs." + jobs + ".items." + dataRequired) == null) {
+            if (!configFile.isConfigurationSection("jobs." + jobs + ".items." + dataRequired)) {
                 continue;
             }
 
@@ -61,27 +64,34 @@ public class JobListener implements Listener {
                 return;
             }
 
-            String[] jobValue = configFile.getString("jobs." + jobs + ".items." + dataRequired).split(",");
-
             Player player = Bukkit.getPlayer(event.getTarget());
 
-            vaultHookManager.getEconomy().bankDeposit(player.getName(),
+            vaultHookManager.getEconomy().depositPlayer(player,
                     TextUtils.calculateNumber(configFile.getString("config.formula.gain-money")
-                            .replace("%money%", jobValue[1]), jobData.getLevel()));
+                            .replace("%money%", configFile.getString("jobs." + jobs + ".items." + dataRequired + ".money")), jobData.getLevel()));
 
-            jobData.setXPPoints(TextUtils.calculateNumber(configFile.getString("config.formula.gain-xp")
-                    .replace("%xp%", jobValue[2]), jobData.getLevel()));
+            jobData.setXPPoints(jobData.getXpPoints() + TextUtils.calculateNumber(configFile.getString("config.formula.gain-xp")
+                    .replace("%xp%", configFile.getString("jobs." + jobs + ".items." + dataRequired + ".xp")), jobData.getLevel()));
+
 
             player.spigot().sendMessage(ChatMessageType.ACTION_BAR, new TextComponent(configFile.getString("config.action-bar.gain-rewards")
-                    .replace("%money%", jobValue[1])
-                    .replace("%xp%", jobValue[2])));
+                    .replace("%money%", String.valueOf(TextUtils.calculateNumber(configFile.getString("config.formula.gain-money")
+                            .replace("%money%", configFile.getString("jobs." + jobs + ".items." + dataRequired + ".money")), jobData.getLevel())))
+                    .replace("%xp%", String.valueOf(TextUtils.calculateNumber(configFile.getString("config.formula.gain-xp")
+                            .replace("%xp%", configFile.getString("jobs." + jobs + ".items." + dataRequired + ".xp")), jobData.getLevel())))));
+
+            playersFile.setJobData(player.getUniqueId(), "job-list." + jobData.getName() + ".level", "");
+            playersFile.setJobData(player.getUniqueId(), "job-list." + jobData.getName() + ".xp", "");
+            playersFile.save();
+
             if (jobData.getMaxXP() <= jobData.getXpPoints()) {
 
                 jobData.setLevel(jobData.getLevel() + 1);
                 jobData.setXPPoints(jobData.getMaxXP() - jobData.getXpPoints());
+                jobData.setMaxXP(TextUtils.calculateNumber(configFile.getString("config.formula.max-xp"), jobData.getLevel()));
 
                 player.sendMessage(messagesFile.getString("jobs.gain.level")
-                        .replace("%new_level", String.valueOf(jobData.getLevel())));
+                        .replace("%new_level%", String.valueOf(jobData.getLevel())));
             }
 
 
