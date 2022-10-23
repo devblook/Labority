@@ -107,7 +107,7 @@ public class JobsCommand implements CommandExecutor {
                 }
 
                 playerData.addJob(jobName);
-                playerData.getJob(jobName).setMaxXP(TextUtils.calculateNumber(configFile.getString("jobs.formula.max-xp"), 1));
+                playerData.getJob(jobName).setMaxXP(TextUtils.calculateNumber(configFile.getString("config.formula.max-xp"), 1));
 
                 playersFile.setJobData(sender.getUniqueId(), "job-list." + jobName + ".level", 1);
                 playersFile.setJobData(sender.getUniqueId(), "job-list." + jobName + ".xp", 0);

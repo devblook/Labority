@@ -49,7 +49,7 @@ public class PluginLoadingTask {
 
                 jobData.setLevel(playersFile.getJobData(playerUniqueId).getInt(".list-jobs." + jobName + ".xp"));
                 jobData.setLevel(playersFile.getJobData(playerUniqueId).getInt(".list-jobs." + jobName + ".level"));
-                playerData.getJob(jobName).setMaxXP(TextUtils.calculateNumber(configFile.getString("jobs.formula.max-xp"), 1));
+                playerData.getJob(jobName).setMaxXP(TextUtils.calculateNumber(configFile.getString("config.formula.max-xp"), 1));
 
                 playerData.addJobData(jobName, jobData);
             }
