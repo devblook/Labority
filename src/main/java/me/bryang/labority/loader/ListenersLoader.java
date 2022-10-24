@@ -25,9 +25,9 @@ public class ListenersLoader implements Loader {
     public void load() {
 
         registerListeners(
-                new PlayerPlaceListener(),
-                new PlayerBreakListener(),
-                new PlayerKillEntityListener(),
+                new PlayerPlaceListener(pluginCore),
+                new PlayerBreakListener(pluginCore),
+                new PlayerKillEntityListener(pluginCore),
                 new PlayerJoinListener(pluginCore),
                 new JobListener(pluginCore));
     }
