@@ -19,11 +19,12 @@ public class PluginCore implements Core {
     @Override
     public void init() {
 
+        filesLoader = new FilesLoader(plugin);
+        filesLoader.load();
+
         dataLoader = new DataLoader();
         dataLoader.load();
 
-        filesLoader = new FilesLoader(plugin);
-        filesLoader.load();
 
         managerLoader = new ManagerLoader(this);
         managerLoader.load();
