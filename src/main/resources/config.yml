@@ -6,6 +6,13 @@ config:
   # Limit of jobs each player.
   limit-jobs: 3
 
+  # Disable creative mode:
+  disable-creative: true
+
+  # Disable silk touch:
+  disable-silk-touch: true
+
+
   formula:
 
     # Formula for gain money per level:
@@ -21,6 +28,23 @@ config:
 
     # Format to gain rewards:
     gain-rewards: "&a+%money%$ &8- &f+%xp%XP"
+
+  # Reward when you increase a level:
+  rewards:
+
+    config:
+
+      # To enable the option.
+      enabled: false
+
+    # This path is a the level when you increase:
+    10:
+      # All formats: [ADD-MONEY] [BROADCAST] [COMMAND]
+      format:
+        - "[ADD-MONEY] 500"
+        - "[BROADCAST] &aThe player &a%player% won the level 10"
+        - "[COMMAND] give %player% diamond "
+
 #
 # List of jobs.
 jobs:
