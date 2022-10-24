@@ -64,7 +64,7 @@ public class FileManager extends YamlConfiguration {
 
         if (text == null) {
             plugin.getLogger().info("Error: Path is null: " + path);
-            return "Error 404 - The path is null: " + path;
+            return "Error - The path is null: " + path;
         }
 
         return ChatColor.translateAlternateColorCodes('&', text);
