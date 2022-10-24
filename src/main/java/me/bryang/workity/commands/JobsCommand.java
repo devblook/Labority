@@ -77,7 +77,7 @@ public class JobsCommand implements CommandExecutor {
                 }
 
                 if (!sender.hasPermission("jobs.admin")) {
-                    break;
+                    return true;
                 }
 
                 List<String> helpCommandAdmin = messagesFile.getStringList("jobs.help.admin");
@@ -91,11 +91,13 @@ public class JobsCommand implements CommandExecutor {
 
                 if (sender.hasPermission("jobs.admin")) {
                     sender.sendMessage(messagesFile.getString("error.no-permission"));
+                    return true;
                 }
 
                 configFile.reload();
                 messagesFile.reload();
                 sender.sendMessage(messagesFile.getString("jobs.reload"));
+                return true;
 
             case "join":
 
