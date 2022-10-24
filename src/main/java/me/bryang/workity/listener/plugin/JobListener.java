@@ -68,19 +68,32 @@ public class JobListener implements Listener {
 
             Player player = Bukkit.getPlayer(event.getTarget());
 
-            vaultHookManager.getEconomy().depositPlayer(player,
-                    TextUtils.calculateNumber(configFile.getString("config.formula.gain-money")
-                            .replace("%money%", configFile.getString("jobs." + jobs + ".items." + dataRequired + ".money")), jobData.getLevel()));
+            double multiplier;
 
-            jobData.setXPPoints(jobData.getXpPoints() + TextUtils.calculateNumber(configFile.getString("config.formula.gain-xp")
-                    .replace("%xp%", configFile.getString("jobs." + jobs + ".items." + dataRequired + ".xp")), jobData.getLevel()));
+            if (!configFile.isInt("config.multiplier.group." + vaultHookManager.getPermission().getPrimaryGroup(player))){
+                multiplier = configFile.getInt("config.multiplier.default");
 
+            }else{
+                multiplier = configFile.getInt("config.multiplier.group." + vaultHookManager.getPermission().getPrimaryGroup(player));
+            }
+
+            if (dataLoader.getServerMultiplier() > 0){
+                multiplier = multiplier + dataLoader.getServerMultiplier();
+            }
+
+            double moneyReward = TextUtils.calculateDoubleNumber(configFile.getString("config.formula.gain-money")
+                    .replace("%money%", configFile.getString("jobs." + jobs + ".items." + dataRequired + ".money")), jobData.getLevel()) * multiplier;
+
+            int xpReward = TextUtils.calculateNumber(configFile.getString("config.formula.gain-xp")
+                    .replace("%xp%", configFile.getString("jobs." + jobs + ".items." + dataRequired + ".xp")), jobData.getLevel()) * (int) multiplier;
+
+            vaultHookManager.getEconomy().depositPlayer(player, moneyReward);
+
+            jobData.setXPPoints(jobData.getXpPoints() + xpReward);
 
             player.spigot().sendMessage(ChatMessageType.ACTION_BAR, new TextComponent(configFile.getString("config.action-bar.gain-rewards")
-                    .replace("%money%", String.valueOf(TextUtils.calculateNumber(configFile.getString("config.formula.gain-money")
-                            .replace("%money%", configFile.getString("jobs." + jobs + ".items." + dataRequired + ".money")), jobData.getLevel())))
-                    .replace("%xp%", String.valueOf(TextUtils.calculateNumber(configFile.getString("config.formula.gain-xp")
-                            .replace("%xp%", configFile.getString("jobs." + jobs + ".items." + dataRequired + ".xp")), jobData.getLevel())))));
+                    .replace("%money%", String.valueOf(moneyReward))
+                    .replace("%xp%", String.valueOf(xpReward))));
 
             playersFile.setJobData(player.getUniqueId(), "job-list." + jobData.getName() + ".level", "");
             playersFile.setJobData(player.getUniqueId(), "job-list." + jobData.getName() + ".xp", "");
@@ -108,7 +121,7 @@ public class JobListener implements Listener {
                             }
 
                             if (format.startsWith("[MONEY]")) {
-                                vaultHookManager.getEconomy().depositPlayer(player, Integer.parseInt(format.substring(7)));
+                                vaultHookManager.getEconomy().depositPlayer(player, Double.parseDouble(format.substring(7)));
                             }
                         }
                     }
