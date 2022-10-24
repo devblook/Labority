@@ -7,6 +7,7 @@ A job plugin that allows you to customize your jobs in an optimized way.
 
 ### Default jobs:
 - Miner
+- Woodcutter
 - Hunter
 - Builder
 
