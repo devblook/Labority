@@ -114,6 +114,7 @@ public class JobListener implements Listener {
                     }
                 }
 
+
                 jobData.setLevel(jobData.getLevel() + 1);
                 jobData.setXPPoints(jobData.getMaxXP() - jobData.getXpPoints());
                 jobData.setMaxXP(TextUtils.calculateNumber(configFile.getString("config.formula.max-xp"), jobData.getLevel()));
