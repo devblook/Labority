@@ -1,4 +1,4 @@
-main: me.bryang.labority.Labority
+main: me.bryang.workity.Workity
 
 name: Labority
 version: ${project.version}
