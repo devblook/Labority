@@ -12,6 +12,7 @@ import me.bryang.labority.utils.TextUtils;
 import net.md_5.bungee.api.ChatMessageType;
 import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -39,6 +40,7 @@ public class JobListener implements Listener {
 
     @EventHandler
     public void onWork(JobsEvent event) {
+
 
         for (String jobs : configFile.getConfigurationSection("jobs").getKeys(false)) {
 
@@ -85,6 +87,26 @@ public class JobListener implements Listener {
             playersFile.save();
 
             if (jobData.getMaxXP() <= jobData.getXpPoints()) {
+
+                if (configFile.getBoolean("config.rewards.enabled")){
+                    if (configFile.isConfigurationSection("config.rewards." + jobData.getLevel())) {
+                        for (String format : configFile.getStringList("config.rewards." + jobData.getLevel() + ".format")){
+                            if (format.startsWith("[BROADCAST]")){
+                                Bukkit.broadcastMessage(ChatColor.translateAlternateColorCodes('&', format.substring(11))
+                                        .replace("%player%", player.getName()));
+                            }
+
+                            if (format.startsWith("[COMMAND]")){
+                                player.performCommand(format.substring(9)
+                                        .replace("%player%", player.getName()));
+                            }
+
+                            if (format.startsWith("[MONEY]")) {
+                                vaultHookManager.getEconomy().depositPlayer(player, Integer.parseInt(format.substring(7)));
+                            }
+                        }
+                    }
+                }
 
                 jobData.setLevel(jobData.getLevel() + 1);
                 jobData.setXPPoints(jobData.getMaxXP() - jobData.getXpPoints());
