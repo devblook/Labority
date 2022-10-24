@@ -58,6 +58,7 @@ jobs:
     list:
       - "&a[Server] &8| &fList of jobs:"
       - "&fMiner &8: &fTo break blocks."
+      - "&fWoodhunter &8: &fTo break wood blocks."
       - "&fBuilder &8: &fTo build blocks."
       - "&fHunter &8: &fTo kill mobs or player."
 
@@ -120,3 +121,5 @@ error:
   # When you joined too much jobs.
   limited-jobs: "&a[Server] &8| &fYou joined too much jobs."
 
+  # You reached the max level.
+  max-level: "&a[Server] &8| &fYou reached the max level: &a%level%"
