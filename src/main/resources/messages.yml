@@ -10,6 +10,7 @@ jobs:
       - ""
       - "&8- &f/jobs join &a[job]"
       - "&8- &f/jobs leave &a[job]"
+      - "&8- &f/jobs leave-all"
       - "&8- &f/jobs stats"
       - "&8- &f/jobs browse"
       - "&8- &f/jobs info &a[job]"
@@ -19,8 +20,11 @@ jobs:
       - "&c[Admin] &fList of admin arguments"
       - ""
       - "&8- &f/jobs reload"
-      - "&8- &f/jobs set-level [player] [level]"
-    # Reload message.
+      - "&8- &f/jobs add-level &c[player] [job] [level]"
+      - "&8- &f/jobs set-level &c[player] [job] [level]"
+      - "&8- &f/jobs remove-level &c[player] [job] [level]"
+
+  # Reload message.
   reload: "&a[Server] &8| &fPlugin reloaded."
 
   join:
@@ -33,7 +37,17 @@ jobs:
     # Message when you leave a job.
     message: "&a[Server] &8| &fYou left the job. &a%job%"
 
-  set:
+  add-level:
+
+    # Message when you add a level in job to a player.
+    message: "&a[Server] &8| &fYou add &a%level% &fin &a%job% &fto &a%player%&f."
+
+  remove-level:
+
+    # Message when you remove a level in job to a player.
+    message: "&a[Server] &8| &fYou remove &a%level% &fin &a%job% &fto &a%player%&f."
+
+  set-level:
 
     # Message when you set a level in job to a player.
     message: "&a[Server] &8| &fYou set &a%level% &fin &a%job% &fto &a%player%&f."
@@ -44,8 +58,6 @@ jobs:
     list:
       - "&a[Server] &8| &fList of jobs:"
       - "&fMiner &8: &fTo break blocks."
-      - "&fLeñador &8: &fPara talar arboles."
-      - "&fCazador &8: &fPara cazar mobs."
 
   stats:
 
