@@ -20,9 +20,10 @@ public class PlayerBreakListener implements Listener {
 
     private final FileManager configFile;
 
-    public PlayerBreakListener(PluginCore pluginCore){
+    public PlayerBreakListener(PluginCore pluginCore) {
         configFile = pluginCore.getFilesLoader().getConfigFile();
     }
+
     @EventHandler
     public void onBreak(BlockBreakEvent event) {
 
@@ -34,12 +35,13 @@ public class PlayerBreakListener implements Listener {
         }
 
 
-        if (event.getPlayer().getInventory().getItemInMainHand().getType() != Material.AIR){
+        if (event.getPlayer().getInventory().getItemInMainHand().getType() != Material.AIR) {
 
-            ItemStack item = event.getPlayer().getInventory().getItemInMainHand();Block block;
+            ItemStack item = event.getPlayer().getInventory().getItemInMainHand();
+            Block block;
 
             if (event.getPlayer().getInventory().getItemInMainHand().getType().name().toLowerCase().contains("pickaxe") &&
-                item.getEnchantments().containsKey(Enchantment.SILK_TOUCH)){
+                    item.getEnchantments().containsKey(Enchantment.SILK_TOUCH)) {
 
                 if (configFile.getBoolean("config.disable-silk-touch")) {
                     return;
@@ -50,7 +52,7 @@ public class PlayerBreakListener implements Listener {
 
         Block block = event.getBlock();
 
-        if (block.hasMetadata("workity:block-placed")){
+        if (block.hasMetadata("workity:block-placed")) {
             return;
         }
 

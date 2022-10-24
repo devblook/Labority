@@ -88,15 +88,15 @@ public class JobListener implements Listener {
 
             if (jobData.getMaxXP() <= jobData.getXpPoints()) {
 
-                if (configFile.getBoolean("config.rewards.enabled")){
+                if (configFile.getBoolean("config.rewards.enabled")) {
                     if (configFile.isConfigurationSection("config.rewards." + jobData.getLevel())) {
-                        for (String format : configFile.getStringList("config.rewards." + jobData.getLevel() + ".format")){
-                            if (format.startsWith("[BROADCAST]")){
+                        for (String format : configFile.getStringList("config.rewards." + jobData.getLevel() + ".format")) {
+                            if (format.startsWith("[BROADCAST]")) {
                                 Bukkit.broadcastMessage(ChatColor.translateAlternateColorCodes('&', format.substring(11))
                                         .replace("%player%", player.getName()));
                             }
 
-                            if (format.startsWith("[COMMAND]")){
+                            if (format.startsWith("[COMMAND]")) {
                                 player.performCommand(format.substring(9)
                                         .replace("%player%", player.getName()));
                             }

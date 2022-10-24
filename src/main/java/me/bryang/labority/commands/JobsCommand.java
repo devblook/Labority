@@ -54,7 +54,7 @@ public class JobsCommand implements CommandExecutor {
                 sender.sendMessage(message);
             }
 
-            if (!sender.hasPermission("jobs.admin")){
+            if (!sender.hasPermission("jobs.admin")) {
                 return true;
             }
 
@@ -75,7 +75,7 @@ public class JobsCommand implements CommandExecutor {
                     sender.sendMessage(message);
                 }
 
-                if (!sender.hasPermission("jobs.admin")){
+                if (!sender.hasPermission("jobs.admin")) {
                     break;
                 }
 
@@ -88,7 +88,7 @@ public class JobsCommand implements CommandExecutor {
 
             case "reload":
 
-                if (sender.hasPermission("jobs.admin")){
+                if (sender.hasPermission("jobs.admin")) {
                     sender.sendMessage(messagesFile.getString("error.no-permission"));
                     break;
                 }
@@ -129,7 +129,7 @@ public class JobsCommand implements CommandExecutor {
 
                 }
 
-                if (playerData.getJobSize() > configFile.getInt("config.limit-jobs")){
+                if (playerData.getJobSize() > configFile.getInt("config.limit-jobs")) {
                     sender.sendMessage(messagesFile.getString("error.limited-jobs"));
                 }
                 playerData.addJob(jobName);
@@ -187,7 +187,7 @@ public class JobsCommand implements CommandExecutor {
             case "leave-all":
                 PlayerData playerDataLeaveAll = dataLoader.getPlayerJob(sender.getUniqueId());
 
-                if (playerDataLeaveAll.getJobSize() == 0){
+                if (playerDataLeaveAll.getJobSize() == 0) {
                     sender.sendMessage(messagesFile.getString("error.dont-join-any-jobs"));
                     break;
                 }
@@ -207,7 +207,7 @@ public class JobsCommand implements CommandExecutor {
             case "stats":
                 PlayerData playerDataStats = dataLoader.getPlayerJob(sender.getUniqueId());
 
-                if (playerDataStats.getJobsData().values().isEmpty()){
+                if (playerDataStats.getJobsData().values().isEmpty()) {
                     sender.sendMessage(messagesFile.getString("error.dont-join-any-jobs"));
                     break;
                 }
@@ -255,7 +255,7 @@ public class JobsCommand implements CommandExecutor {
 
                 PlayerData playerDataInfo = dataLoader.getPlayerJob(sender.getUniqueId());
 
-                if (playerDataInfo.getJob(jobNameInfo) == null){
+                if (playerDataInfo.getJob(jobNameInfo) == null) {
                     sender.sendMessage(messagesFile.getString("error.dont-join-job"));
 
                     for (String message : messagesFile.getStringList("jobs.info.message")) {
@@ -294,7 +294,7 @@ public class JobsCommand implements CommandExecutor {
                                 .replace("%item_name%", String.valueOf(valueItem[0]))
                                 .replace("%gain_money%", String.valueOf(valueItem[1]))
                                 .replace("%gain_xp%", String.valueOf(valueItem[2])));
-                        }
+                    }
                 }
 
                 break;
@@ -328,7 +328,7 @@ public class JobsCommand implements CommandExecutor {
 
                 String jobNameAddLevel = arguments[2];
 
-                if (playersFile.isConfigurationSection("jobs." + jobNameAddLevel)){
+                if (playersFile.isConfigurationSection("jobs." + jobNameAddLevel)) {
                     sender.sendMessage(messagesFile.getString("error.unknown-job")
                             .replace("%job%", configFile.getString("jobs." + jobNameAddLevel + ".name")));
                     return true;
@@ -384,7 +384,7 @@ public class JobsCommand implements CommandExecutor {
 
                 String jobNameSet = arguments[2];
 
-                if (playersFile.isConfigurationSection("jobs." + jobNameSet)){
+                if (playersFile.isConfigurationSection("jobs." + jobNameSet)) {
                     sender.sendMessage(messagesFile.getString("error.unknown-job")
                             .replace("%job%", configFile.getString("jobs." + jobNameSet + ".name")));
                     return true;
@@ -441,7 +441,7 @@ public class JobsCommand implements CommandExecutor {
 
                 String jobNameRemoveLevel = arguments[2];
 
-                if (playersFile.isConfigurationSection("jobs." + jobNameRemoveLevel)){
+                if (playersFile.isConfigurationSection("jobs." + jobNameRemoveLevel)) {
                     sender.sendMessage(messagesFile.getString("error.unknown-job")
                             .replace("%job%", configFile.getString("jobs." + jobNameRemoveLevel + ".name")));
                     return true;

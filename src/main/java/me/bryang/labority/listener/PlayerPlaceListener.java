@@ -22,7 +22,7 @@ public class PlayerPlaceListener implements Listener {
     private final FileManager configFile;
     private final Labority labority;
 
-    public PlayerPlaceListener(PluginCore pluginCore){
+    public PlayerPlaceListener(PluginCore pluginCore) {
         configFile = pluginCore.getFilesLoader().getConfigFile();
         labority = pluginCore.getPlugin();
     }

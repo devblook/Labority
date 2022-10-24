@@ -17,7 +17,7 @@ public class PlayerKillEntityListener implements Listener {
 
     private final FileManager configFile;
 
-    public PlayerKillEntityListener(PluginCore pluginCore){
+    public PlayerKillEntityListener(PluginCore pluginCore) {
         configFile = pluginCore.getFilesLoader().getConfigFile();
     }
 
