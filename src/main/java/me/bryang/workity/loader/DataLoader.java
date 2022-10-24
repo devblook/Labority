@@ -1,7 +1,9 @@
 package me.bryang.workity.loader;
 
+import me.bryang.workity.PluginCore;
 import me.bryang.workity.api.Loader;
 import me.bryang.workity.data.PlayerData;
+import me.bryang.workity.manager.file.FileManager;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -11,9 +13,11 @@ public class DataLoader implements Loader {
 
     private final Map<UUID, PlayerData> playerJobDataMap = new HashMap<>();
 
+    double serverMultiplier;
 
     @Override
     public void load() {
+        serverMultiplier = 0;
         System.out.println("[Workity] Data loaded.");
 
     }
@@ -28,4 +32,11 @@ public class DataLoader implements Loader {
     }
 
 
+    public double getServerMultiplier() {
+        return serverMultiplier;
+    }
+
+    public void setServerMultiplier(double serverMultiplier) {
+        this.serverMultiplier = serverMultiplier;
+    }
 }
