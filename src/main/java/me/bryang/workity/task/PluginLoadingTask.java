@@ -31,7 +31,7 @@ public class PluginLoadingTask {
     public void loadTask() {
 
         if (playersFile.getPlayersKeys() == null) {
-            System.out.println("[Labority] Thanks for using my plugin, don't forget check config.yml");
+            System.out.println("[Workity] Thanks for using my plugin, don't forget check config.yml");
             return;
         }
 

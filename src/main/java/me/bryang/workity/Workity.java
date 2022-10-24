@@ -12,8 +12,8 @@ public class Workity extends JavaPlugin {
 
         pluginCore.getManagerLoader().getTaskManager().getPluginLoadingTask().loadTask();
 
-        System.out.println("[Labority] Created by " + getDescription().getAuthors().get(0));
-        System.out.println("[Labority] You are using the version " + getDescription().getVersion() + ".");
+        System.out.println("[Workity] Created by " + getDescription().getAuthors().get(0));
+        System.out.println("[Workity] You are using the version " + getDescription().getVersion() + ".");
 
     }
 
