@@ -48,14 +48,22 @@ public class JobsCommand implements CommandExecutor {
 
         if (arguments.length < 1) {
 
-            List<String> helpCommandList = messagesFile.getStringList("jobs.help");
+            List<String> helpCommandList = messagesFile.getStringList("jobs.help.format");
 
             for (String message : helpCommandList) {
                 sender.sendMessage(message);
             }
 
-            return true;
+            if (!sender.hasPermission("jobs.admin")){
+                return true;
+            }
 
+            List<String> helpCommandAdmin = messagesFile.getStringList("jobs.help.admin");
+
+            for (String message : helpCommandAdmin) {
+                sender.sendMessage(message);
+            }
+            return true;
         }
 
         switch (arguments[0]) {
@@ -67,7 +75,7 @@ public class JobsCommand implements CommandExecutor {
                     sender.sendMessage(message);
                 }
 
-                if (sender.hasPermission("jobs.admin")){
+                if (!sender.hasPermission("jobs.admin")){
                     break;
                 }
 
@@ -106,7 +114,7 @@ public class JobsCommand implements CommandExecutor {
                 if (!configFile.isConfigurationSection("jobs." + jobName)) {
 
                     sender.sendMessage(messagesFile.getString("error.unknown-job")
-                            .replace("%job%", configFile.getString("jobs." + jobName + ".name")));
+                            .replace("%job%", jobName));
                     return true;
 
                 }
@@ -150,7 +158,7 @@ public class JobsCommand implements CommandExecutor {
                 if (!(configFile.isConfigurationSection("jobs." + jobNameLeave))) {
 
                     sender.sendMessage(messagesFile.getString("error.unknown-job")
-                            .replace("%job%", configFile.getString("jobs." + jobNameLeave + ".name")));
+                            .replace("%job%", jobNameLeave));
                     return true;
 
                 }
@@ -174,6 +182,18 @@ public class JobsCommand implements CommandExecutor {
 
                 sender.sendMessage(messagesFile.getString("jobs.leave.message")
                         .replace("%job%", configFile.getString("jobs." + jobNameLeave + ".name")));
+                break;
+
+            case "leave-all":
+                PlayerData playerDataLeaveAll = dataLoader.getPlayerJob(sender.getUniqueId());
+
+                if (playerDataLeaveAll.getJobSize() == 0){
+                    sender.sendMessage(messagesFile.getString("error.dont-join-any-jobs"));
+                    break;
+                }
+
+                playerDataLeaveAll.getJobsData().clear();
+                playersFile.getJobData(sender.getUniqueId()).set("", "");
                 break;
 
             case "browse":
@@ -279,11 +299,67 @@ public class JobsCommand implements CommandExecutor {
 
                 break;
 
+            case "add-level":
+                if (arguments.length < 2) {
+
+                    sender.sendMessage(messagesFile.getString("error.no-argument")
+                            .replace("%usage%", "/jobs add-level [player] [job] [level]"));
+                    return true;
+
+                }
+
+                Player targetAddLevel = Bukkit.getPlayer(arguments[1]);
+
+                if (targetAddLevel == null) {
+                    sender.sendMessage(messagesFile.getString("error.no-online"));
+                    return true;
+
+                }
+
+                if (arguments.length < 3) {
+
+                    sender.sendMessage(messagesFile.getString("error.no-argument")
+                            .replace("%usage%", "/jobs add-level [player] [level]"));
+                    return true;
+
+                }
+
+                PlayerData playerDataAddLevel = dataLoader.getPlayerJob(targetAddLevel.getUniqueId());
+
+                String jobNameAddLevel = arguments[2];
+
+                if (playersFile.isConfigurationSection("jobs." + jobNameAddLevel)){
+                    sender.sendMessage(messagesFile.getString("error.unknown-job")
+                            .replace("%job%", configFile.getString("jobs." + jobNameAddLevel + ".name")));
+                    return true;
+                }
+
+                String levelAddLevel = arguments[3];
+
+                if (playerDataAddLevel.getJob(jobNameAddLevel) == null) {
+                    playerDataAddLevel.addJob(jobNameAddLevel);
+                }
+
+                JobData jobDataAddLevel = playerDataAddLevel.getJob(jobNameAddLevel);
+
+                jobDataAddLevel.setLevel(jobDataAddLevel.getLevel() + Integer.parseInt(levelAddLevel));
+                jobDataAddLevel.setMaxXP(TextUtils.calculateNumber(configFile.getString("config.formula.max-xp"), jobDataAddLevel.getLevel() + Integer.parseInt(levelAddLevel)));
+
+                playersFile.setJobData(sender.getUniqueId(), "job-list." + jobNameAddLevel + ".level", jobDataAddLevel.getLevel());
+                playersFile.setJobData(sender.getUniqueId(), "job-list." + jobNameAddLevel + ".xp", 0);
+                playersFile.save();
+
+                sender.sendMessage(messagesFile.getString("jobs.add-level.message")
+                        .replace("%level%", String.valueOf(jobDataAddLevel.getLevel() + Integer.parseInt(levelAddLevel)))
+                        .replace("%job%", jobNameAddLevel)
+                        .replace("%player%", targetAddLevel.getName()));
+                break;
+
             case "set-level":
                 if (arguments.length < 2) {
 
                     sender.sendMessage(messagesFile.getString("error.no-argument")
-                            .replace("%usage%", "/jobs set-level [player] [job] [level]"));
+                            .replace("%usage%", "/jobs -level [player] [job] [level]"));
                     return true;
 
                 }
@@ -329,10 +405,67 @@ public class JobsCommand implements CommandExecutor {
                 playersFile.setJobData(sender.getUniqueId(), "job-list." + jobNameSet + ".xp", 0);
                 playersFile.save();
 
-                sender.sendMessage(messagesFile.getString("jobs.set.message")
+                sender.sendMessage(messagesFile.getString("jobs.set-level.message")
                         .replace("%level%", level)
                         .replace("%job%", jobNameSet)
                         .replace("%player%", target.getName()));
+                break;
+
+            case "remove-level":
+
+                if (arguments.length < 2) {
+
+                    sender.sendMessage(messagesFile.getString("error.no-argument")
+                            .replace("%usage%", "/jobs set-level [player] [job] [level]"));
+                    return true;
+
+                }
+
+                Player targetRemoveLevel = Bukkit.getPlayer(arguments[1]);
+
+                if (targetRemoveLevel == null) {
+                    sender.sendMessage(messagesFile.getString("error.no-online"));
+                    return true;
+
+                }
+
+                if (arguments.length < 3) {
+
+                    sender.sendMessage(messagesFile.getString("error.no-argument")
+                            .replace("%usage%", "/jobs set-level [player] [level]"));
+                    return true;
+
+                }
+
+                PlayerData playerDataRemoveLevel = dataLoader.getPlayerJob(targetRemoveLevel.getUniqueId());
+
+                String jobNameRemoveLevel = arguments[2];
+
+                if (playersFile.isConfigurationSection("jobs." + jobNameRemoveLevel)){
+                    sender.sendMessage(messagesFile.getString("error.unknown-job")
+                            .replace("%job%", configFile.getString("jobs." + jobNameRemoveLevel + ".name")));
+                    return true;
+                }
+
+                String levelRemoveLevel = arguments[3];
+
+                if (playerDataRemoveLevel.getJob(jobNameRemoveLevel) == null) {
+                    playerDataRemoveLevel.addJob(jobNameRemoveLevel);
+                }
+
+                JobData jobDataRemoveLevel = playerDataRemoveLevel.getJob(jobNameRemoveLevel);
+
+                jobDataRemoveLevel.setLevel(jobDataRemoveLevel.getLevel() - Integer.parseInt(levelRemoveLevel));
+                jobDataRemoveLevel.setMaxXP(TextUtils.calculateNumber(configFile.getString("config.formula.max-xp"), jobDataRemoveLevel.getLevel() - Integer.parseInt(levelRemoveLevel)));
+
+                playersFile.setJobData(sender.getUniqueId(), "job-list." + jobNameRemoveLevel + ".level", levelRemoveLevel);
+                playersFile.setJobData(sender.getUniqueId(), "job-list." + jobNameRemoveLevel + ".xp", 0);
+                playersFile.save();
+
+                sender.sendMessage(messagesFile.getString("jobs.remove-level.message")
+                        .replace("%level%", String.valueOf(jobDataRemoveLevel.getLevel() - Integer.parseInt(levelRemoveLevel)))
+                        .replace("%job%", jobNameRemoveLevel)
+                        .replace("%player%", targetRemoveLevel.getName()));
             default:
                 sender.sendMessage(messagesFile.getString("error.unknown-argument"));
         }
