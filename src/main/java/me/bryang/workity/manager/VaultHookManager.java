@@ -2,6 +2,7 @@ package me.bryang.workity.manager;
 
 import me.bryang.workity.Workity;
 import net.milkbowl.vault.economy.Economy;
+import net.milkbowl.vault.permission.Permission;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.RegisteredServiceProvider;
 
@@ -10,6 +11,7 @@ public class VaultHookManager {
     private final Workity workity;
 
     private Economy economy;
+    private Permission permission;
 
     public VaultHookManager(Workity workity) {
         this.workity = workity;
@@ -24,14 +26,21 @@ public class VaultHookManager {
             return;
         }
 
-        RegisteredServiceProvider<Economy> rsp = Bukkit.getServer().getServicesManager().getRegistration(Economy.class);
+        RegisteredServiceProvider<Economy> rse = Bukkit.getServer().getServicesManager().getRegistration(Economy.class);
+        RegisteredServiceProvider<Permission> rsp = Bukkit.getServer().getServicesManager().getRegistration(Permission.class);
 
-        if (rsp == null) {
+        if (rse == null) {
             System.out.println("[Workity] Error: The economy doesn't loaded correctly.");
             return;
         }
 
-        economy = rsp.getProvider();
+        if (rsp == null) {
+            System.out.println("[Workity] Error: The permission doesn't loaded correctly.");
+            return;
+        }
+
+        economy = rse.getProvider();
+        permission = rsp.getProvider();
 
     }
 
@@ -39,5 +48,7 @@ public class VaultHookManager {
         return economy;
     }
 
-
+    public Permission getPermission(){
+        return permission;
+    }
 }
