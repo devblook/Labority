@@ -1,18 +1,18 @@
 package me.bryang.workity.manager;
 
-import me.bryang.workity.Labority;
+import me.bryang.workity.Workity;
 import net.milkbowl.vault.economy.Economy;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.RegisteredServiceProvider;
 
 public class VaultHookManager {
 
-    private final Labority labority;
+    private final Workity workity;
 
     private Economy economy;
 
-    public VaultHookManager(Labority labority) {
-        this.labority = labority;
+    public VaultHookManager(Workity workity) {
+        this.workity = workity;
     }
 
     public void load() {
@@ -20,7 +20,7 @@ public class VaultHookManager {
         if (!Bukkit.getPluginManager().isPluginEnabled("Vault")) {
 
             System.out.println("[Labority] Error: You need Vault to load the plugin");
-            Bukkit.getPluginManager().disablePlugin(labority);
+            Bukkit.getPluginManager().disablePlugin(workity);
             return;
         }
 

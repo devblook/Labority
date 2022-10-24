@@ -1,20 +1,20 @@
 package me.bryang.workity.loader;
 
-import me.bryang.workity.Labority;
+import me.bryang.workity.Workity;
 import me.bryang.workity.api.Loader;
 import me.bryang.workity.manager.file.FileDataManager;
 import me.bryang.workity.manager.file.FileManager;
 
 public class FilesLoader implements Loader {
 
-    private final Labority plugin;
+    private final Workity plugin;
 
     private FileManager configFile;
     private FileManager messagesFile;
 
     private FileDataManager playersFile;
 
-    public FilesLoader(Labority plugin) {
+    public FilesLoader(Workity plugin) {
 
         this.plugin = plugin;
     }

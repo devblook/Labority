@@ -1,6 +1,6 @@
 package me.bryang.workity.loader;
 
-import me.bryang.workity.Labority;
+import me.bryang.workity.Workity;
 import me.bryang.workity.PluginCore;
 import me.bryang.workity.api.Loader;
 import me.bryang.workity.listener.PlayerBreakListener;
@@ -35,10 +35,10 @@ public class ListenersLoader implements Loader {
     public void registerListeners(Listener... listeners) {
 
         PluginManager pluginManager = Bukkit.getPluginManager();
-        Labority labority = pluginCore.getPlugin();
+        Workity workity = pluginCore.getPlugin();
 
         for (Listener listener : listeners) {
-            pluginManager.registerEvents(listener, labority);
+            pluginManager.registerEvents(listener, workity);
         }
 
         System.out.println("[Labority] Listeners loaded.");

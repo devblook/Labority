@@ -2,7 +2,7 @@ package me.bryang.workity;
 
 import org.bukkit.plugin.java.JavaPlugin;
 
-public class Labority extends JavaPlugin {
+public class Workity extends JavaPlugin {
 
     @Override
     public void onEnable() {

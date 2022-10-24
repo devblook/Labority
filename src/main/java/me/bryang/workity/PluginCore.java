@@ -6,13 +6,13 @@ import me.bryang.workity.loader.*;
 
 public class PluginCore implements Core {
 
-    private final Labority plugin;
+    private final Workity plugin;
 
     private FilesLoader filesLoader;
     private DataLoader dataLoader;
     private ManagerLoader managerLoader;
 
-    public PluginCore(Labority plugin) {
+    public PluginCore(Workity plugin) {
         this.plugin = plugin;
     }
 
@@ -55,7 +55,7 @@ public class PluginCore implements Core {
         return managerLoader;
     }
 
-    public Labority getPlugin() {
+    public Workity getPlugin() {
         return plugin;
     }
 }

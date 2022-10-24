@@ -1,6 +1,6 @@
 package me.bryang.workity.listener;
 
-import me.bryang.workity.Labority;
+import me.bryang.workity.Workity;
 import me.bryang.workity.PluginCore;
 import me.bryang.workity.action.Action;
 import me.bryang.workity.action.JobType;
@@ -18,11 +18,11 @@ import org.bukkit.metadata.FixedMetadataValue;
 public class PlayerPlaceListener implements Listener {
 
     private final FileManager configFile;
-    private final Labority labority;
+    private final Workity workity;
 
     public PlayerPlaceListener(PluginCore pluginCore) {
         configFile = pluginCore.getFilesLoader().getConfigFile();
-        labority = pluginCore.getPlugin();
+        workity = pluginCore.getPlugin();
     }
 
     @EventHandler
@@ -37,7 +37,7 @@ public class PlayerPlaceListener implements Listener {
         Block block = event.getBlock();
 
         if (block.getType().name().toLowerCase().contains("ore")) {
-            block.setMetadata("workity:block-placed", new FixedMetadataValue(labority, true));
+            block.setMetadata("workity:block-placed", new FixedMetadataValue(workity, true));
         }
 
         Bukkit.getPluginManager().callEvent(new JobsEvent(event.getPlayer().getUniqueId(),
