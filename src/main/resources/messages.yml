@@ -58,6 +58,8 @@ jobs:
     list:
       - "&a[Server] &8| &fList of jobs:"
       - "&fMiner &8: &fTo break blocks."
+      - "&fBuilder &8: &fTo build blocks."
+      - "&fHunter &8: &fTo kill mobs or player."
 
   stats:
 
