@@ -88,6 +88,12 @@ public class JobListener implements Listener {
 
             if (jobData.getMaxXP() <= jobData.getXpPoints()) {
 
+                if (jobData.getLevel() == configFile.getInt("config.max-level-jobs")){
+                    jobData.setXPPoints(jobData.getMaxXP());
+                    player.sendMessage(messagesFile.getString("error.max-level"));
+                    return;
+                }
+
                 if (configFile.getBoolean("config.rewards.enabled")) {
                     if (configFile.isConfigurationSection("config.rewards." + jobData.getLevel())) {
                         for (String format : configFile.getStringList("config.rewards." + jobData.getLevel() + ".format")) {
