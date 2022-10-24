@@ -5,6 +5,14 @@ import net.objecthunter.exp4j.ExpressionBuilder;
 
 public class TextUtils {
 
+    public static double calculateDoubleNumber(String format, int level) {
+
+        String mathFormat = format.replace("%level%", String.valueOf(level));
+
+        Expression expression = new ExpressionBuilder(mathFormat).build();
+        return expression.evaluate();
+    }
+
     public static int calculateNumber(String format, int level) {
 
         String mathFormat = format.replace("%level%", String.valueOf(level));
