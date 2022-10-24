@@ -23,6 +23,7 @@ jobs:
       - "&8- &f/jobs add-level &c[player] [job] [level]"
       - "&8- &f/jobs set-level &c[player] [job] [level]"
       - "&8- &f/jobs remove-level &c[player] [job] [level]"
+      - "&8- &f/jobs set-multiplier &c[number]"
 
   # Reload message.
   reload: "&a[Server] &8| &fPlugin reloaded."
@@ -83,6 +84,10 @@ jobs:
     # Message when you increment level.
     level: "&a[Server] &8| &fYou incremented of level. &a%new_level%&f."
 
+  multipler:
+
+    # Message when you set a multiplier.
+    set: "&a[Server] &8| &FYou set the multiplier &a%multiplier%."
 error:
 
   # When the player is using the console.
@@ -100,6 +105,8 @@ error:
   # When the player isn't online.
   no-online: "&a[Server] &8| &fThe player isn't online."
 
+  # When you don't write a number.
+  uknown-number: "&a[Server] &8| &fUnknown number, put a number."
   # Job error messages:
   #
 
