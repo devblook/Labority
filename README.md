@@ -1,3 +1,5 @@
+[![CodeFactor](https://www.codefactor.io/repository/github/devblook/workity/badge)](https://www.codefactor.io/repository/github/devblook/workity)
+
 # Workity
 
 A job plugin that allows you to customize your jobs in an optimized way.
