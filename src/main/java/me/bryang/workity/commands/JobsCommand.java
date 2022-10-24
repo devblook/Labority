@@ -7,6 +7,7 @@ import me.bryang.workity.loader.DataLoader;
 import me.bryang.workity.manager.file.FileDataManager;
 import me.bryang.workity.manager.file.FileManager;
 import me.bryang.workity.utils.TextUtils;
+import org.apache.commons.lang.StringUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -90,14 +91,11 @@ public class JobsCommand implements CommandExecutor {
 
                 if (sender.hasPermission("jobs.admin")) {
                     sender.sendMessage(messagesFile.getString("error.no-permission"));
-                    break;
                 }
 
                 configFile.reload();
                 messagesFile.reload();
                 sender.sendMessage(messagesFile.getString("jobs.reload"));
-
-                break;
 
             case "join":
 
@@ -466,6 +464,32 @@ public class JobsCommand implements CommandExecutor {
                         .replace("%level%", String.valueOf(jobDataRemoveLevel.getLevel() - Integer.parseInt(levelRemoveLevel)))
                         .replace("%job%", jobNameRemoveLevel)
                         .replace("%player%", targetRemoveLevel.getName()));
+                break;
+
+            case "set-multiplier":
+
+                if (arguments.length < 2) {
+
+                    sender.sendMessage(messagesFile.getString("error.no-argument")
+                            .replace("%usage%", "/jobs set-multiplier [multiplier]"));
+                    return true;
+
+                }
+
+                if (!StringUtils.isNumeric(arguments[2])){
+                    sender.sendMessage(messagesFile.getString("error.unknown-number"));
+                    return true;
+                }
+
+                dataLoader.setServerMultiplier(Double.parseDouble(arguments[2]));
+                sender.sendMessage(messagesFile.getString("jobs.multiplier.set")
+                        .replace("%multiplier%", arguments[2]));
+
+                if (!configFile.getString("config.multiplier.broadcast").equalsIgnoreCase("none")) {
+                    Bukkit.broadcastMessage(configFile.getString("config.multiplier.broadcast")
+                            .replace("%multiplier%", arguments[2]));
+                }
+
             default:
                 sender.sendMessage(messagesFile.getString("error.unknown-argument"));
         }
