@@ -25,8 +25,8 @@ config:
 
     # Group multiplier [Need a plugin permision]:
     group:
-#     vip: 2.0
-#     vip+: 3.0
+  #     vip: 2.0
+  #     vip+: 3.0
 
   formula:
 

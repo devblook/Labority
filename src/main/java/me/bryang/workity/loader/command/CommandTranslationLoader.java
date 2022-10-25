@@ -12,7 +12,7 @@ public class CommandTranslationLoader implements TranslationProvider {
     private final FileManager messagesFile;
     private Map<String, String> translations;
 
-    public CommandTranslationLoader(PluginCore pluginCore){
+    public CommandTranslationLoader(PluginCore pluginCore) {
         this.messagesFile = pluginCore.getFilesLoader().getMessagesFile();
         setup();
     }
@@ -26,7 +26,7 @@ public class CommandTranslationLoader implements TranslationProvider {
 
     @Override
     public String getTranslation(Namespace namespace, String key) {
-        switch (key){
+        switch (key) {
             case "sender.only-player":
                 return messagesFile.getString("error.no-console");
             case "player.offline":
