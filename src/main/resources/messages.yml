@@ -38,6 +38,12 @@ jobs:
     # Message when you leave a job.
     message: "&a[Server] &8| &fYou left the job. &a%job%"
 
+  leave-all:
+
+    # Message when you leave a job.
+    message: "&a[Server] &8| &fYou left all jobs."
+
+
   add-level:
 
     # Message when you add a level in job to a player.
@@ -59,7 +65,7 @@ jobs:
     list:
       - "&a[Server] &8| &fList of jobs:"
       - "&fMiner &8: &fTo break blocks."
-      - "&fWoodhunter &8: &fTo break wood blocks."
+      - "&fWoodcutter &8: &fTo break wood blocks."
       - "&fBuilder &8: &fTo build blocks."
       - "&fHunter &8: &fTo kill mobs or player."
 
@@ -77,7 +83,7 @@ jobs:
 
       # Message when you see the info of your job.
       - "&a[Server] &8|  &fInfo of %job_name%:"
-      - "%job_format% &8- &f%item_name% &8- &f%gain_money% &8- &f%gain_xp% "
+      - "%job_format% &8- &a%item_name% &8- &e%gain_money%$ &8- &f%gain_xp%XP "
 
   gain:
 
@@ -106,9 +112,13 @@ error:
   no-online: "&a[Server] &8| &fThe player isn't online."
 
   # When you don't write a number.
-  uknown-number: "&a[Server] &8| &fUnknown number, put a number."
+  unknown-number: "&a[Server] &8| &fUnknown number, put a number."
+
+  # When you put a negative number.
+  negative-number: "&a[Server] &8| &fYou put a negative number, put a number mayor to 0."
   # Job error messages:
   #
+
 
   # When the player is not putting a job.
   unknown-job: "&a[Server] &8| &fUnknown job: &a%job%&f."
@@ -130,3 +140,6 @@ error:
 
   # You reached the max level.
   max-level: "&a[Server] &8| &fYou reached the max level: &a%level%"
+
+  # When you put a level that minor results to 0.
+  minor-0: "&a[Server] &8| &fThe level result is minor to 0."
