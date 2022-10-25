@@ -18,7 +18,11 @@ import org.bukkit.entity.Player;
 
 import java.util.List;
 
-@Command(names = {"jobs", "work", "workity"}, desc = "Main command.")
+@Command(
+
+        names = {"jobs", "work", "workity"},
+        desc = "Main command.")
+
 public class JobsCommand implements CommandClass {
 
     private final FileManager configFile;
@@ -38,8 +42,12 @@ public class JobsCommand implements CommandClass {
         this.dataLoader = pluginCore.getDataLoader();
     }
 
-    @Command(names = "")
-    public boolean onMainSubCommand(@Sender Player sender) {
+    @Command(
+            names = "")
+
+    public boolean onMainSubCommand(
+
+            @Sender Player sender) {
 
         List<String> helpCommandList = messagesFile.getStringList("jobs.help.format");
 
@@ -59,8 +67,12 @@ public class JobsCommand implements CommandClass {
         return true;
     }
 
-    @Command(names = "help")
-    public boolean onHelpSubCommand(@Sender Player sender) {
+    @Command(
+            names = "help")
+
+    public boolean onHelpSubCommand(
+
+            @Sender Player sender) {
 
         List<String> helpCommandList = messagesFile.getStringList("jobs.help.format");
 
@@ -80,16 +92,28 @@ public class JobsCommand implements CommandClass {
         return true;
     }
 
-    @Command(names = "reload", permission = "jobs.admin")
-    public boolean onReloadSubCommand(@Sender Player sender) {
+    @Command(
+            names = "reload",
+            permission = "jobs.admin")
+
+    public boolean onReloadSubCommand(
+
+            @Sender Player sender) {
+
         configFile.reload();
         messagesFile.reload();
         sender.sendMessage(messagesFile.getString("jobs.reload"));
         return true;
     }
 
-    @Command(names = "join")
-    public boolean onJoinSubCommand(@Sender Player sender, @OptArg("") String jobArgument) {
+    @Command(
+            names = "join")
+
+    public boolean onJoinSubCommand(
+
+            @Sender Player sender,
+            @OptArg("") String jobArgument) {
+
         if (jobArgument.isEmpty()) {
 
             sender.sendMessage(messagesFile.getString("error.no-argument")
@@ -135,8 +159,13 @@ public class JobsCommand implements CommandClass {
         return true;
     }
 
-    @Command(names = "leave")
-    public boolean onLeaveSubCommand(@Sender Player sender, @OptArg("") String jobArgument) {
+    @Command(
+            names = "leave")
+
+    public boolean onLeaveSubCommand(
+
+            @Sender Player sender,
+            @OptArg("") String jobArgument) {
 
         if (jobArgument.isEmpty()) {
             sender.sendMessage(messagesFile.getString("error.no-argument")
@@ -175,8 +204,13 @@ public class JobsCommand implements CommandClass {
         return true;
     }
 
-    @Command(names = "leave-all")
-    public boolean onLeaveSubCommand(@Sender Player sender) {
+    @Command(
+            names = "leave-all")
+
+    public boolean onLeaveSubCommand(
+
+            @Sender Player sender) {
+
         PlayerData playerDataLeaveAll = dataLoader.getPlayerJob(sender.getUniqueId());
 
         if (playerDataLeaveAll.getJobSize() == 0) {
@@ -195,16 +229,26 @@ public class JobsCommand implements CommandClass {
         return true;
     }
 
-    @Command(names = "browse")
-    public boolean onBrowseSubCommand(@Sender Player sender) {
+    @Command(
+            names = "browse")
+
+    public boolean onBrowseSubCommand(
+
+            @Sender Player sender) {
+
         for (String message : messagesFile.getStringList("jobs.browse.list")) {
             sender.sendMessage(message);
         }
         return true;
     }
 
-    @Command(names = "stats")
-    public boolean onStatsSubCommand(@Sender Player sender) {
+    @Command(
+            names = "stats")
+
+    public boolean onStatsSubCommand(
+
+            @Sender Player sender) {
+
         PlayerData playerDataStats = dataLoader.getPlayerJob(sender.getUniqueId());
 
         if (playerDataStats.getJobsMap().values().isEmpty()) {
@@ -234,8 +278,13 @@ public class JobsCommand implements CommandClass {
         return true;
     }
 
-    @Command(names = "info")
-    public boolean onInfoSubCommand(@Sender Player sender, @OptArg("") String jobArgument) {
+    @Command(
+            names = "info")
+
+    public boolean onInfoSubCommand(
+
+            @Sender Player sender,
+            @OptArg("") String jobArgument) {
 
         if (jobArgument.isEmpty()) {
 
@@ -302,8 +351,17 @@ public class JobsCommand implements CommandClass {
         return true;
     }
 
-    @Command(names = "add-level", permission = "jobs.admin")
-    public boolean onAddLevelSubCommand(@Sender Player sender, @OptArg("") String targetArgument, @OptArg("") String jobArgument, @OptArg String levelArgument) {
+    @Command(
+            names = "add-level",
+            permission = "jobs.admin")
+
+    public boolean onAddLevelSubCommand(
+
+            @Sender Player sender,
+            @OptArg("") String targetArgument,
+            @OptArg("") String jobArgument,
+            @OptArg String levelArgument) {
+
         if (targetArgument.isEmpty()) {
 
             sender.sendMessage(messagesFile.getString("error.no-argument")
@@ -374,8 +432,17 @@ public class JobsCommand implements CommandClass {
         return true;
     }
 
-    @Command(names = "set-level", permission = "jobs.admin")
-    public boolean onSetLevelSubCommand(@Sender Player sender, @OptArg("") String targetArgument, @OptArg("") String jobArgument, @OptArg String levelArgument) {
+    @Command(
+            names = "set-level",
+            permission = "jobs.admin")
+
+    public boolean onSetLevelSubCommand(
+
+            @Sender Player sender,
+            @OptArg("") String targetArgument,
+            @OptArg("") String jobArgument,
+            @OptArg String levelArgument) {
+
         if (targetArgument.isEmpty()) {
 
             sender.sendMessage(messagesFile.getString("error.no-argument")
@@ -447,8 +514,17 @@ public class JobsCommand implements CommandClass {
         return true;
     }
 
-    @Command(names = "remove-level", permission = "jobs.admin")
-    public boolean onRemoveLevelSubCommand(@Sender Player sender, @OptArg("") String targetArgument, @OptArg("") String jobArgument, @OptArg String levelArgument) {
+    @Command(
+            names = "remove-level",
+            permission = "jobs.admin")
+
+    public boolean onRemoveLevelSubCommand(
+
+            @Sender Player sender,
+            @OptArg("") String targetArgument,
+            @OptArg("") String jobArgument,
+            @OptArg String levelArgument) {
+
         if (targetArgument.isEmpty()) {
 
             sender.sendMessage(messagesFile.getString("error.no-argument")
@@ -525,8 +601,14 @@ public class JobsCommand implements CommandClass {
         return true;
     }
 
-    @Command(names = "set-multiplier", permission = "jobs.admin")
-    public boolean onSetMultiplierSubCommand(@Sender Player sender, @OptArg("") String multiplier) {
+    @Command(
+            names = "set-multiplier",
+            permission = "jobs.admin")
+
+    public boolean onSetMultiplierSubCommand(
+            
+            @Sender Player sender,
+            @OptArg("") String multiplier) {
 
         if (!sender.hasPermission("jobs.admin")) {
             sender.sendMessage(messagesFile.getString("error.no-permission"));
