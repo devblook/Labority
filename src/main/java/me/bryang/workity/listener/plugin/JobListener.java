@@ -70,11 +70,16 @@ public class JobListener implements Listener {
 
             double multiplier;
 
-            if (!configFile.isInt("config.multiplier.group." + vaultHookManager.getPermission().getPrimaryGroup(player))){
-                multiplier = configFile.getInt("config.multiplier.default");
 
+            if (vaultHookManager.getPermission().hasGroupSupport()) {
+                if (!configFile.isInt("config.multiplier.group." + vaultHookManager.getPermission().getPrimaryGroup(player))) {
+                    multiplier = configFile.getInt("config.multiplier.default");
+
+                } else {
+                    multiplier = configFile.getInt("config.multiplier.group." + vaultHookManager.getPermission().getPrimaryGroup(player));
+                }
             }else{
-                multiplier = configFile.getInt("config.multiplier.group." + vaultHookManager.getPermission().getPrimaryGroup(player));
+               multiplier = configFile.getInt("config.multiplier.default");
             }
 
             if (dataLoader.getServerMultiplier() > 0){
