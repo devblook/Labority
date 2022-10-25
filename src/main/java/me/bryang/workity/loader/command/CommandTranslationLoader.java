@@ -5,12 +5,13 @@ import me.bryang.workity.manager.file.FileManager;
 import me.fixeddev.commandflow.Namespace;
 import me.fixeddev.commandflow.translator.TranslationProvider;
 
+import java.util.HashMap;
 import java.util.Map;
 
 public class CommandTranslationLoader implements TranslationProvider {
 
     private final FileManager messagesFile;
-    private Map<String, String> translations;
+    private final Map<String, String> translations = new HashMap<>();
 
     public CommandTranslationLoader(PluginCore pluginCore) {
         this.messagesFile = pluginCore.getFilesLoader().getMessagesFile();
