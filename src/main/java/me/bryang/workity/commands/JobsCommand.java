@@ -9,16 +9,13 @@ import me.bryang.workity.manager.file.FileDataManager;
 import me.bryang.workity.manager.file.FileManager;
 import me.bryang.workity.utils.TextUtils;
 import me.fixeddev.commandflow.annotated.CommandClass;
+import me.fixeddev.commandflow.annotated.annotation.Command;
 import me.fixeddev.commandflow.annotated.annotation.OptArg;
 import me.fixeddev.commandflow.bukkit.annotation.Sender;
 import org.apache.commons.lang.StringUtils;
 import org.bukkit.Bukkit;
-import me.fixeddev.commandflow.annotated.annotation.Command;
-import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import org.graalvm.compiler.options.Option;
 
-import javax.print.attribute.standard.MediaSize;
 import java.util.List;
 
 @Command(names = {"jobs", "work", "workity"}, desc = "Main command.")
