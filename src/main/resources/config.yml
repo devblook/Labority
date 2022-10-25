@@ -18,7 +18,7 @@ config:
   multiplier:
 
     # To broadcast the multiplier. Put 'none' to disable this option.
-    broadcast:
+    broadcast: none
 
     # Default multiplier
     default: 1.0
@@ -123,32 +123,32 @@ jobs:
 
     # List of items
     items:
-      ACACIA_WOOD:
+      ACACIA_LOG:
 
         money: 1
         xp: 1
 
-      BIRCH_WOOD:
+      BIRCH_LOG:
 
         money: 1
         xp: 1
 
-      DARK_OAK_WOOD:
+      DARK_OAK_LOG:
 
         money: 1
         xp: 1
 
-      JUNGLE_WOOD:
+      JUNGLE_LOG:
 
         money: 1
         xp: 1
 
-      MANGROVE_WOOD:
+      MANGROVE_LOG:
 
         money: 1
         xp: 1
 
-      OAK_WOOD:
+      OAK_LOG:
 
         money: 1
         xp: 1
