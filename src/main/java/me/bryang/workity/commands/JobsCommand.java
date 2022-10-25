@@ -89,7 +89,7 @@ public class JobsCommand implements CommandExecutor {
 
             case "reload":
 
-                if (sender.hasPermission("jobs.admin")) {
+                if (!sender.hasPermission("jobs.admin")) {
                     sender.sendMessage(messagesFile.getString("error.no-permission"));
                     return true;
                 }
@@ -193,7 +193,12 @@ public class JobsCommand implements CommandExecutor {
                 }
 
                 playerDataLeaveAll.getJobsData().clear();
-                playersFile.getJobData(sender.getUniqueId()).set("", "");
+                for (String text : playersFile.getJobsKeys(sender.getUniqueId())) {
+                    playersFile.setJobData(sender.getUniqueId(), "job-list." + text + ".level", "");
+                    playersFile.setJobData(sender.getUniqueId(), "job-list." + text + ".xp", "");
+                    playersFile.save();
+                }
+                sender.sendMessage(messagesFile.getString("jobs.leave-all.message"));
                 break;
 
             case "browse":
@@ -270,8 +275,8 @@ public class JobsCommand implements CommandExecutor {
                             sender.sendMessage(message
                                     .replace("%job_format%", "")
                                     .replace("%item_name%", item)
-                                    .replace("%gain_money%", String.valueOf(configFile.getInt("jobs." + jobNameInfo + "items." + item + ".money")))
-                                    .replace("%gain_xp%", String.valueOf(configFile.getInt("jobs." + jobNameInfo + "items." + item + ".xp"))));
+                                    .replace("%gain_money%", String.valueOf(configFile.getInt("jobs." + jobNameInfo + ".items." + item + ".money")))
+                                    .replace("%gain_xp%", String.valueOf(configFile.getInt("jobs." + jobNameInfo + ".items." + item + ".xp"))));
                         }
                     }
 
@@ -285,21 +290,25 @@ public class JobsCommand implements CommandExecutor {
                         continue;
                     }
 
-                    for (String item : configFile.getStringList("jobs." + jobNameInfo + ".items")) {
-
-                        String[] valueItem = item.split(",");
+                    for (String item : configFile.getConfigurationSection("jobs." + jobNameInfo + ".items").getKeys(false)) {
 
                         sender.sendMessage(message
                                 .replace("%job_format%", "")
-                                .replace("%item_name%", String.valueOf(valueItem[0]))
-                                .replace("%gain_money%", String.valueOf(valueItem[1]))
-                                .replace("%gain_xp%", String.valueOf(valueItem[2])));
+                                .replace("%item_name%", item)
+                                .replace("%gain_money%", String.valueOf(configFile.getInt("jobs." + jobNameInfo + ".items." + item + ".money")))
+                                .replace("%gain_xp%", String.valueOf(configFile.getInt("jobs." + jobNameInfo + ".items." + item + ".xp"))));
                     }
                 }
 
                 break;
 
             case "add-level":
+
+                if (!sender.hasPermission("jobs.admin")) {
+                    sender.sendMessage(messagesFile.getString("error.no-permission"));
+                    return true;
+                }
+
                 if (arguments.length < 2) {
 
                     sender.sendMessage(messagesFile.getString("error.no-argument")
@@ -334,7 +343,24 @@ public class JobsCommand implements CommandExecutor {
                     return true;
                 }
 
+                if (arguments.length < 4) {
+
+                    sender.sendMessage(messagesFile.getString("error.no-argument")
+                            .replace("%usage%", "/jobs add-level [player] [level]"));
+                    return true;
+
+                }
                 String levelAddLevel = arguments[3];
+
+                if (!StringUtils.isNumeric(levelAddLevel)) {
+                    sender.sendMessage(messagesFile.getString("error.unknown-number"));
+                    return true;
+                }
+
+                if (Integer.parseInt(levelAddLevel) < 0){
+                    sender.sendMessage(messagesFile.getString("error.negative-number"));
+                    return true;
+                }
 
                 if (playerDataAddLevel.getJob(jobNameAddLevel) == null) {
                     playerDataAddLevel.addJob(jobNameAddLevel);
@@ -356,6 +382,12 @@ public class JobsCommand implements CommandExecutor {
                 break;
 
             case "set-level":
+
+                if (!sender.hasPermission("jobs.admin")) {
+                    sender.sendMessage(messagesFile.getString("error.no-permission"));
+                    return true;
+                }
+
                 if (arguments.length < 2) {
 
                     sender.sendMessage(messagesFile.getString("error.no-argument")
@@ -390,7 +422,25 @@ public class JobsCommand implements CommandExecutor {
                     return true;
                 }
 
+                if (arguments.length < 4) {
+
+                    sender.sendMessage(messagesFile.getString("error.no-argument")
+                            .replace("%usage%", "/jobs set-level [player] [level]"));
+                    return true;
+
+                }
+
                 String level = arguments[3];
+
+                if (!StringUtils.isNumeric(level)) {
+                    sender.sendMessage(messagesFile.getString("error.unknown-number"));
+                    return true;
+                }
+
+                if (Integer.parseInt(level) < 0){
+                    sender.sendMessage(messagesFile.getString("error.negative-number"));
+                    return true;
+                }
 
                 if (playerDataSet.getJob(jobNameSet) == null) {
                     playerDataSet.addJob(jobNameSet);
@@ -413,10 +463,15 @@ public class JobsCommand implements CommandExecutor {
 
             case "remove-level":
 
+                if (!sender.hasPermission("jobs.admin")) {
+                    sender.sendMessage(messagesFile.getString("error.no-permission"));
+                    return true;
+                }
+
                 if (arguments.length < 2) {
 
                     sender.sendMessage(messagesFile.getString("error.no-argument")
-                            .replace("%usage%", "/jobs set-level [player] [job] [level]"));
+                            .replace("%usage%", "/jobs remove-level [player] [job] [level]"));
                     return true;
 
                 }
@@ -432,7 +487,7 @@ public class JobsCommand implements CommandExecutor {
                 if (arguments.length < 3) {
 
                     sender.sendMessage(messagesFile.getString("error.no-argument")
-                            .replace("%usage%", "/jobs set-level [player] [level]"));
+                            .replace("%usage%", "/jobs remove-level [player] [level]"));
                     return true;
 
                 }
@@ -447,13 +502,36 @@ public class JobsCommand implements CommandExecutor {
                     return true;
                 }
 
+                if (arguments.length < 4) {
+
+                    sender.sendMessage(messagesFile.getString("error.no-argument")
+                            .replace("%usage%", "/jobs remove-level [player] [level]"));
+                    return true;
+
+                }
+
                 String levelRemoveLevel = arguments[3];
+
+                if (!StringUtils.isNumeric(levelRemoveLevel)) {
+                    sender.sendMessage(messagesFile.getString("error.unknown-number"));
+                    return true;
+                }
+
+                if (Integer.parseInt(levelRemoveLevel) < 0){
+                    sender.sendMessage(messagesFile.getString("error.negative-number"));
+                    return true;
+                }
 
                 if (playerDataRemoveLevel.getJob(jobNameRemoveLevel) == null) {
                     playerDataRemoveLevel.addJob(jobNameRemoveLevel);
                 }
 
                 JobData jobDataRemoveLevel = playerDataRemoveLevel.getJob(jobNameRemoveLevel);
+
+                if (jobDataRemoveLevel.getLevel() - Integer.parseInt(levelRemoveLevel) < 0){
+                    sender.sendMessage(messagesFile.getString("error.minor-0"));
+                    return true;
+                }
 
                 jobDataRemoveLevel.setLevel(jobDataRemoveLevel.getLevel() - Integer.parseInt(levelRemoveLevel));
                 jobDataRemoveLevel.setMaxXP(TextUtils.calculateNumber(configFile.getString("config.formula.max-xp"), jobDataRemoveLevel.getLevel() - Integer.parseInt(levelRemoveLevel)));
@@ -463,12 +541,18 @@ public class JobsCommand implements CommandExecutor {
                 playersFile.save();
 
                 sender.sendMessage(messagesFile.getString("jobs.remove-level.message")
-                        .replace("%level%", String.valueOf(jobDataRemoveLevel.getLevel() - Integer.parseInt(levelRemoveLevel)))
+                        .replace("%level%", levelRemoveLevel)
                         .replace("%job%", jobNameRemoveLevel)
                         .replace("%player%", targetRemoveLevel.getName()));
                 break;
 
             case "set-multiplier":
+
+                if (!sender.hasPermission("jobs.admin")) {
+                    sender.sendMessage(messagesFile.getString("error.no-permission"));
+                    return true;
+                }
+
 
                 if (arguments.length < 2) {
 
