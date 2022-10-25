@@ -10,15 +10,3 @@ description: A job plugin.
 
 softdepend:
   - Vault
-
-commands:
-
-  jobs:
-
-    description: Main command.
-    aliases:
-      - workity
-      - work
-
-    usage: /jobs help.
-
