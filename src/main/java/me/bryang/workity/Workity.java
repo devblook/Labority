@@ -11,9 +11,11 @@ public class Workity extends JavaPlugin {
         pluginCore.init();
 
         pluginCore.getManagerLoader().getTaskManager().getPluginLoadingTask().loadTask();
+        pluginCore.getManagerLoader().getTaskManager().getMetricsLoadingTask().loadTask();
 
         System.out.println("[Workity] Created by " + getDescription().getAuthors().get(0));
         System.out.println("[Workity] You are using the version " + getDescription().getVersion() + ".");
+        System.out.println("[Workity] @DevBlook");
 
     }
 
