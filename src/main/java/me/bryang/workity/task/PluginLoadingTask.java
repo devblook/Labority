@@ -15,9 +15,7 @@ public class PluginLoadingTask {
     private final FileManager configFile;
     private final FileDataManager playersFile;
 
-
     private final DataLoader dataLoader;
-
 
     public PluginLoadingTask(PluginCore pluginCore) {
 
