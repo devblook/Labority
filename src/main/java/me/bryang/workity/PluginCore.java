@@ -25,7 +25,6 @@ public class PluginCore implements Core {
         dataLoader = new DataLoader();
         dataLoader.load();
 
-
         managerLoader = new ManagerLoader(this);
         managerLoader.load();
 
