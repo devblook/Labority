@@ -28,7 +28,7 @@ public class PlayerPlaceListener implements Listener {
     @EventHandler
     public void onBreak(BlockPlaceEvent event) {
 
-        if (event.getPlayer().getGameMode() == GameMode.ADVENTURE) {
+        if (event.getPlayer().getGameMode() == GameMode.CREATIVE) {
             if (configFile.getBoolean("config.disable-creative")) {
                 return;
             }
