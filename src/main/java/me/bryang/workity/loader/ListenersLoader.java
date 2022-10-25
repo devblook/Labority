@@ -3,10 +3,7 @@ package me.bryang.workity.loader;
 import me.bryang.workity.Workity;
 import me.bryang.workity.PluginCore;
 import me.bryang.workity.api.Loader;
-import me.bryang.workity.listener.PlayerBreakListener;
-import me.bryang.workity.listener.PlayerJoinListener;
-import me.bryang.workity.listener.PlayerKillEntityListener;
-import me.bryang.workity.listener.PlayerPlaceListener;
+import me.bryang.workity.listener.*;
 import me.bryang.workity.listener.plugin.JobListener;
 import org.bukkit.Bukkit;
 import org.bukkit.event.Listener;
@@ -29,6 +26,7 @@ public class ListenersLoader implements Loader {
                 new PlayerBreakListener(pluginCore),
                 new PlayerKillEntityListener(pluginCore),
                 new PlayerJoinListener(pluginCore),
+                new FurnaceExtractListener(pluginCore),
                 new JobListener(pluginCore));
     }
 
