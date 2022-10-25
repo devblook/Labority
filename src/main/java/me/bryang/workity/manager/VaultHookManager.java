@@ -39,16 +39,18 @@ public class VaultHookManager {
             return;
         }
 
+
         economy = rse.getProvider();
         permission = rsp.getProvider();
 
     }
 
-    public Economy getEconomy() {
+    public Economy getEconomy(){
         return economy;
     }
 
     public Permission getPermission(){
         return permission;
     }
+    
 }
