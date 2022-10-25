@@ -131,7 +131,9 @@ public class JobsCommand implements CommandExecutor {
 
                 if (playerData.getJobSize() > configFile.getInt("config.limit-jobs")) {
                     sender.sendMessage(messagesFile.getString("error.limited-jobs"));
+                    return true;
                 }
+
                 playerData.addJob(jobName);
                 playerData.getJob(jobName).setMaxXP(TextUtils.calculateNumber(configFile.getString("config.formula.max-xp"), 1));
 
@@ -175,7 +177,6 @@ public class JobsCommand implements CommandExecutor {
 
                 playerDataLeave.removeJob(jobNameLeave);
 
-
                 playersFile.setJobData(sender.getUniqueId(), "job-list." + jobNameLeave + ".level", "");
                 playersFile.setJobData(sender.getUniqueId(), "job-list." + jobNameLeave + ".xp", "");
                 playersFile.save();
@@ -189,10 +190,10 @@ public class JobsCommand implements CommandExecutor {
 
                 if (playerDataLeaveAll.getJobSize() == 0) {
                     sender.sendMessage(messagesFile.getString("error.dont-join-any-jobs"));
-                    break;
+                    return true;
                 }
 
-                playerDataLeaveAll.getJobsData().clear();
+                playerDataLeaveAll.getJobsMap().clear();
                 for (String text : playersFile.getJobsKeys(sender.getUniqueId())) {
                     playersFile.setJobData(sender.getUniqueId(), "job-list." + text + ".level", "");
                     playersFile.setJobData(sender.getUniqueId(), "job-list." + text + ".xp", "");
@@ -212,7 +213,7 @@ public class JobsCommand implements CommandExecutor {
             case "stats":
                 PlayerData playerDataStats = dataLoader.getPlayerJob(sender.getUniqueId());
 
-                if (playerDataStats.getJobsData().values().isEmpty()) {
+                if (playerDataStats.getJobsMap().values().isEmpty()) {
                     sender.sendMessage(messagesFile.getString("error.dont-join-any-jobs"));
                     break;
                 }
@@ -224,7 +225,7 @@ public class JobsCommand implements CommandExecutor {
                         continue;
                     }
 
-                    for (JobData jobData : playerDataStats.getJobsData().values()) {
+                    for (JobData jobData : playerDataStats.getJobsMap().values()) {
 
                         sender.sendMessage(message
                                 .replace("%job_format%", "")
@@ -334,7 +335,6 @@ public class JobsCommand implements CommandExecutor {
                 }
 
                 PlayerData playerDataAddLevel = dataLoader.getPlayerJob(targetAddLevel.getUniqueId());
-
                 String jobNameAddLevel = arguments[2];
 
                 if (playersFile.isConfigurationSection("jobs." + jobNameAddLevel)) {
@@ -562,18 +562,20 @@ public class JobsCommand implements CommandExecutor {
 
                 }
 
-                if (!StringUtils.isNumeric(arguments[2])) {
+                String multiplier = arguments[2];
+
+                if (!StringUtils.isNumeric(multiplier)) {
                     sender.sendMessage(messagesFile.getString("error.unknown-number"));
                     return true;
                 }
 
-                dataLoader.setServerMultiplier(Double.parseDouble(arguments[2]));
+                dataLoader.setServerMultiplier(Double.parseDouble(multiplier));
                 sender.sendMessage(messagesFile.getString("jobs.multiplier.set")
-                        .replace("%multiplier%", arguments[2]));
+                        .replace("%multiplier%", multiplier));
 
                 if (!configFile.getString("config.multiplier.broadcast").equalsIgnoreCase("none")) {
                     Bukkit.broadcastMessage(configFile.getString("config.multiplier.broadcast")
-                            .replace("%multiplier%", arguments[2]));
+                            .replace("%multiplier%", multiplier));
                 }
 
             default:
