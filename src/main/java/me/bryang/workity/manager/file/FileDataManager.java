@@ -19,14 +19,6 @@ public class FileDataManager extends FileManager {
 
     }
 
-    public int getPlayerSize() {
-        if (getConfigurationSection("players.job") == null) {
-            return 0;
-        }
-
-        return getConfigurationSection(("players.jobs")).getKeys(false).size();
-    }
-
     public Set<String> getPlayersKeys() {
         if (getConfigurationSection("players.jobs") == null) {
             return null;
