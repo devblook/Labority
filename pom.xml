@@ -66,6 +66,10 @@
             <id>sonatype</id>
             <url>https://oss.sonatype.org/content/groups/public/</url>
         </repository>
+        <repository>
+            <id>unnamed-public</id>
+            <url>https://repo.unnamed.team/repository/unnamed-public/</url>
+        </repository>
     </repositories>
 
     <dependencies>
@@ -86,6 +90,18 @@
             <groupId>net.objecthunter</groupId>
             <artifactId>exp4j</artifactId>
             <version>0.4.8</version>
+        </dependency>
+
+        <dependency>
+            <groupId>me.fixeddev</groupId>
+            <artifactId>commandflow-universal</artifactId>
+            <version>0.5.3</version>
+        </dependency>
+
+        <dependency>
+            <groupId>me.fixeddev</groupId>
+            <artifactId>commandflow-bukkit</artifactId>
+            <version>0.5.2</version>
         </dependency>
     </dependencies>
 </project>
