@@ -3,15 +3,13 @@ package me.bryang.workity.data;
 public class JobData {
 
     private final String jobName;
+    private int xpPoints = 0;
+    private int maxXP = 0;
+    private int level = 1;
 
     public JobData(String jobName) {
         this.jobName = jobName;
     }
-
-    private int xpPoints = 0;
-    private int maxXP = 0;
-
-    private int level = 1;
 
     public String getName() {
         return jobName;
@@ -37,13 +35,12 @@ public class JobData {
         return level;
     }
 
-    public void setXPPoints(int xpPoints) {
-        this.xpPoints = xpPoints;
-    }
-
-
     public void setLevel(int level) {
         this.level = level;
+    }
+
+    public void setXPPoints(int xpPoints) {
+        this.xpPoints = xpPoints;
     }
 
     public int getMaxXP() {
