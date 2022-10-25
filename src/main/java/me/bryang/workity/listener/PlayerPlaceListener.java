@@ -1,7 +1,7 @@
 package me.bryang.workity.listener;
 
-import me.bryang.workity.Workity;
 import me.bryang.workity.PluginCore;
+import me.bryang.workity.Workity;
 import me.bryang.workity.action.Action;
 import me.bryang.workity.action.JobType;
 import me.bryang.workity.events.JobsEvent;

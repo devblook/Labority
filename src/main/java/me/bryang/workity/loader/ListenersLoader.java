@@ -1,7 +1,7 @@
 package me.bryang.workity.loader;
 
-import me.bryang.workity.Workity;
 import me.bryang.workity.PluginCore;
+import me.bryang.workity.Workity;
 import me.bryang.workity.api.Loader;
 import me.bryang.workity.listener.*;
 import me.bryang.workity.listener.plugin.JobListener;

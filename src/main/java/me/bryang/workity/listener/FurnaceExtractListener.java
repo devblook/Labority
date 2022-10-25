@@ -2,13 +2,11 @@ package me.bryang.workity.listener;
 
 import me.bryang.workity.PluginCore;
 import me.bryang.workity.Workity;
-import me.bryang.workity.loader.DataLoader;
 import me.bryang.workity.manager.file.FileDataManager;
 import me.bryang.workity.manager.file.FileManager;
 import org.bukkit.Material;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.FurnaceExtractEvent;
-import org.bukkit.event.inventory.FurnaceSmeltEvent;
 import org.bukkit.metadata.FixedMetadataValue;
 
 public class FurnaceExtractListener implements Listener{
