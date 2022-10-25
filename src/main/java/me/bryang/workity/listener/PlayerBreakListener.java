@@ -20,7 +20,7 @@ public class PlayerBreakListener implements Listener {
     private final FileManager configFile;
 
     public PlayerBreakListener(PluginCore pluginCore) {
-        configFile = pluginCore.getFilesLoader().getConfigFile();
+        this.configFile = pluginCore.getFilesLoader().getConfigFile();
     }
 
     @EventHandler
