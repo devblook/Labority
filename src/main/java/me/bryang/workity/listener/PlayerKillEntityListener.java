@@ -28,7 +28,7 @@ public class PlayerKillEntityListener implements Listener {
             return;
         }
 
-        if (((Player) event.getDamager()).getGameMode() == GameMode.ADVENTURE) {
+        if (((Player) event.getDamager()).getGameMode() == GameMode.CREATIVE) {
             if (configFile.getBoolean("config.disable-creative")) {
                 return;
             }
