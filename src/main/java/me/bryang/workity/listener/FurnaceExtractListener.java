@@ -23,7 +23,7 @@ public class FurnaceExtractListener implements Listener {
         this.playersFile = pluginCore.getFilesLoader().getPlayersFile();
     }
 
-    public void onSmelt(FurnaceExtractEvent furnaceExtractEvent) {
+    public void onFurnace(FurnaceExtractEvent furnaceExtractEvent) {
 
         if (furnaceExtractEvent.getBlock().getType() == Material.STONE) {
             for (String keys : configFile.getConfigurationSection("jobs").getKeys(false)) {
