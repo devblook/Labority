@@ -45,11 +45,13 @@ public class JobListener implements Listener {
         for (String jobs : configFile.getConfigurationSection("jobs").getKeys(false)) {
 
             Action action = event.getAction();
+
             if (!configFile.getString("jobs." + jobs + ".type").equalsIgnoreCase(action.getType())) {
                 continue;
             }
 
             String dataRequired;
+
             if (action.getEntity() != null) {
                 dataRequired = action.getEntity().getType().name();
             } else {
@@ -107,31 +109,11 @@ public class JobListener implements Listener {
             if (jobData.getMaxXP() <= jobData.getXpPoints()) {
 
                 if (jobData.getLevel() == configFile.getInt("config.max-level-jobs")) {
+
                     jobData.setXPPoints(jobData.getMaxXP());
                     player.sendMessage(messagesFile.getString("error.max-level"));
                     return;
                 }
-
-                if (configFile.getBoolean("config.rewards.enabled")) {
-                    if (configFile.isConfigurationSection("config.rewards." + jobData.getLevel())) {
-                        for (String format : configFile.getStringList("config.rewards." + jobData.getLevel() + ".format")) {
-                            if (format.startsWith("[BROADCAST]")) {
-                                Bukkit.broadcastMessage(ChatColor.translateAlternateColorCodes('&', format.substring(11))
-                                        .replace("%player%", player.getName()));
-                            }
-
-                            if (format.startsWith("[COMMAND]")) {
-                                player.performCommand(format.substring(9)
-                                        .replace("%player%", player.getName()));
-                            }
-
-                            if (format.startsWith("[MONEY]")) {
-                                vaultHookManager.getEconomy().depositPlayer(player, Double.parseDouble(format.substring(7)));
-                            }
-                        }
-                    }
-                }
-
 
                 jobData.setLevel(jobData.getLevel() + 1);
                 jobData.setXPPoints(jobData.getMaxXP() - jobData.getXpPoints());
@@ -139,9 +121,37 @@ public class JobListener implements Listener {
 
                 player.sendMessage(messagesFile.getString("jobs.gain.level")
                         .replace("%new_level%", String.valueOf(jobData.getLevel())));
+
+                if (!configFile.getBoolean("config.rewards.enabled")) {
+                    return;
+                }
+
+                if (!configFile.isConfigurationSection("config.rewards." + jobData.getLevel())) {
+                    return;
+                }
+
+                for (String format : configFile.getStringList("config.rewards." + jobData.getLevel() + ".format")) {
+
+                    if (format.startsWith("[BROADCAST]")) {
+                        Bukkit.broadcastMessage(ChatColor.translateAlternateColorCodes('&', format.substring(11))
+                                        .replace("%player%", player.getName()));
+                    }
+
+                    if (format.startsWith("[COMMAND]")) {
+                        player.performCommand(format.substring(9)
+                                        .replace("%player%", player.getName()));
+                    }
+
+                    if (format.startsWith("[MONEY]")) {
+                        vaultHookManager.getEconomy().depositPlayer(player, Double.parseDouble(format.substring(7)));
+                    }
+                }
             }
-
-
         }
+
     }
+
+
 }
+
+
