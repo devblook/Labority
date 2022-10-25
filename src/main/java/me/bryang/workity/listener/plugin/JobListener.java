@@ -106,52 +106,53 @@ public class JobListener implements Listener {
             playersFile.setJobData(player.getUniqueId(), "job-list." + jobData.getName() + ".xp", "");
             playersFile.save();
 
-            if (jobData.getMaxXP() <= jobData.getXpPoints()) {
+            if (jobData.getMaxXP() > jobData.getXpPoints()) {
+                return;
+            }
 
-                if (jobData.getLevel() == configFile.getInt("config.max-level-jobs")) {
+            if (jobData.getLevel() == configFile.getInt("config.max-level-jobs")) {
 
-                    jobData.setXPPoints(jobData.getMaxXP());
-                    player.sendMessage(messagesFile.getString("error.max-level"));
-                    return;
+                jobData.setXPPoints(jobData.getMaxXP());
+                player.sendMessage(messagesFile.getString("error.max-level"));
+                return;
+            }
+
+            jobData.setLevel(jobData.getLevel() + 1);
+            jobData.setXPPoints(jobData.getMaxXP() - jobData.getXpPoints());
+            jobData.setMaxXP(TextUtils.calculateNumber(configFile.getString("config.formula.max-xp"), jobData.getLevel()));
+
+            player.sendMessage(messagesFile.getString("jobs.gain.level")
+                    .replace("%new_level%", String.valueOf(jobData.getLevel())));
+
+            if (!configFile.getBoolean("config.rewards.enabled")) {
+                return;
+            }
+
+            if (!configFile.isConfigurationSection("config.rewards." + jobData.getLevel())) {
+                return;
+            }
+
+            for (String format : configFile.getStringList("config.rewards." + jobData.getLevel() + ".format")) {
+
+                if (format.startsWith("[BROADCAST]")) {
+                    Bukkit.broadcastMessage(ChatColor.translateAlternateColorCodes('&', format.substring(11))
+                            .replace("%player%", player.getName()));
                 }
 
-                jobData.setLevel(jobData.getLevel() + 1);
-                jobData.setXPPoints(jobData.getMaxXP() - jobData.getXpPoints());
-                jobData.setMaxXP(TextUtils.calculateNumber(configFile.getString("config.formula.max-xp"), jobData.getLevel()));
-
-                player.sendMessage(messagesFile.getString("jobs.gain.level")
-                        .replace("%new_level%", String.valueOf(jobData.getLevel())));
-
-                if (!configFile.getBoolean("config.rewards.enabled")) {
-                    return;
+                if (format.startsWith("[COMMAND]")) {
+                    player.performCommand(format.substring(9)
+                            .replace("%player%", player.getName()));
                 }
 
-                if (!configFile.isConfigurationSection("config.rewards." + jobData.getLevel())) {
-                    return;
-                }
-
-                for (String format : configFile.getStringList("config.rewards." + jobData.getLevel() + ".format")) {
-
-                    if (format.startsWith("[BROADCAST]")) {
-                        Bukkit.broadcastMessage(ChatColor.translateAlternateColorCodes('&', format.substring(11))
-                                        .replace("%player%", player.getName()));
-                    }
-
-                    if (format.startsWith("[COMMAND]")) {
-                        player.performCommand(format.substring(9)
-                                        .replace("%player%", player.getName()));
-                    }
-
-                    if (format.startsWith("[MONEY]")) {
-                        vaultHookManager.getEconomy().depositPlayer(player, Double.parseDouble(format.substring(7)));
-                    }
+                if (format.startsWith("[MONEY]")) {
+                    vaultHookManager.getEconomy().depositPlayer(player, Double.parseDouble(format.substring(7)));
                 }
             }
         }
-
     }
 
-
 }
+
+
 
 
