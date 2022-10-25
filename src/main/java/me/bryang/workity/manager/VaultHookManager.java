@@ -52,5 +52,5 @@ public class VaultHookManager {
     public Permission getPermission(){
         return permission;
     }
-    
+
 }
