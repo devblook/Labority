@@ -5,33 +5,33 @@ import java.util.Map;
 
 public class PlayerData {
 
-    private final Map<String, JobData> jobList = new HashMap<>();
+    private final Map<String, JobData> jobDataMap = new HashMap<>();
 
     public void addJob(String jobName) {
-        jobList.put(jobName, new JobData(jobName));
+        jobDataMap.put(jobName, new JobData(jobName));
     }
 
-    public void addJobData(String jobName, JobData jobData) {
-        jobList.put(jobName, jobData);
+    public void putJob(String jobName, JobData jobData) {
+        jobDataMap.put(jobName, jobData);
     }
 
     public JobData getJob(String jobName) {
-        return jobList.get(jobName);
+        return jobDataMap.get(jobName);
     }
 
     public void removeJob(String jobName) {
-        jobList.remove(jobName);
+        jobDataMap.remove(jobName);
     }
 
     public boolean hasTheJob(String jobName) {
-        return jobList.containsKey(jobName);
+        return jobDataMap.containsKey(jobName);
     }
 
     public int getJobSize() {
-        return jobList.size();
+        return jobDataMap.size();
     }
 
-    public Map<String, JobData> getJobsData() {
-        return jobList;
+    public Map<String, JobData> getJobsMap() {
+        return jobDataMap;
     }
 }
