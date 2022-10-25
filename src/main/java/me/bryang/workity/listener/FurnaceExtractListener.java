@@ -9,7 +9,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.FurnaceExtractEvent;
 import org.bukkit.metadata.FixedMetadataValue;
 
-public class FurnaceExtractListener implements Listener{
+public class FurnaceExtractListener implements Listener {
 
     private final Workity workity;
     private final FileManager configFile;
@@ -23,7 +23,7 @@ public class FurnaceExtractListener implements Listener{
         this.playersFile = pluginCore.getFilesLoader().getPlayersFile();
     }
 
-    public void onSmelt(FurnaceExtractEvent furnaceExtractEvent){
+    public void onSmelt(FurnaceExtractEvent furnaceExtractEvent) {
 
         if (furnaceExtractEvent.getBlock().getType() == Material.STONE) {
             for (String keys : configFile.getConfigurationSection("jobs").getKeys(false)) {

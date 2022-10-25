@@ -45,11 +45,11 @@ public class VaultHookManager {
 
     }
 
-    public Economy getEconomy(){
+    public Economy getEconomy() {
         return economy;
     }
 
-    public Permission getPermission(){
+    public Permission getPermission() {
         return permission;
     }
 

@@ -78,11 +78,11 @@ public class JobListener implements Listener {
                 } else {
                     multiplier = configFile.getInt("config.multiplier.group." + vaultHookManager.getPermission().getPrimaryGroup(player));
                 }
-            }else{
-               multiplier = configFile.getInt("config.multiplier.default");
+            } else {
+                multiplier = configFile.getInt("config.multiplier.default");
             }
 
-            if (dataLoader.getServerMultiplier() > 0){
+            if (dataLoader.getServerMultiplier() > 0) {
                 multiplier = multiplier + dataLoader.getServerMultiplier();
             }
 
@@ -106,7 +106,7 @@ public class JobListener implements Listener {
 
             if (jobData.getMaxXP() <= jobData.getXpPoints()) {
 
-                if (jobData.getLevel() == configFile.getInt("config.max-level-jobs")){
+                if (jobData.getLevel() == configFile.getInt("config.max-level-jobs")) {
                     jobData.setXPPoints(jobData.getMaxXP());
                     player.sendMessage(messagesFile.getString("error.max-level"));
                     return;

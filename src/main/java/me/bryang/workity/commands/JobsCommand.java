@@ -357,7 +357,7 @@ public class JobsCommand implements CommandExecutor {
                     return true;
                 }
 
-                if (Integer.parseInt(levelAddLevel) < 0){
+                if (Integer.parseInt(levelAddLevel) < 0) {
                     sender.sendMessage(messagesFile.getString("error.negative-number"));
                     return true;
                 }
@@ -437,7 +437,7 @@ public class JobsCommand implements CommandExecutor {
                     return true;
                 }
 
-                if (Integer.parseInt(level) < 0){
+                if (Integer.parseInt(level) < 0) {
                     sender.sendMessage(messagesFile.getString("error.negative-number"));
                     return true;
                 }
@@ -517,7 +517,7 @@ public class JobsCommand implements CommandExecutor {
                     return true;
                 }
 
-                if (Integer.parseInt(levelRemoveLevel) < 0){
+                if (Integer.parseInt(levelRemoveLevel) < 0) {
                     sender.sendMessage(messagesFile.getString("error.negative-number"));
                     return true;
                 }
@@ -528,7 +528,7 @@ public class JobsCommand implements CommandExecutor {
 
                 JobData jobDataRemoveLevel = playerDataRemoveLevel.getJob(jobNameRemoveLevel);
 
-                if (jobDataRemoveLevel.getLevel() - Integer.parseInt(levelRemoveLevel) < 0){
+                if (jobDataRemoveLevel.getLevel() - Integer.parseInt(levelRemoveLevel) < 0) {
                     sender.sendMessage(messagesFile.getString("error.minor-0"));
                     return true;
                 }
@@ -562,7 +562,7 @@ public class JobsCommand implements CommandExecutor {
 
                 }
 
-                if (!StringUtils.isNumeric(arguments[2])){
+                if (!StringUtils.isNumeric(arguments[2])) {
                     sender.sendMessage(messagesFile.getString("error.unknown-number"));
                     return true;
                 }
