@@ -37,7 +37,6 @@ public class PlayerBreakListener implements Listener {
         if (event.getPlayer().getInventory().getItemInMainHand().getType() != Material.AIR) {
 
             ItemStack item = event.getPlayer().getInventory().getItemInMainHand();
-            Block block;
 
             if (event.getPlayer().getInventory().getItemInMainHand().getType().name().toLowerCase().contains("pickaxe") &&
                     item.getEnchantments().containsKey(Enchantment.SILK_TOUCH)) {
@@ -52,6 +51,10 @@ public class PlayerBreakListener implements Listener {
         Block block = event.getBlock();
 
         if (block.hasMetadata("workity:block-placed")) {
+            return;
+        }
+
+        if (block.hasMetadata("workity:furnace")) {
             return;
         }
 
