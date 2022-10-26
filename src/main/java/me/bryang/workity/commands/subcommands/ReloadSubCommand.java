@@ -1,6 +1,7 @@
 package me.bryang.workity.commands.subcommands;
 
 import me.bryang.workity.PluginCore;
+import me.bryang.workity.commands.JobsCommand;
 import me.bryang.workity.loader.DataLoader;
 import me.bryang.workity.manager.file.FileManager;
 import me.fixeddev.commandflow.annotated.CommandClass;
@@ -14,9 +15,9 @@ public class ReloadSubCommand implements CommandClass {
     private final FileManager messagesFile;
 
 
-    public ReloadSubCommand(PluginCore pluginCore){
-        this.messagesFile = pluginCore.getFilesLoader().getMessagesFile();
-        this.configFile = pluginCore.getFilesLoader().getConfigFile();
+    public ReloadSubCommand(JobsCommand jobsCommand){
+        this.messagesFile = jobsCommand.getPluginCore().getFilesLoader().getMessagesFile();
+        this.configFile = jobsCommand.getPluginCore().getFilesLoader().getConfigFile();
 
     }
 

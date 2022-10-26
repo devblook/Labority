@@ -1,6 +1,7 @@
 package me.bryang.workity.commands.subcommands;
 
 import me.bryang.workity.PluginCore;
+import me.bryang.workity.commands.JobsCommand;
 import me.bryang.workity.loader.DataLoader;
 import me.bryang.workity.manager.file.FileDataManager;
 import me.bryang.workity.manager.file.FileManager;
@@ -20,12 +21,12 @@ public class SetMultiplierSubCommand implements CommandClass {
 
     private final DataLoader dataLoader;
 
-    public SetMultiplierSubCommand(PluginCore pluginCore){
-        this.messagesFile = pluginCore.getFilesLoader().getMessagesFile();
-        this.configFile = pluginCore.getFilesLoader().getConfigFile();
-        this.playersFile = pluginCore.getFilesLoader().getPlayersFile();
+    public SetMultiplierSubCommand(JobsCommand jobsCommand){
+        this.messagesFile = jobsCommand.getPluginCore().getFilesLoader().getMessagesFile();
+        this.configFile = jobsCommand.getPluginCore().getFilesLoader().getConfigFile();
+        this.playersFile = jobsCommand.getPluginCore().getFilesLoader().getPlayersFile();
 
-        this.dataLoader = pluginCore.getDataLoader();
+        this.dataLoader = jobsCommand.getPluginCore().getDataLoader();
     }
 
     @Command(

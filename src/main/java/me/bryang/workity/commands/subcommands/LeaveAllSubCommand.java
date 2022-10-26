@@ -1,6 +1,7 @@
 package me.bryang.workity.commands.subcommands;
 
 import me.bryang.workity.PluginCore;
+import me.bryang.workity.commands.JobsCommand;
 import me.bryang.workity.data.PlayerData;
 import me.bryang.workity.loader.DataLoader;
 import me.bryang.workity.manager.file.FileDataManager;
@@ -17,11 +18,11 @@ public class LeaveAllSubCommand implements CommandClass {
 
     private final DataLoader dataLoader;
 
-    public LeaveAllSubCommand(PluginCore pluginCore){
-        this.messagesFile = pluginCore.getFilesLoader().getMessagesFile();
-        this.playersFile = pluginCore.getFilesLoader().getPlayersFile();
+    public LeaveAllSubCommand(JobsCommand jobsCommand){
+        this.messagesFile = jobsCommand.getPluginCore().getFilesLoader().getMessagesFile();
+        this.playersFile = jobsCommand.getPluginCore().getFilesLoader().getPlayersFile();
 
-        this.dataLoader = pluginCore.getDataLoader();
+        this.dataLoader = jobsCommand.getPluginCore().getDataLoader();
     }
 
     @Command(

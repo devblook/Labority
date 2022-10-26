@@ -1,6 +1,7 @@
 package me.bryang.workity.commands.subcommands;
 
 import me.bryang.workity.PluginCore;
+import me.bryang.workity.commands.JobsCommand;
 import me.bryang.workity.manager.file.FileManager;
 import me.fixeddev.commandflow.annotated.CommandClass;
 import me.fixeddev.commandflow.annotated.annotation.Command;
@@ -13,8 +14,8 @@ public class HelpSubCommand implements CommandClass {
 
     private final FileManager messagesFile;
 
-    public HelpSubCommand(PluginCore pluginCore){
-        this.messagesFile = pluginCore.getFilesLoader().getMessagesFile();
+    public HelpSubCommand(JobsCommand jobsCommand){
+        this.messagesFile = jobsCommand.getPluginCore().getFilesLoader().getMessagesFile();
     }
 
     @Command(

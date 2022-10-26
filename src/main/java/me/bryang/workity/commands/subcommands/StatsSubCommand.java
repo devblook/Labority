@@ -1,6 +1,7 @@
 package me.bryang.workity.commands.subcommands;
 
 import me.bryang.workity.PluginCore;
+import me.bryang.workity.commands.JobsCommand;
 import me.bryang.workity.data.JobData;
 import me.bryang.workity.data.PlayerData;
 import me.bryang.workity.loader.DataLoader;
@@ -18,11 +19,11 @@ public class StatsSubCommand implements CommandClass {
 
     private final DataLoader dataLoader;
 
-    public StatsSubCommand(PluginCore pluginCore){
-        this.messagesFile = pluginCore.getFilesLoader().getMessagesFile();
-        this.configFile = pluginCore.getFilesLoader().getConfigFile();
+    public StatsSubCommand(JobsCommand jobsCommand){
+        this.messagesFile = jobsCommand.getPluginCore().getFilesLoader().getMessagesFile();
+        this.configFile = jobsCommand.getPluginCore().getFilesLoader().getConfigFile();
 
-        this.dataLoader = pluginCore.getDataLoader();
+        this.dataLoader = jobsCommand.getPluginCore().getDataLoader();
     }
 
     @Command(

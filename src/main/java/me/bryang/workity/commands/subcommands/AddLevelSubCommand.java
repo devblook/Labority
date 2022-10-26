@@ -1,6 +1,7 @@
 package me.bryang.workity.commands.subcommands;
 
 import me.bryang.workity.PluginCore;
+import me.bryang.workity.commands.JobsCommand;
 import me.bryang.workity.data.JobData;
 import me.bryang.workity.data.PlayerData;
 import me.bryang.workity.loader.DataLoader;
@@ -23,12 +24,12 @@ public class AddLevelSubCommand implements CommandClass {
 
     private final DataLoader dataLoader;
 
-    public AddLevelSubCommand(PluginCore pluginCore){
-        this.messagesFile = pluginCore.getFilesLoader().getMessagesFile();
-        this.configFile = pluginCore.getFilesLoader().getConfigFile();
-        this.playersFile = pluginCore.getFilesLoader().getPlayersFile();
+    public AddLevelSubCommand(JobsCommand jobsCommand){
+        this.messagesFile = jobsCommand.getPluginCore().getFilesLoader().getMessagesFile();
+        this.configFile = jobsCommand.getPluginCore().getFilesLoader().getConfigFile();
+        this.playersFile = jobsCommand.getPluginCore().getFilesLoader().getPlayersFile();
 
-        this.dataLoader = pluginCore.getDataLoader();
+        this.dataLoader = jobsCommand.getPluginCore().getDataLoader();
     }
 
 
