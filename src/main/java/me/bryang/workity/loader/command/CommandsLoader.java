@@ -33,7 +33,7 @@ public class CommandsLoader implements Loader {
         partInjector.install(new BukkitModule());
 
         AnnotatedCommandTreeBuilder builder = new AnnotatedCommandTreeBuilderImpl(partInjector);
-        commandManager.registerCommands(builder.fromClass(new JobsCommand()));
+        commandManager.registerCommands(builder.fromClass(new JobsCommand(pluginCore)));
 
         System.out.println("[Workity] Commands loaded.");
 
