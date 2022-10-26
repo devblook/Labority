@@ -23,7 +23,7 @@ public class SetLevelSubCommand implements CommandClass {
 
     private final DataLoader dataLoader;
 
-    public SetLevelSubCommand(JobsCommand jobsCommand){
+    public SetLevelSubCommand(JobsCommand jobsCommand) {
         this.messagesFile = jobsCommand.getPluginCore().getFilesLoader().getMessagesFile();
         this.configFile = jobsCommand.getPluginCore().getFilesLoader().getConfigFile();
         this.playersFile = jobsCommand.getPluginCore().getFilesLoader().getPlayersFile();

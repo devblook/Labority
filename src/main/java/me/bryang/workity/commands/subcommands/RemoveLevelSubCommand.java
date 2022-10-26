@@ -23,7 +23,7 @@ public class RemoveLevelSubCommand implements CommandClass {
 
     private final DataLoader dataLoader;
 
-    public RemoveLevelSubCommand(JobsCommand jobsCommand){
+    public RemoveLevelSubCommand(JobsCommand jobsCommand) {
         this.messagesFile = jobsCommand.getPluginCore().getFilesLoader().getMessagesFile();
         this.configFile = jobsCommand.getPluginCore().getFilesLoader().getConfigFile();
         this.playersFile = jobsCommand.getPluginCore().getFilesLoader().getPlayersFile();

@@ -9,11 +9,11 @@ import org.bukkit.entity.Player;
 
 import java.util.List;
 
-public class MainSubCommand implements CommandClass{
+public class MainSubCommand implements CommandClass {
 
     private final FileManager messagesFile;
 
-    public MainSubCommand(JobsCommand jobsCommand){
+    public MainSubCommand(JobsCommand jobsCommand) {
         this.messagesFile = jobsCommand.getPluginCore().getFilesLoader().getMessagesFile();
     }
 

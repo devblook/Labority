@@ -13,7 +13,7 @@ public class HelpSubCommand implements CommandClass {
 
     private final FileManager messagesFile;
 
-    public HelpSubCommand(JobsCommand jobsCommand){
+    public HelpSubCommand(JobsCommand jobsCommand) {
         this.messagesFile = jobsCommand.getPluginCore().getFilesLoader().getMessagesFile();
     }
 

@@ -20,7 +20,7 @@ public class JoinSubCommand implements CommandClass {
 
     private final DataLoader dataLoader;
 
-    public JoinSubCommand(JobsCommand jobsCommand){
+    public JoinSubCommand(JobsCommand jobsCommand) {
         this.messagesFile = jobsCommand.getPluginCore().getFilesLoader().getMessagesFile();
         this.configFile = jobsCommand.getPluginCore().getFilesLoader().getConfigFile();
         this.playersFile = jobsCommand.getPluginCore().getFilesLoader().getPlayersFile();

@@ -19,7 +19,7 @@ public class LeaveSubCommand implements CommandClass {
 
     private final DataLoader dataLoader;
 
-    public LeaveSubCommand(JobsCommand jobsCommand){
+    public LeaveSubCommand(JobsCommand jobsCommand) {
         this.messagesFile = jobsCommand.getPluginCore().getFilesLoader().getMessagesFile();
         this.configFile = jobsCommand.getPluginCore().getFilesLoader().getConfigFile();
         this.playersFile = jobsCommand.getPluginCore().getFilesLoader().getPlayersFile();

@@ -12,7 +12,7 @@ public class BrowseSubCommand implements CommandClass {
 
     private final FileManager messagesFile;
 
-    public BrowseSubCommand(JobsCommand jobsCommand){
+    public BrowseSubCommand(JobsCommand jobsCommand) {
         this.messagesFile = jobsCommand.getPluginCore().getFilesLoader().getMessagesFile();
     }
 

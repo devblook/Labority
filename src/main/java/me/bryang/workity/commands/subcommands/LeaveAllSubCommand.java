@@ -17,7 +17,7 @@ public class LeaveAllSubCommand implements CommandClass {
 
     private final DataLoader dataLoader;
 
-    public LeaveAllSubCommand(JobsCommand jobsCommand){
+    public LeaveAllSubCommand(JobsCommand jobsCommand) {
         this.messagesFile = jobsCommand.getPluginCore().getFilesLoader().getMessagesFile();
         this.playersFile = jobsCommand.getPluginCore().getFilesLoader().getPlayersFile();
 

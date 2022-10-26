@@ -17,7 +17,7 @@ public class InfoSubCommand implements CommandClass {
 
     private final DataLoader dataLoader;
 
-    public InfoSubCommand(JobsCommand jobsCommand){
+    public InfoSubCommand(JobsCommand jobsCommand) {
         this.messagesFile = jobsCommand.getPluginCore().getFilesLoader().getMessagesFile();
         this.configFile = jobsCommand.getPluginCore().getFilesLoader().getConfigFile();
 

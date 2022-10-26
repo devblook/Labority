@@ -13,7 +13,7 @@ public class ReloadSubCommand implements CommandClass {
     private final FileManager messagesFile;
 
 
-    public ReloadSubCommand(JobsCommand jobsCommand){
+    public ReloadSubCommand(JobsCommand jobsCommand) {
         this.messagesFile = jobsCommand.getPluginCore().getFilesLoader().getMessagesFile();
         this.configFile = jobsCommand.getPluginCore().getFilesLoader().getConfigFile();
 
