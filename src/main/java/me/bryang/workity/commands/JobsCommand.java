@@ -10,7 +10,9 @@ import me.fixeddev.commandflow.annotated.annotation.SubCommandClasses;
 
         names = {"jobs", "work", "workity"},
         desc = "Main command.")
+
 @SubCommandClasses({
+        MainSubCommand.class,
         AddLevelSubCommand.class,
         BrowseSubCommand.class,
         HelpSubCommand.class,
@@ -18,7 +20,6 @@ import me.fixeddev.commandflow.annotated.annotation.SubCommandClasses;
         JoinSubCommand.class,
         LeaveAllSubCommand.class,
         LeaveSubCommand.class,
-        MainSubCommand.class,
         ReloadSubCommand.class,
         RemoveLevelSubCommand.class,
         SetLevelSubCommand.class,
