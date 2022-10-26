@@ -28,7 +28,8 @@ public class FurnaceExtractListener implements Listener {
         if (furnaceExtractEvent.getBlock().getType() == Material.STONE) {
             for (String keys : configFile.getConfigurationSection("jobs").getKeys(false)) {
 
-                if (!configFile.getString("config." + keys + ".type").equalsIgnoreCase("PLAYER_BREAK_BLOCK")) {
+                if (!configFile.getString("config." + keys + ".type")
+                        .equalsIgnoreCase("PLAYER_BREAK_BLOCK")) {
                     continue;
                 }
 
@@ -40,7 +41,8 @@ public class FurnaceExtractListener implements Listener {
                     continue;
                 }
 
-                furnaceExtractEvent.getBlock().setMetadata("workity::furnace", new FixedMetadataValue(workity, true));
+                furnaceExtractEvent.getBlock().setMetadata("workity::furnace",
+                        new FixedMetadataValue(workity, true));
 
 
             }

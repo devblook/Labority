@@ -106,7 +106,9 @@ public class RemoveLevelSubCommand implements CommandClass {
         }
 
         jobDataRemoveLevel.setLevel(jobDataRemoveLevel.getLevel() - Integer.parseInt(levelArgument));
-        jobDataRemoveLevel.setMaxXP(TextUtils.calculateNumber(configFile.getString("config.formula.max-xp"), jobDataRemoveLevel.getLevel() - Integer.parseInt(levelArgument)));
+        jobDataRemoveLevel.setMaxXP(
+                TextUtils.calculateNumber(configFile.getString("config.formula.max-xp"),
+                        jobDataRemoveLevel.getLevel() - Integer.parseInt(levelArgument)));
 
         playersFile.setJobData(sender.getUniqueId(), "job-list." + jobArgument + ".level", levelArgument);
         playersFile.setJobData(sender.getUniqueId(), "job-list." + jobArgument + ".xp", 0);

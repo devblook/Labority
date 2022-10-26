@@ -26,8 +26,11 @@ public class VaultHookManager {
             return;
         }
 
-        RegisteredServiceProvider<Economy> rse = Bukkit.getServer().getServicesManager().getRegistration(Economy.class);
-        RegisteredServiceProvider<Permission> rsp = Bukkit.getServer().getServicesManager().getRegistration(Permission.class);
+        RegisteredServiceProvider<Economy> rse =
+                Bukkit.getServer().getServicesManager().getRegistration(Economy.class);
+
+        RegisteredServiceProvider<Permission> rsp =
+                Bukkit.getServer().getServicesManager().getRegistration(Permission.class);
 
         if (rse == null) {
             System.out.println("[Workity] Error: The economy doesn't loaded correctly.");

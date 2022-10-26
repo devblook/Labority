@@ -36,6 +36,7 @@ public class PlayerKillEntityListener implements Listener {
 
         Player player = (Player) event.getDamager();
 
-        Bukkit.getPluginManager().callEvent(new JobsEvent(player.getUniqueId(), new Action(JobType.PLAYER_KILL_ENTITY, event.getEntity())));
+        Bukkit.getPluginManager().callEvent(
+                new JobsEvent(player.getUniqueId(), new Action(JobType.PLAYER_KILL_ENTITY, event.getEntity())));
     }
 }

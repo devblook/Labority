@@ -38,8 +38,8 @@ public class PlayerBreakListener implements Listener {
 
             ItemStack item = event.getPlayer().getInventory().getItemInMainHand();
 
-            if (event.getPlayer().getInventory().getItemInMainHand().getType().name().toLowerCase().contains("pickaxe") &&
-                    item.getEnchantments().containsKey(Enchantment.SILK_TOUCH)) {
+            if (event.getPlayer().getInventory().getItemInMainHand().getType().name().toLowerCase().contains("pickaxe")
+                    && item.getEnchantments().containsKey(Enchantment.SILK_TOUCH)) {
 
                 if (configFile.getBoolean("config.disable-silk-touch")) {
                     return;

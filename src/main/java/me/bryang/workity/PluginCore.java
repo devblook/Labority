@@ -36,7 +36,6 @@ public class PluginCore implements Core {
                 new CommandsLoader(this),
                 new ListenersLoader(this));
 
-
     }
 
 
