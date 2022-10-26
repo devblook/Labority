@@ -25,15 +25,15 @@ import me.fixeddev.commandflow.annotated.annotation.SubCommandClasses;
         SetMultiplierSubCommand.class,
         StatsSubCommand.class})
 
-public class JobsCommand implements CommandClass{
+public class JobsCommand implements CommandClass {
 
     private final PluginCore pluginCore;
 
-    public JobsCommand(PluginCore pluginCore){
+    public JobsCommand(PluginCore pluginCore) {
         this.pluginCore = pluginCore;
     }
 
-    public PluginCore getPluginCore(){
+    public PluginCore getPluginCore() {
         return pluginCore;
     }
 

@@ -17,7 +17,7 @@ public class StatsSubCommand implements CommandClass {
 
     private final DataLoader dataLoader;
 
-    public StatsSubCommand(JobsCommand jobsCommand){
+    public StatsSubCommand(JobsCommand jobsCommand) {
         this.messagesFile = jobsCommand.getPluginCore().getFilesLoader().getMessagesFile();
         this.configFile = jobsCommand.getPluginCore().getFilesLoader().getConfigFile();
 

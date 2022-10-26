@@ -20,7 +20,7 @@ public class SetMultiplierSubCommand implements CommandClass {
 
     private final DataLoader dataLoader;
 
-    public SetMultiplierSubCommand(JobsCommand jobsCommand){
+    public SetMultiplierSubCommand(JobsCommand jobsCommand) {
         this.messagesFile = jobsCommand.getPluginCore().getFilesLoader().getMessagesFile();
         this.configFile = jobsCommand.getPluginCore().getFilesLoader().getConfigFile();
         this.playersFile = jobsCommand.getPluginCore().getFilesLoader().getPlayersFile();
