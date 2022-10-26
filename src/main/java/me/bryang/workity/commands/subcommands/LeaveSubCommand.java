@@ -1,6 +1,5 @@
 package me.bryang.workity.commands.subcommands;
 
-import me.bryang.workity.PluginCore;
 import me.bryang.workity.commands.JobsCommand;
 import me.bryang.workity.data.PlayerData;
 import me.bryang.workity.loader.DataLoader;
