@@ -74,11 +74,14 @@ public class JobListener implements Listener {
 
 
             if (vaultHookManager.getPermission().hasGroupSupport()) {
-                if (!configFile.isInt("config.multiplier.group." + vaultHookManager.getPermission().getPrimaryGroup(player))) {
+                if (!configFile.isInt("config.multiplier.group." +
+                        vaultHookManager.getPermission().getPrimaryGroup(player))) {
+
                     multiplier = configFile.getInt("config.multiplier.default");
 
                 } else {
-                    multiplier = configFile.getInt("config.multiplier.group." + vaultHookManager.getPermission().getPrimaryGroup(player));
+                    multiplier = configFile.getInt("config.multiplier.group." +
+                            vaultHookManager.getPermission().getPrimaryGroup(player));
                 }
             } else {
                 multiplier = configFile.getInt("config.multiplier.default");
@@ -89,16 +92,22 @@ public class JobListener implements Listener {
             }
 
             double moneyReward = TextUtils.calculateDoubleNumber(configFile.getString("config.formula.gain-money")
-                    .replace("%money%", configFile.getString("jobs." + jobs + ".items." + dataRequired + ".money")), jobData.getLevel()) * multiplier;
+                    .replace("%money%",
+
+                            configFile.getString("jobs." + jobs + ".items." + dataRequired + ".money")),
+                            jobData.getLevel()) * multiplier;
 
             int xpReward = TextUtils.calculateNumber(configFile.getString("config.formula.gain-xp")
-                    .replace("%xp%", configFile.getString("jobs." + jobs + ".items." + dataRequired + ".xp")), jobData.getLevel()) * (int) multiplier;
+                    .replace("%xp%",
+                            configFile.getString("jobs." + jobs + ".items." + dataRequired + ".xp")),
+                            jobData.getLevel()) * (int) multiplier;
 
             vaultHookManager.getEconomy().depositPlayer(player, moneyReward);
 
             jobData.setXPPoints(jobData.getXpPoints() + xpReward);
 
-            player.spigot().sendMessage(ChatMessageType.ACTION_BAR, new TextComponent(configFile.getString("config.action-bar.gain-rewards")
+            player.spigot().sendMessage(ChatMessageType.ACTION_BAR, new TextComponent(
+                    configFile.getString("config.action-bar.gain-rewards")
                     .replace("%money%", String.valueOf(moneyReward))
                     .replace("%xp%", String.valueOf(xpReward))));
 
@@ -119,7 +128,8 @@ public class JobListener implements Listener {
 
             jobData.setLevel(jobData.getLevel() + 1);
             jobData.setXPPoints(jobData.getMaxXP() - jobData.getXpPoints());
-            jobData.setMaxXP(TextUtils.calculateNumber(configFile.getString("config.formula.max-xp"), jobData.getLevel()));
+            jobData.setMaxXP(
+                    TextUtils.calculateNumber(configFile.getString("config.formula.max-xp"), jobData.getLevel()));
 
             player.sendMessage(messagesFile.getString("jobs.gain.level")
                     .replace("%new_level%", String.valueOf(jobData.getLevel())));
