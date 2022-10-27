@@ -8,8 +8,8 @@ jobs:
     format:
       - "&a[Server] &8| &fList of player arguments."
       - ""
-      - "&8- &f/jobs join &a[job]"
-      - "&8- &f/jobs leave &a[job]"
+      - "&8- &f/jobs join &a[job] [job]..."
+      - "&8- &f/jobs leave &a[job] [job]..."
       - "&8- &f/jobs leave-all"
       - "&8- &f/jobs stats"
       - "&8- &f/jobs browse"
