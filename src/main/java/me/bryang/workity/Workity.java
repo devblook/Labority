@@ -15,7 +15,7 @@ public class Workity extends JavaPlugin {
 
         System.out.println("[Workity] Created by " + getDescription().getAuthors().get(0));
         System.out.println("[Workity] You are using the version " + getDescription().getVersion() + ".");
-        System.out.println("[Workity] @DevBlook");
+        System.out.println("[Workity] Click to support: http://discord.devblook.team/");
 
     }
 
