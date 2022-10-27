@@ -4,7 +4,18 @@
 config:
 
   # Limit of jobs each player.
-  limit-jobs: 3
+  limit-jobs:
+
+    groups:
+
+      # Default limit.
+      default: 3
+
+      # Group multiplier [Need a plugin permision]:
+      vip: 5
+
+    # Permission to bypass
+    bypass-permission: vip.bypass
 
   # Disable creative mode:
   disable-creative: true
@@ -75,6 +86,9 @@ jobs:
     # Type [PLAYER_BREAK_BLOCK, PLAYER_PLACE_BLOCK, PLAYER_KILL_ENTITY]
     type: PLAYER_BREAK_BLOCK
 
+    # Allow global stats
+    global_stats: true
+
     # List of items
     items:
 
@@ -85,34 +99,49 @@ jobs:
         money: 1
         xp: 1
 
+        enabled_stats: false
+
       COAL_ORE:
         money: 2
         xp: 2
 
+        enabled_stats: false
 
       IRON_ORE:
         money: 2
         xp: 2
 
+        enabled_stats: false
+
       GOLD_ORE:
         money: 3
         xp: 3
+
+        enabled_stats: false
 
       DIAMOND_ORE:
         money: 5
         xp: 5
 
+        enabled_stats: false
+
       EMERALD_ORE:
         money: 4
         xp: 4
+
+        enabled_stats: false
 
       REDSTONE_ORE:
         money: 3
         xp: 4
 
+        enabled_stats: false
+
       LAPIZ_ORE:
         money: 3
         xp: 3
+
+        enabled_stats: false
 
   # Woodcutter jobb
   woodcutter:
@@ -121,6 +150,9 @@ jobs:
     # Type [PLAYER_BREAK_BLOCK, PLAYER_PLACE_BLOCK, PLAYER_KILL_ENTITY]
     type: PLAYER_BREAK_BLOCK
 
+    # Load global stats
+    global_stats: false
+
     # List of items
     items:
       ACACIA_LOG:
@@ -128,30 +160,42 @@ jobs:
         money: 1
         xp: 1
 
+        enabled_stats: false
+
       BIRCH_LOG:
 
         money: 1
         xp: 1
+
+        enabled_stats: false
 
       DARK_OAK_LOG:
 
         money: 1
         xp: 1
 
+        enabled_stats: false
+
       JUNGLE_LOG:
 
         money: 1
         xp: 1
+
+        enabled_stats: false
 
       MANGROVE_LOG:
 
         money: 1
         xp: 1
 
+        enabled_stats: false
+
       OAK_LOG:
 
         money: 1
         xp: 1
+
+        enabled_stats: false
 
   # Builder job
   builder:
@@ -161,103 +205,147 @@ jobs:
     # Type [PLAYER_BREAK_BLOCK, PLAYER_PLACE_BLOCK, PLAYER_KILL_ENTITY]
     type: PLAYER_PLACE_BLOCK
 
+    # Load global stats
+    global_stats: false
+
     # List of items
     items:
       # Format: money: GAIN_MONEY, xp: GAIN_XP_JOB:
+      # Enable stats: For enable data in /jobs info miner.
 
       STONE:
 
         money: 1
         xp: 1
 
+        enabled_stats: false
+
       ACACIA_WOOD:
 
         money: 1
         xp: 1
+
+        enabled_stats: false
 
       BIRCH_WOOD:
 
         money: 1
         xp: 1
 
+        enabled_stats: false
+
       DARK_OAK_WOOD:
 
         money: 1
         xp: 1
+
+        enabled_stats: false
 
       JUNGLE_WOOD:
 
         money: 1
         xp: 1
 
+        enabled_stats: false
+
       MANGROVE_WOOD:
 
         money: 1
         xp: 1
+
+        enabled_stats: false
 
       OAK_WOOD:
 
         money: 1
         xp: 1
 
+        enabled_stats: false
+
       ACACIA_PLANKS:
 
         money: 1
         xp: 1
+
+        enabled_stats: false
 
       BIRCH_PLANKS:
 
         money: 1
         xp: 1
 
+        enabled_stats: false
+
       DARK_OAK_PLANKS:
 
         money: 1
         xp: 1
+
+        enabled_stats: false
 
       JUNGLE_PLANKS:
 
         money: 1
         xp: 1
 
+        enabled_stats: false
+
       MANGROVE_PLANKS:
 
         money: 1
         xp: 1
+
+        enabled_stats: false
 
       OAK_PLANKS:
 
         money: 1
         xp: 1
 
+        enabled_stats: false
+
       QUARTZ:
 
         money: 2
         xp: 2
 
+        enabled_stats: false
+
       DIAMOND_BLOCK:
         money: 10
         xp: 10
+
+        enabled_stats: false
 
       EMERALD_BLOCK:
         money: 8
         xp: 8
 
+        enabled_stats: false
+
       IRON_BLOCK:
         money: 5
         xp: 5
+
+        enabled_stats: false
 
       REDSTONE_BLOCK:
         money: 5
         xp: 5
 
+        enabled_stats: false
+
       GOLD_BLOCK:
         money: 5
         xp: 5
 
+        enabled_stats: false
+
       CARBON_BLOCK:
         money: 2
         xp: 2
+
+        enabled_stats: false
 
   # Hunter job
   hunter:
@@ -267,6 +355,9 @@ jobs:
     # Type [PLAYER_BREAK_BLOCK, PLAYER_PLACE_BLOCK, PLAYER_KILL_ENTITY]
     type: PLAYER_KILL_ENTITY
 
+    # Load global stats
+    global_stats: false
+
     # List of items
     items:
       # Format: money: GAIN_MONEY, xp: GAIN_XP_JOB:
@@ -275,31 +366,47 @@ jobs:
         money: 10
         xp: 10
 
+        enabled_stats: false
+
       PIG:
         money: 5
         xp: 5
+
+        enabled_stats: false
 
       COW:
         money: 5
         xp: 5
 
+        enabled_stats: false
+
       MUSHROM_COW:
         money: 5
         xp: 5
+
+        enabled_stats: false
 
       ZOMBIE:
         money: 5
         xp: 5
 
+        enabled_stats: false
+
       SKELETON:
         money: 5
         xp: 5
+
+        enabled_stats: false
 
       SPIDER:
         money: 5
         xp: 5
 
+        enabled_stats: false
+
       CREEPER:
         money: 5
         xp: 5
+
+        enabled_stats: false
 
