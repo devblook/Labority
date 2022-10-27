@@ -78,10 +78,10 @@ public class JoinSubCommand implements CommandClass {
                         sender.sendMessage(messagesFile.getString("error.limited-jobs"));
                         continue;
                     }
-                }else{
+                } else {
 
                     String mainGroup = vaultHookManager.getPermission().getPrimaryGroup(sender);
-                    if (configFile.getInt("config.limit-jobs.groups." + mainGroup, -1) == -1){
+                    if (configFile.getInt("config.limit-jobs.groups." + mainGroup, -1) == -1) {
 
                         if (playerData.getJobSize() >
                                 configFile.getInt("config.limit-jobs.groups." + mainGroup)) {

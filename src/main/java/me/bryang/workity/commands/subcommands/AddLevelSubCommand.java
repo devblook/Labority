@@ -102,7 +102,7 @@ public class AddLevelSubCommand implements CommandClass {
         jobData.setLevel(jobData.getLevel() + Integer.parseInt(levelArgument));
         jobData.setMaxXP(
                 TextUtils.calculateNumber(configFile.getString("config.formula.max-xp"),
-                jobData.getLevel() + Integer.parseInt(levelArgument)));
+                        jobData.getLevel() + Integer.parseInt(levelArgument)));
 
         playersFile.setJobData(sender.getUniqueId(), "job-list." + jobArgument + ".level", jobData.getLevel());
         playersFile.setJobData(sender.getUniqueId(), "job-list." + jobArgument + ".xp", 0);

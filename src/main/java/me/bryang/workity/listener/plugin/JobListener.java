@@ -92,14 +92,14 @@ public class JobListener implements Listener {
             }
 
             double moneyReward = TextUtils.calculateDoubleNumber(configFile.getString("config.formula.gain-money")
-                    .replace("%money%",
-                            configFile.getString("jobs." + jobs + ".items." + dataRequired + ".money")),
-                            jobData.getLevel()) * multiplier;
+                            .replace("%money%",
+                                    configFile.getString("jobs." + jobs + ".items." + dataRequired + ".money")),
+                    jobData.getLevel()) * multiplier;
 
             int xpReward = TextUtils.calculateNumber(configFile.getString("config.formula.gain-xp")
-                    .replace("%xp%",
-                            configFile.getString("jobs." + jobs + ".items." + dataRequired + ".xp")),
-                            jobData.getLevel()) * (int) multiplier;
+                            .replace("%xp%",
+                                    configFile.getString("jobs." + jobs + ".items." + dataRequired + ".xp")),
+                    jobData.getLevel()) * (int) multiplier;
 
             vaultHookManager.getEconomy().depositPlayer(player, moneyReward);
 
@@ -107,8 +107,8 @@ public class JobListener implements Listener {
 
             player.spigot().sendMessage(ChatMessageType.ACTION_BAR, new TextComponent(
                     configFile.getString("config.action-bar.gain-rewards")
-                    .replace("%money%", String.valueOf(moneyReward))
-                    .replace("%xp%", String.valueOf(xpReward))));
+                            .replace("%money%", String.valueOf(moneyReward))
+                            .replace("%xp%", String.valueOf(xpReward))));
 
             playersFile.setJobData(player.getUniqueId(), "job-list." + jobData.getName() + ".level", "");
             playersFile.setJobData(player.getUniqueId(), "job-list." + jobData.getName() + ".xp", "");
@@ -133,22 +133,21 @@ public class JobListener implements Listener {
             player.sendMessage(messagesFile.getString("jobs.gain.level")
                     .replace("%new_level%", String.valueOf(jobData.getLevel())));
 
-            if (!configFile.getBoolean("jobs." + jobs + ".global-stats")){
-                if (configFile.getBoolean("jobs." + jobs + ".items." + dataRequired + ".enabled-stats")){
+            if (!configFile.getBoolean("jobs." + jobs + ".global-stats")) {
+                if (configFile.getBoolean("jobs." + jobs + ".items." + dataRequired + ".enabled-stats")) {
 
                     int itemDataStats = playersFile.getJobData(player.getUniqueId()).getInt(".stats", -1);
 
                     if (itemDataStats == -1) {
                         playersFile.setJobData(player.getUniqueId(), "job-list." + jobData + ".items." + dataRequired + "stats.", 1);
-                    }else{
+                    } else {
 
-                        playersFile.setJobData(player.getUniqueId(), "job-list." + jobData + ".items." + dataRequired + "stats",  itemDataStats + 1);
+                        playersFile.setJobData(player.getUniqueId(), "job-list." + jobData + ".items." + dataRequired + "stats", itemDataStats + 1);
                     }
                 }
-            }else{
+            } else {
 
             }
-
 
 
             if (!configFile.getBoolean("config.rewards.enabled")) {
