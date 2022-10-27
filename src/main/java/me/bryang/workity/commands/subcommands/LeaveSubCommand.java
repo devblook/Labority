@@ -8,6 +8,7 @@ import me.bryang.workity.manager.file.FileManager;
 import me.fixeddev.commandflow.annotated.CommandClass;
 import me.fixeddev.commandflow.annotated.annotation.Command;
 import me.fixeddev.commandflow.annotated.annotation.OptArg;
+import me.fixeddev.commandflow.annotated.annotation.Text;
 import me.fixeddev.commandflow.bukkit.annotation.Sender;
 import org.bukkit.entity.Player;
 
@@ -33,42 +34,47 @@ public class LeaveSubCommand implements CommandClass {
     public boolean onLeaveSubCommand(
 
             @Sender Player sender,
-            @OptArg("") String jobArgument) {
+            @OptArg("") @Text String jobText) {
 
-        if (jobArgument.isEmpty()) {
+
+        if (jobText.isEmpty()) {
             sender.sendMessage(messagesFile.getString("error.no-argument")
-                    .replace("%usage%", "/jobs leave [trabajo]"));
+                    .replace("%usage%", "/jobs leave [job] [job]..."));
             return true;
         }
 
-        String jobNameLeave = jobArgument.toLowerCase();
+        String[] jobNames = jobText.toLowerCase().split(" ");
 
-        if (!(configFile.isConfigurationSection("jobs." + jobNameLeave))) {
+        for (String jobName : jobNames) {
 
-            sender.sendMessage(messagesFile.getString("error.unknown-job")
-                    .replace("%job%", jobNameLeave));
-            return true;
+            if (!(configFile.isConfigurationSection("jobs." + jobName))) {
 
+                sender.sendMessage(messagesFile.getString("error.unknown-job")
+                        .replace("%job%", jobName));
+                continue;
+
+            }
+
+            PlayerData playerDataLeave = dataLoader.getPlayerJob(sender.getUniqueId());
+
+            if (!playerDataLeave.hasTheJob(jobName)) {
+
+                sender.sendMessage(messagesFile.getString("error.already-leave-job")
+                        .replace("%job%", configFile.getString("jobs." + jobName + ".name")));
+                continue;
+
+            }
+
+            playerDataLeave.removeJob(jobName);
+
+            playersFile.setJobData(sender.getUniqueId(), "job-list." + jobName + ".level", "");
+            playersFile.setJobData(sender.getUniqueId(), "job-list." + jobName + ".xp", "");
+            playersFile.save();
+
+            sender.sendMessage(messagesFile.getString("jobs.leave.message")
+                    .replace("%job%", configFile.getString("jobs." + jobName + ".name")));
         }
 
-        PlayerData playerDataLeave = dataLoader.getPlayerJob(sender.getUniqueId());
-
-        if (!playerDataLeave.hasTheJob(jobNameLeave)) {
-
-            sender.sendMessage(messagesFile.getString("error.already-leave-job")
-                    .replace("%job%", configFile.getString("jobs." + jobNameLeave + ".name")));
-            return true;
-
-        }
-
-        playerDataLeave.removeJob(jobNameLeave);
-
-        playersFile.setJobData(sender.getUniqueId(), "job-list." + jobNameLeave + ".level", "");
-        playersFile.setJobData(sender.getUniqueId(), "job-list." + jobNameLeave + ".xp", "");
-        playersFile.save();
-
-        sender.sendMessage(messagesFile.getString("jobs.leave.message")
-                .replace("%job%", configFile.getString("jobs." + jobNameLeave + ".name")));
         return true;
     }
 
