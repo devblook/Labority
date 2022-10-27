@@ -93,7 +93,6 @@ public class JobListener implements Listener {
 
             double moneyReward = TextUtils.calculateDoubleNumber(configFile.getString("config.formula.gain-money")
                     .replace("%money%",
-
                             configFile.getString("jobs." + jobs + ".items." + dataRequired + ".money")),
                             jobData.getLevel()) * multiplier;
 
@@ -133,6 +132,24 @@ public class JobListener implements Listener {
 
             player.sendMessage(messagesFile.getString("jobs.gain.level")
                     .replace("%new_level%", String.valueOf(jobData.getLevel())));
+
+            if (!configFile.getBoolean("jobs." + jobs + ".global-stats")){
+                if (configFile.getBoolean("jobs." + jobs + ".items." + dataRequired + ".enabled-stats")){
+
+                    int itemDataStats = playersFile.getJobData(player.getUniqueId()).getInt(".stats", -1);
+
+                    if (itemDataStats == -1) {
+                        playersFile.setJobData(player.getUniqueId(), "job-list." + jobData + ".items." + dataRequired + "stats.", 1);
+                    }else{
+
+                        playersFile.setJobData(player.getUniqueId(), "job-list." + jobData + ".items." + dataRequired + "stats",  itemDataStats + 1);
+                    }
+                }
+            }else{
+
+            }
+
+
 
             if (!configFile.getBoolean("config.rewards.enabled")) {
                 return;
