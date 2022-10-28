@@ -73,8 +73,27 @@ jobs:
 
     # Message when you see your stats.
     message:
-      - "&a[Server] &8| &fYour stats:"
+      - "&a[Server] &8| &fYour action stats:"
+      - "%action_stats% &8- &f%action_name% &8: &f%action_value%"
+      - ""
+      - "&a[Server] &8| &fYour job stats:"
       - "%job_format% &8- &f%job_name% &8- &fNivel %level% &8: &f%xp%&8/&f%max_xp% "
+
+    stats:
+
+      global:
+
+         miner: "Blocks broken"
+         woodcutter: "Blocks broken"
+         builder: "Blocks placed"
+         hunter: "Items killed"
+
+      item:
+
+        miner: "%data% broken"
+        woodcutter: "%data% broken"
+        builder: "%data% placed"
+        hunter: "%data% killed"
 
   info:
 
