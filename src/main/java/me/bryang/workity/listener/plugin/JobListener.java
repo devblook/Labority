@@ -42,11 +42,11 @@ public class JobListener implements Listener {
     public void onWork(JobsEvent event) {
 
 
-        for (String jobs : configFile.getConfigurationSection("jobs").getKeys(false)) {
+        for (String jobName : configFile.getConfigurationSection("jobs").getKeys(false)) {
 
             Action action = event.getAction();
 
-            if (!configFile.getString("jobs." + jobs + ".type").equalsIgnoreCase(action.getType())) {
+            if (!configFile.getString("jobs." + jobName + ".type").equalsIgnoreCase(action.getType())) {
                 continue;
             }
 
@@ -58,11 +58,11 @@ public class JobListener implements Listener {
                 dataRequired = action.getItemStack().getType().name();
             }
 
-            if (!configFile.isConfigurationSection("jobs." + jobs + ".items." + dataRequired)) {
+            if (!configFile.isConfigurationSection("jobs." + jobName + ".items." + dataRequired)) {
                 continue;
             }
 
-            JobData jobData = dataLoader.getPlayerJob(event.getTarget()).getJob(jobs);
+            JobData jobData = dataLoader.getPlayerJob(event.getTarget()).getJob(jobName);
 
             if (jobData == null) {
                 return;
@@ -93,12 +93,12 @@ public class JobListener implements Listener {
 
             double moneyReward = TextUtils.calculateDoubleNumber(configFile.getString("config.formula.gain-money")
                             .replace("%money%",
-                                    configFile.getString("jobs." + jobs + ".items." + dataRequired + ".money")),
+                                    configFile.getString("jobs." + jobName + ".items." + dataRequired + ".money")),
                     jobData.getLevel()) * multiplier;
 
             int xpReward = TextUtils.calculateNumber(configFile.getString("config.formula.gain-xp")
                             .replace("%xp%",
-                                    configFile.getString("jobs." + jobs + ".items." + dataRequired + ".xp")),
+                                    configFile.getString("jobs." + jobName + ".items." + dataRequired + ".xp")),
                     jobData.getLevel()) * (int) multiplier;
 
             vaultHookManager.getEconomy().depositPlayer(player, moneyReward);
@@ -133,8 +133,8 @@ public class JobListener implements Listener {
             player.sendMessage(messagesFile.getString("jobs.gain.level")
                     .replace("%new_level%", String.valueOf(jobData.getLevel())));
 
-            if (!configFile.getBoolean("jobs." + jobs + ".global-stats")) {
-                if (configFile.getBoolean("jobs." + jobs + ".items." + dataRequired + ".enabled-stats")) {
+            if (!configFile.getBoolean("jobs." + jobName + ".global-stats")) {
+                if (configFile.getBoolean("jobs." + jobName + ".items." + dataRequired + ".enabled-stats")) {
 
                     int itemDataStats = playersFile.getJobData(player.getUniqueId()).getInt(".stats", -1);
 
@@ -144,9 +144,24 @@ public class JobListener implements Listener {
 
                         playersFile.setJobData(player.getUniqueId(), "job-list." + jobData + ".items." + dataRequired + "stats", itemDataStats + 1);
                     }
+
+                    jobData.getJobData().put(dataRequired, itemDataStats);
                 }
             } else {
 
+                if (configFile.getBoolean(".jobs." + jobName + ".global-stats")){
+                    int itemDataStats = playersFile.getJobData(player.getUniqueId()).getInt(".stats", -1);
+
+                    if (itemDataStats == -1) {
+                        playersFile.setJobData(player.getUniqueId(), "job-list." + jobData + "action-stats.", 1);
+                    } else {
+
+                        playersFile.setJobData(player.getUniqueId(), "job-list." + jobData + ".action-stats", itemDataStats + 1);
+                    }
+
+                    jobData.addGlobalStats();
+
+                }
             }
 
 
