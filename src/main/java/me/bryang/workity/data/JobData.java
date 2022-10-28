@@ -6,6 +6,8 @@ import java.util.Map;
 public class JobData {
 
     private final String jobName;
+    private final Map<String, Integer> itemData = new HashMap<>();
+    int globalStats = 0;
     private int xpPoints = 0;
     private int maxXP = 0;
     private int level = 1;
@@ -13,9 +15,6 @@ public class JobData {
     public JobData(String jobName) {
         this.jobName = jobName;
     }
-
-    private final Map<String, Integer> itemData = new HashMap<>();
-    int globalStats = 0;
 
     public String getName() {
         return jobName;
@@ -61,16 +60,16 @@ public class JobData {
         return itemData;
     }
 
-    public void setGlobalStats(int globalStats) {
-        this.globalStats = globalStats;
-    }
-
     public void addGlobalStats() {
         globalStats++;
     }
 
     public int getGlobalStats() {
-       return globalStats;
+        return globalStats;
+    }
+
+    public void setGlobalStats(int globalStats) {
+        this.globalStats = globalStats;
     }
 }
 

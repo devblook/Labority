@@ -83,10 +83,10 @@ jobs:
 
       global:
 
-         miner: "Blocks broken"
-         woodcutter: "Blocks broken"
-         builder: "Blocks placed"
-         hunter: "Items killed"
+        miner: "Blocks broken"
+        woodcutter: "Blocks broken"
+        builder: "Blocks placed"
+        hunter: "Items killed"
 
       item:
 

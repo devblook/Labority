@@ -82,7 +82,7 @@ public class StatsSubCommand implements CommandClass {
                                                 .replace("%data%", itemName))
 
                                 .replace("%action_value%",
-                                            String.valueOf(playerDataStats.getJob(jobName).getGlobalStats())));
+                                        String.valueOf(playerDataStats.getJob(jobName).getGlobalStats())));
 
 
                     }

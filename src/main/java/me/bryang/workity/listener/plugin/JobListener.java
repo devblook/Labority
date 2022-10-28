@@ -149,7 +149,7 @@ public class JobListener implements Listener {
                 }
             } else {
 
-                if (configFile.getBoolean(".jobs." + jobName + ".global-stats")){
+                if (configFile.getBoolean(".jobs." + jobName + ".global-stats")) {
                     int itemDataStats = playersFile.getJobData(player.getUniqueId()).getInt(".stats", -1);
 
                     if (itemDataStats == -1) {
