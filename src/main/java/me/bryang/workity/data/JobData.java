@@ -1,5 +1,8 @@
 package me.bryang.workity.data;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class JobData {
 
     private final String jobName;
@@ -10,6 +13,9 @@ public class JobData {
     public JobData(String jobName) {
         this.jobName = jobName;
     }
+
+    private final Map<String, Integer> itemData = new HashMap<>();
+    int globalStats = 0;
 
     public String getName() {
         return jobName;
@@ -50,4 +56,21 @@ public class JobData {
     public void setMaxXP(int maxXP) {
         this.maxXP = maxXP;
     }
+
+    public Map<String, Integer> getJobData() {
+        return itemData;
+    }
+
+    public void setGlobalStats(int globalStats) {
+        this.globalStats = globalStats;
+    }
+
+    public void addGlobalStats() {
+        globalStats++;
+    }
+
+    public int getGlobalStats() {
+       return globalStats;
+    }
 }
+
