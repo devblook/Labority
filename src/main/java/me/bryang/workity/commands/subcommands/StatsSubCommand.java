@@ -40,24 +40,58 @@ public class StatsSubCommand implements CommandClass {
 
         for (String message : messagesFile.getStringList("jobs.stats.message")) {
 
-            if (!message.contains("%job_format%")) {
+
+            if (!message.contains("%job_format%") && !message.contains("%action-format%")) {
                 sender.sendMessage(message);
                 continue;
             }
 
-            for (JobData jobData : playerDataStats.getJobsMap().values()) {
+            if (message.contains("%job_format")) {
+                for (JobData jobData : playerDataStats.getJobsMap().values()) {
 
-                sender.sendMessage(message
-                        .replace("%job_format%", "")
-                        .replace("%job_name%", configFile.getString("jobs." + jobData.getName() + ".name"))
-                        .replace("%level%", String.valueOf(jobData.getLevel()))
-                        .replace("%xp%", String.valueOf(jobData.getXpPoints()))
-                        .replace("%max_xp%", String.valueOf(jobData.getMaxXP())));
+                    sender.sendMessage(message
+                            .replace("%job_format%", "")
+                            .replace("%job_name%", configFile.getString("jobs." + jobData.getName() + ".name"))
+                            .replace("%level%", String.valueOf(jobData.getLevel()))
+                            .replace("%xp%", String.valueOf(jobData.getXpPoints()))
+                            .replace("%max_xp%", String.valueOf(jobData.getMaxXP())));
 
+                }
             }
 
+            if (message.contains("%action_format")) {
+                for (String jobName : playerDataStats.getJobsMap().keySet()) {
+
+                    if (configFile.getBoolean("config." + jobName + ".global-stats")) {
+                        sender.sendMessage(message
+                                .replace("%action-name%", messagesFile.getString("jobs.stats.global." + jobName))
+                                .replace("%action_value%", String.valueOf(playerDataStats.getJob(jobName).getGlobalStats())));
+                        continue;
+                    }
+
+                    for (String itemName : playerDataStats.getJob(jobName).getJobData().keySet()) {
+
+                        if (!configFile.getBoolean("config." + jobName + ".items." + itemName + ".enabled-stats")) {
+                            continue;
+                        }
+
+                        sender.sendMessage(message
+
+                                .replace("%action-name%",
+                                        messagesFile.getString("jobs.stats.item." + jobName)
+                                                .replace("%data%", itemName))
+
+                                .replace("%action_value%",
+                                            String.valueOf(playerDataStats.getJob(jobName).getGlobalStats())));
+
+
+                    }
+                }
+            }
         }
         return true;
     }
 
 }
+
+
