@@ -13,9 +13,9 @@ public class Workity extends JavaPlugin {
         pluginCore.getManagerLoader().getTaskManager().getPluginLoadingTask().loadTask();
         pluginCore.getManagerLoader().getTaskManager().getMetricsLoadingTask().loadTask();
 
-        System.out.println("[Workity] Created by " + getDescription().getAuthors().get(0));
-        System.out.println("[Workity] You are using the version " + getDescription().getVersion() + ".");
-        System.out.println("[Workity] Click to support: http://discord.devblook.team/");
+        Bukkit.getLogger("[Workity] Created by " + getDescription().getAuthors().get(0));
+        Bukkit.getLogger("[Workity] You are using the version " + getDescription().getVersion() + ".");
+        Bukkit.getLogger("[Workity] Click to support: http://discord.devblook.team/");
 
     }
 

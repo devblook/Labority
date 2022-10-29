@@ -21,7 +21,7 @@ public class VaultHookManager {
 
         if (!Bukkit.getPluginManager().isPluginEnabled("Vault")) {
 
-            System.out.println("[Workity] Error: You need Vault to load the plugin");
+            Bukkit.getLogger("[Workity] Error: You need Vault to load the plugin");
             Bukkit.getPluginManager().disablePlugin(workity);
             return;
         }
@@ -33,12 +33,12 @@ public class VaultHookManager {
                 Bukkit.getServer().getServicesManager().getRegistration(Permission.class);
 
         if (rse == null) {
-            System.out.println("[Workity] Error: The economy doesn't loaded correctly.");
+            Bukkit.getLogger("[Workity] Error: The economy doesn't loaded correctly.");
             return;
         }
 
         if (rsp == null) {
-            System.out.println("[Workity] Error: The permission doesn't loaded correctly.");
+            Bukkit.getLogger("[Workity] Error: The permission doesn't loaded correctly.");
             return;
         }
 

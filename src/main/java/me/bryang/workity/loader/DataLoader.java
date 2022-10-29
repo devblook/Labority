@@ -16,7 +16,7 @@ public class DataLoader implements Loader {
     @Override
     public void load() {
         serverMultiplier = 0;
-        System.out.println("[Workity] Data loaded.");
+        Bukkit.getLogger("[Workity] Data loaded.");
 
     }
 

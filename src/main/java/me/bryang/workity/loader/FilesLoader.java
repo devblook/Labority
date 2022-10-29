@@ -27,7 +27,7 @@ public class FilesLoader implements Loader {
 
         playersFile = new FileDataManager(plugin, "players");
 
-        System.out.println("[Workity] Files loaded");
+        Bukkit.getLogger("[Workity] Files loaded");
     }
 
 
