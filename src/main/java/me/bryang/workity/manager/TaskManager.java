@@ -18,6 +18,9 @@ public class TaskManager {
     public void load() {
         pluginLoadingTask = new PluginLoadingTask(pluginCore);
         metricsLoadingTask = new MetricsLoadingTask(pluginCore);
+
+        pluginLoadingTask.loadTask();
+        metricsLoadingTask.loadTask();
     }
 
     public PluginLoadingTask getPluginLoadingTask() {

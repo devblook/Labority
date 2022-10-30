@@ -11,7 +11,6 @@ import me.bryang.workity.loader.command.CommandsLoader;
 public class PluginCore implements Core {
 
     private final Workity plugin;
-
     private FilesLoader filesLoader;
     private DataLoader dataLoader;
     private ManagerLoader managerLoader;
@@ -22,19 +21,17 @@ public class PluginCore implements Core {
 
     @Override
     public void init() {
-
         filesLoader = new FilesLoader(plugin);
-        filesLoader.load();
-
-        dataLoader = new DataLoader();
-        dataLoader.load();
-
+        dataLoader = new DataLoader(plugin);
         managerLoader = new ManagerLoader(this);
-        managerLoader.load();
 
         initLoaders(
+                filesLoader,
+                dataLoader,
                 new CommandsLoader(this),
-                new ListenersLoader(this));
+                new ListenersLoader(this),
+                managerLoader
+        );
 
     }
 

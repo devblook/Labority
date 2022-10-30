@@ -10,9 +10,6 @@ public class Workity extends JavaPlugin {
         PluginCore pluginCore = new PluginCore(this);
         pluginCore.init();
 
-        pluginCore.getManagerLoader().getTaskManager().getPluginLoadingTask().loadTask();
-        pluginCore.getManagerLoader().getTaskManager().getMetricsLoadingTask().loadTask();
-
         getLogger().info(" Created by " + getDescription().getAuthors().get(0));
         getLogger().info(" You are using the version " + getDescription().getVersion() + ".");
         getLogger().info("Click to support: http://discord.devblook.team/");
