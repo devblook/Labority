@@ -9,7 +9,6 @@ import java.util.UUID;
 
 public class FileDataManager extends FileManager {
 
-
     public FileDataManager(Plugin plugin, String fileName) {
         super(plugin, fileName);
     }
@@ -23,36 +22,26 @@ public class FileDataManager extends FileManager {
         if (getConfigurationSection("players.jobs") == null) {
             return null;
         }
-
         return getConfigurationSection("players.jobs").getKeys(false);
     }
 
     public Set<String> getJobsKeys(UUID playerUniqueID) {
-
         if (getConfigurationSection("players.jobs." + playerUniqueID + ".job-list") == null) {
             return null;
         }
-
         return getConfigurationSection("players.jobs." + playerUniqueID + ".job-list").getKeys(false);
     }
 
-
     public void setJobData(UUID playerUniqueID, String path, String result) {
         set("players.jobs." + playerUniqueID + "." + path, result);
-
-
     }
 
     public void setJobData(UUID playerUniqueID, String path, List<String> result) {
         set("players.jobs." + playerUniqueID + "." + path, result);
-
-
     }
 
     public void setJobData(UUID playerUniqueID, String path, int result) {
         set("players.jobs." + playerUniqueID + "." + path, result);
-
-
     }
 
 }

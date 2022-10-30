@@ -17,7 +17,6 @@ public class ManagerLoader implements Loader {
     }
 
     public void load() {
-
         taskManager = new TaskManager(pluginCore);
         taskManager.load();
 
@@ -25,7 +24,6 @@ public class ManagerLoader implements Loader {
         vaultHookManager.load();
 
         pluginCore.getPlugin().getLogger().info(" Managers loaded.");
-
     }
 
     public TaskManager getTaskManager() {

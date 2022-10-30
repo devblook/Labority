@@ -14,7 +14,6 @@ import java.util.logging.Level;
 
 public class FileManager extends YamlConfiguration {
 
-
     private final String fileName;
     private final Plugin plugin;
     private final File file;
@@ -22,14 +21,12 @@ public class FileManager extends YamlConfiguration {
     public FileManager(Plugin plugin, String fileName) {
         this.fileName = fileName + ".yml";
         this.plugin = plugin;
-
         this.file = new File(plugin.getDataFolder(), fileName + ".yml");
         createFile();
     }
 
 
     private void createFile() {
-
         if (!file.exists()) {
             plugin.saveResource(fileName, false);
         }
@@ -39,7 +36,6 @@ public class FileManager extends YamlConfiguration {
         } catch (InvalidConfigurationException | IOException e) {
             plugin.getLogger().log(Level.SEVERE, "Creation of FileManager '" + fileName + "' failed.", e);
         }
-
     }
 
     public void save() {
@@ -52,7 +48,6 @@ public class FileManager extends YamlConfiguration {
 
     public void reload() {
         try {
-
             load(file);
         } catch (IOException | InvalidConfigurationException e) {
             this.plugin.getLogger().log(Level.SEVERE, "Reload of the file '" + this.fileName + "' failed.", e);
@@ -67,7 +62,6 @@ public class FileManager extends YamlConfiguration {
             plugin.getLogger().info("Error: Path is null: " + path);
             return "Error - The path is null: " + path;
         }
-
         return ChatColor.translateAlternateColorCodes('&', text);
     }
 

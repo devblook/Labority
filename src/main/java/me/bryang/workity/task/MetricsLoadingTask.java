@@ -17,7 +17,7 @@ public class MetricsLoadingTask {
 
     public void loadTask() {
         if (configFile.getBoolean("enabled-metrics")) {
-            PluginMetrics pluginMetrics = new PluginMetrics(workity, 16726);
+            new PluginMetrics(workity, 16726);
         }
     }
 }

@@ -14,7 +14,7 @@ public class DataLoader implements Loader {
     private final Workity workity;
     double serverMultiplier;
 
-    private DataLoader(Workity workity) {
+    public DataLoader(Workity workity) {
         this.workity = workity;
     }
 
@@ -29,11 +29,9 @@ public class DataLoader implements Loader {
         playerJobDataMap.put(uuid, new PlayerData());
     }
 
-
     public PlayerData getPlayerJob(UUID uuid) {
         return playerJobDataMap.get(uuid);
     }
-
 
     public double getServerMultiplier() {
         return serverMultiplier;

@@ -11,7 +11,6 @@ import me.fixeddev.commandflow.annotated.part.defaults.DefaultsModule;
 import me.fixeddev.commandflow.bukkit.BukkitCommandManager;
 import me.fixeddev.commandflow.bukkit.factory.BukkitModule;
 
-
 public class CommandsLoader implements Loader {
 
     private final PluginCore pluginCore;
@@ -22,19 +21,15 @@ public class CommandsLoader implements Loader {
 
     @Override
     public void load() {
-
         CommandManager commandManager = new BukkitCommandManager("Workity");
         commandManager.getTranslator().setProvider(new CommandTranslationLoader(pluginCore));
 
-
         PartInjector partInjector = PartInjector.create();
-
         partInjector.install(new DefaultsModule());
         partInjector.install(new BukkitModule());
 
         AnnotatedCommandTreeBuilder builder = new AnnotatedCommandTreeBuilderImpl(partInjector);
         commandManager.registerCommands(builder.fromClass(new JobsCommand(pluginCore)));
-
         pluginCore.getPlugin().getLogger().info(" Commands loaded.");
 
     }

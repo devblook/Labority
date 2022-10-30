@@ -8,12 +8,10 @@ import me.fixeddev.commandflow.translator.TranslationProvider;
 public class CommandTranslationLoader implements TranslationProvider {
 
     private final FileManager messagesFile;
-;
 
     public CommandTranslationLoader(PluginCore pluginCore) {
         this.messagesFile = pluginCore.getFilesLoader().getMessagesFile();
     }
-
 
     @Override
     public String getTranslation(Namespace namespace, String key) {
