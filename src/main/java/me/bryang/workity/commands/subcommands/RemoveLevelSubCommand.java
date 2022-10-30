@@ -41,7 +41,7 @@ public class RemoveLevelSubCommand implements CommandClass {
             @Sender Player sender,
             @OptArg("") String targetArgument,
             @OptArg("") String jobArgument,
-            @OptArg String levelArgument) {
+            @OptArg("-1") int levelArgument) {
 
         if (targetArgument.isEmpty()) {
 
@@ -75,7 +75,7 @@ public class RemoveLevelSubCommand implements CommandClass {
             return true;
         }
 
-        if (levelArgument.isEmpty()) {
+        if (levelArgument == -1) {
 
             sender.sendMessage(messagesFile.getString("error.no-argument")
                     .replace("%usage%", "/jobs remove-level [player] [level]"));
@@ -84,12 +84,7 @@ public class RemoveLevelSubCommand implements CommandClass {
         }
 
 
-        if (!StringUtils.isNumeric(levelArgument)) {
-            sender.sendMessage(messagesFile.getString("error.unknown-number"));
-            return true;
-        }
-
-        if (Integer.parseInt(levelArgument) < 0) {
+        if (levelArgument < 0) {
             sender.sendMessage(messagesFile.getString("error.negative-number"));
             return true;
         }
@@ -100,22 +95,22 @@ public class RemoveLevelSubCommand implements CommandClass {
 
         JobData jobDataRemoveLevel = playerDataRemoveLevel.getJob(jobArgument);
 
-        if (jobDataRemoveLevel.getLevel() - Integer.parseInt(levelArgument) < 0) {
+        if (jobDataRemoveLevel.getLevel() - levelArgument < 0) {
             sender.sendMessage(messagesFile.getString("error.minor-0"));
             return true;
         }
 
-        jobDataRemoveLevel.setLevel(jobDataRemoveLevel.getLevel() - Integer.parseInt(levelArgument));
+        jobDataRemoveLevel.setLevel(jobDataRemoveLevel.getLevel() - levelArgument);
         jobDataRemoveLevel.setMaxXP(
                 TextUtils.calculateNumber(configFile.getString("config.formula.max-xp"),
-                        jobDataRemoveLevel.getLevel() - Integer.parseInt(levelArgument)));
+                        jobDataRemoveLevel.getLevel() - levelArgument));
 
         playersFile.setJobData(sender.getUniqueId(), "job-list." + jobArgument + ".level", levelArgument);
         playersFile.setJobData(sender.getUniqueId(), "job-list." + jobArgument + ".xp", 0);
         playersFile.save();
 
         sender.sendMessage(messagesFile.getString("jobs.remove-level.message")
-                .replace("%level%", levelArgument)
+                .replace("%level%", String.valueOf(levelArgument))
                 .replace("%job%", jobArgument)
                 .replace("%player%", targetRemoveLevel.getName()));
         return true;

@@ -35,7 +35,7 @@ public class SetMultiplierSubCommand implements CommandClass {
     public boolean onSetMultiplierSubCommand(
 
             @Sender Player sender,
-            @OptArg("") String multiplier) {
+            @OptArg("-1") double multiplier) {
 
         if (!sender.hasPermission("jobs.admin")) {
             sender.sendMessage(messagesFile.getString("error.no-permission"));
@@ -43,7 +43,7 @@ public class SetMultiplierSubCommand implements CommandClass {
         }
 
 
-        if (multiplier.isEmpty()) {
+        if (multiplier == -1) {
 
             sender.sendMessage(messagesFile.getString("error.no-argument")
                     .replace("%usage%", "/jobs set-multiplier [multiplier]"));
@@ -51,18 +51,13 @@ public class SetMultiplierSubCommand implements CommandClass {
 
         }
 
-        if (!StringUtils.isNumeric(multiplier)) {
-            sender.sendMessage(messagesFile.getString("error.unknown-number"));
-            return true;
-        }
-
-        dataLoader.setServerMultiplier(Double.parseDouble(multiplier));
+        dataLoader.setServerMultiplier(multiplier);
         sender.sendMessage(messagesFile.getString("jobs.multiplier.set")
-                .replace("%multiplier%", multiplier));
+                .replace("%multiplier%", String.valueOf(multiplier)));
 
         if (!configFile.getString("config.multiplier.broadcast").equalsIgnoreCase("none")) {
             Bukkit.broadcastMessage(configFile.getString("config.multiplier.broadcast")
-                    .replace("%multiplier%", multiplier));
+                    .replace("%multiplier%", String.valueOf(multiplier)));
         }
         return true;
     }

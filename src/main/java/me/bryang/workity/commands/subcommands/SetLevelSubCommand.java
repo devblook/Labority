@@ -40,7 +40,7 @@ public class SetLevelSubCommand implements CommandClass {
             @Sender Player sender,
             @OptArg("") String targetArgument,
             @OptArg("") String jobArgument,
-            @OptArg String levelArgument) {
+            @OptArg("-1") int levelArgument) {
 
         if (targetArgument.isEmpty()) {
 
@@ -74,7 +74,7 @@ public class SetLevelSubCommand implements CommandClass {
             return true;
         }
 
-        if (levelArgument.isEmpty()) {
+        if (levelArgument == -1){
 
             sender.sendMessage(messagesFile.getString("error.no-argument")
                     .replace("%usage%", "/jobs set-level [player] [level]"));
@@ -83,12 +83,7 @@ public class SetLevelSubCommand implements CommandClass {
         }
 
 
-        if (!StringUtils.isNumeric(levelArgument)) {
-            sender.sendMessage(messagesFile.getString("error.unknown-number"));
-            return true;
-        }
-
-        if (Integer.parseInt(levelArgument) < 0) {
+        if (levelArgument < 0) {
             sender.sendMessage(messagesFile.getString("error.negative-number"));
             return true;
         }
@@ -99,17 +94,16 @@ public class SetLevelSubCommand implements CommandClass {
 
         JobData jobData = playerData.getJob(jobArgument);
 
-        jobData.setLevel(Integer.parseInt(levelArgument));
+        jobData.setLevel(levelArgument);
         jobData.setMaxXP(
-                TextUtils.calculateNumber(configFile.getString("config.formula.max-xp"),
-                        Integer.parseInt(levelArgument)));
+                TextUtils.calculateNumber(configFile.getString("config.formula.max-xp"), levelArgument));
 
         playersFile.setJobData(sender.getUniqueId(), "job-list." + jobArgument + ".level", levelArgument);
         playersFile.setJobData(sender.getUniqueId(), "job-list." + jobArgument + ".xp", 0);
         playersFile.save();
 
         sender.sendMessage(messagesFile.getString("jobs.set-level.message")
-                .replace("%level%", levelArgument)
+                .replace("%level%", String.valueOf(levelArgument))
                 .replace("%job%", jobArgument)
                 .replace("%player%", target.getName()));
         return true;

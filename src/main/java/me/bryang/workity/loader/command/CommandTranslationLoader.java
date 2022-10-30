@@ -5,25 +5,15 @@ import me.bryang.workity.manager.file.FileManager;
 import me.fixeddev.commandflow.Namespace;
 import me.fixeddev.commandflow.translator.TranslationProvider;
 
-import java.util.HashMap;
-import java.util.Map;
-
 public class CommandTranslationLoader implements TranslationProvider {
 
     private final FileManager messagesFile;
-    private final Map<String, String> translations = new HashMap<>();
+;
 
     public CommandTranslationLoader(PluginCore pluginCore) {
         this.messagesFile = pluginCore.getFilesLoader().getMessagesFile();
-        setup();
     }
 
-    public void setup() {
-        translations.put("command.subcommand.invalid", "1. The subcommand %s doesn't exist!");
-        translations.put("command.no-permission", "2. No permission.");
-        translations.put("argument.no-more", "3. No more arguments were found, size: %s position: %s");
-        translations.put("sender.unknown", "5. Unknown command sender!");
-    }
 
     @Override
     public String getTranslation(Namespace namespace, String key) {
@@ -34,7 +24,9 @@ public class CommandTranslationLoader implements TranslationProvider {
                 return messagesFile.getString("error.no-online");
             case "command.no-permission":
                 return messagesFile.getString("error.no-permission");
+            case "invalid.integer":
+                return messagesFile.getString("error.unknown-number");
         }
-        return translations.get(key);
+        return "Error: Si ves este mensaje, avisa con en el discord de soporte con @ERROR101";
     }
 }
