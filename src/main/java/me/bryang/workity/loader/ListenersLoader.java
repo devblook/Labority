@@ -39,6 +39,6 @@ public class ListenersLoader implements Loader {
             pluginManager.registerEvents(listener, workity);
         }
 
-        Bukkit.getLogger("[Workity] Listeners loaded.");
+        workity.getLogger().info("Listeners loaded.");
     }
 }

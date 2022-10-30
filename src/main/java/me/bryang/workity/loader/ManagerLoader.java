@@ -24,7 +24,7 @@ public class ManagerLoader implements Loader {
         vaultHookManager = new VaultHookManager(pluginCore.getPlugin());
         vaultHookManager.load();
 
-        Bukkit.getLogger("[Workity] Managers loaded.");
+        pluginCore.getPlugin().getLogger().info(" Managers loaded.");
 
     }
 

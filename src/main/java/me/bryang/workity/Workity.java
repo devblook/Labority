@@ -1,5 +1,6 @@
 package me.bryang.workity;
 
+import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class Workity extends JavaPlugin {
@@ -13,9 +14,9 @@ public class Workity extends JavaPlugin {
         pluginCore.getManagerLoader().getTaskManager().getPluginLoadingTask().loadTask();
         pluginCore.getManagerLoader().getTaskManager().getMetricsLoadingTask().loadTask();
 
-        Bukkit.getLogger("[Workity] Created by " + getDescription().getAuthors().get(0));
-        Bukkit.getLogger("[Workity] You are using the version " + getDescription().getVersion() + ".");
-        Bukkit.getLogger("[Workity] Click to support: http://discord.devblook.team/");
+        getLogger().info(" Created by " + getDescription().getAuthors().get(0));
+        getLogger().info(" You are using the version " + getDescription().getVersion() + ".");
+        getLogger().info("Click to support: http://discord.devblook.team/");
 
     }
 

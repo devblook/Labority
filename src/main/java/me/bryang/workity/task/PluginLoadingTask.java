@@ -1,6 +1,7 @@
 package me.bryang.workity.task;
 
 import me.bryang.workity.PluginCore;
+import me.bryang.workity.Workity;
 import me.bryang.workity.data.JobData;
 import me.bryang.workity.data.PlayerData;
 import me.bryang.workity.loader.DataLoader;
@@ -12,6 +13,8 @@ import java.util.UUID;
 
 public class PluginLoadingTask {
 
+    private Workity workity;
+    
     private final FileManager configFile;
     private final FileDataManager playersFile;
 
@@ -19,6 +22,8 @@ public class PluginLoadingTask {
 
     public PluginLoadingTask(PluginCore pluginCore) {
 
+        this.workity = pluginCore.getPlugin();
+        
         this.configFile = pluginCore.getFilesLoader().getConfigFile();
         this.playersFile = pluginCore.getFilesLoader().getPlayersFile();
 
@@ -29,7 +34,7 @@ public class PluginLoadingTask {
     public void loadTask() {
 
         if (playersFile.getPlayersKeys() == null) {
-            Bukkit.getLogger("[Workity] Thanks for using my plugin, don't forget check config.yml");
+            workity.getLogger().info(" Thanks for using my plugin, don't forget check config.yml");
             return;
         }
 

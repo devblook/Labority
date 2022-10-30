@@ -35,7 +35,7 @@ public class CommandsLoader implements Loader {
         AnnotatedCommandTreeBuilder builder = new AnnotatedCommandTreeBuilderImpl(partInjector);
         commandManager.registerCommands(builder.fromClass(new JobsCommand(pluginCore)));
 
-        Bukkit.getLogger("[Workity] Commands loaded.");
+        pluginCore.getPlugin().getLogger().info(" Commands loaded.");
 
     }
 }
