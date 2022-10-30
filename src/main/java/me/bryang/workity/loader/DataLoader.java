@@ -11,12 +11,10 @@ import java.util.UUID;
 public class DataLoader implements Loader {
 
     private final Map<UUID, PlayerData> playerJobDataMap = new HashMap<>();
-
+    private final Workity workity;
     double serverMultiplier;
 
-    private final Workity workity;
-    
-    private DataLoader(Workity workity){
+    private DataLoader(Workity workity) {
         this.workity = workity;
     }
 

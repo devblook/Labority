@@ -13,17 +13,15 @@ import java.util.UUID;
 
 public class PluginLoadingTask {
 
-    private Workity workity;
-    
     private final FileManager configFile;
     private final FileDataManager playersFile;
-
     private final DataLoader dataLoader;
+    private Workity workity;
 
     public PluginLoadingTask(PluginCore pluginCore) {
 
         this.workity = pluginCore.getPlugin();
-        
+
         this.configFile = pluginCore.getFilesLoader().getConfigFile();
         this.playersFile = pluginCore.getFilesLoader().getPlayersFile();
 
