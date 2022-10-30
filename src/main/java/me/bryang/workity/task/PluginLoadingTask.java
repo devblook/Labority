@@ -16,43 +16,32 @@ public class PluginLoadingTask {
     private final FileManager configFile;
     private final FileDataManager playersFile;
     private final DataLoader dataLoader;
-    private Workity workity;
+    private final Workity workity;
 
     public PluginLoadingTask(PluginCore pluginCore) {
-
         this.workity = pluginCore.getPlugin();
-
         this.configFile = pluginCore.getFilesLoader().getConfigFile();
         this.playersFile = pluginCore.getFilesLoader().getPlayersFile();
-
         this.dataLoader = pluginCore.getDataLoader();
-
     }
 
     public void loadTask() {
-
         if (playersFile.getPlayersKeys() == null) {
             workity.getLogger().info(" Thanks for using my plugin, don't forget check config.yml");
             return;
         }
 
         for (String stringToUUID : playersFile.getPlayersKeys()) {
-
             UUID playerUniqueId = UUID.fromString(stringToUUID);
-
             dataLoader.createPlayerJob(playerUniqueId);
-
             PlayerData playerData = dataLoader.getPlayerJob(playerUniqueId);
 
             for (String jobName : playersFile.getJobsKeys(playerUniqueId)) {
-
                 JobData jobData = new JobData(jobName);
-
                 jobData.setLevel(playersFile.getJobData(playerUniqueId).getInt(".job-list." + jobName + ".xp"));
                 jobData.setLevel(playersFile.getJobData(playerUniqueId).getInt(".job-list." + jobName + ".level"));
                 jobData.setMaxXP(
                         TextUtils.calculateNumber(configFile.getString("config.formula.max-xp"), 1));
-
                 playerData.putJob(jobName, jobData);
             }
         }
