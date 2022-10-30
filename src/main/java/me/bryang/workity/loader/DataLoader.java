@@ -15,12 +15,12 @@ public class DataLoader implements Loader {
 
     double serverMultiplier;
 
-    private Workity workity;
+    private final Workity workity;
     
     private DataLoader(Workity workity){
         this.workity = workity;
     }
-    w
+
     @Override
     public void load() {
         serverMultiplier = 0;
