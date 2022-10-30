@@ -7,20 +7,16 @@ import org.bukkit.event.HandlerList;
 
 import java.util.UUID;
 
-public class JobsEvent extends Event {
+public class JobExecuteEvent extends Event {
 
     private static final HandlerList handlerList = new HandlerList();
-
     private final UUID target;
     private final Action action;
 
-    public JobsEvent(UUID target, Action action) {
-
+    public JobExecuteEvent(UUID target, Action action) {
         this.action = action;
         this.target = target;
-
     }
-
 
     public static HandlerList getHandlerList() {
         return handlerList;
