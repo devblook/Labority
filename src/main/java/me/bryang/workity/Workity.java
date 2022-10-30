@@ -1,6 +1,5 @@
 package me.bryang.workity;
 
-import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class Workity extends JavaPlugin {

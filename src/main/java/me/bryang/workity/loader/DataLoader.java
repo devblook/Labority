@@ -3,7 +3,6 @@ package me.bryang.workity.loader;
 import me.bryang.workity.Workity;
 import me.bryang.workity.api.Loader;
 import me.bryang.workity.data.PlayerData;
-import org.bukkit.Bukkit;
 
 import java.util.HashMap;
 import java.util.Map;
