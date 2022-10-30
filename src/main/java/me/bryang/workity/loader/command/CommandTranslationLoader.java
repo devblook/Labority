@@ -25,7 +25,9 @@ public class CommandTranslationLoader implements TranslationProvider {
             case "command.no-permission":
                 return messagesFile.getString("error.no-permission");
             case "invalid.integer":
+            case "invalid.double":
                 return messagesFile.getString("error.unknown-number");
+
         }
         return "Error: Si ves este mensaje, avisa con en el discord de soporte con @ERROR101";
     }
