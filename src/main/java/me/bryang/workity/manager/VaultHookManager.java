@@ -26,25 +26,25 @@ public class VaultHookManager {
             return;
         }
 
-        RegisteredServiceProvider<Economy> rse =
+        RegisteredServiceProvider<Economy> serviceProvider =
                 Bukkit.getServer().getServicesManager().getRegistration(Economy.class);
 
-        RegisteredServiceProvider<Permission> rsp =
+        RegisteredServiceProvider<Permission> permissionProvider =
                 Bukkit.getServer().getServicesManager().getRegistration(Permission.class);
 
-        if (rse == null) {
+        if (serviceProvider == null) {
             workity.getLogger().info(" Error: The economy doesn't loaded correctly.");
             return;
         }
 
-        if (rsp == null) {
+        if (permissionProvider == null) {
             workity.getLogger().info(" Error: The permission doesn't loaded correctly.");
             return;
         }
 
 
-        economy = rse.getProvider();
-        permission = rsp.getProvider();
+        economy = serviceProvider.getProvider();
+        permission = permissionProvider.getProvider();
 
     }
 
