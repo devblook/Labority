@@ -6,17 +6,16 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 
-public class PlayerJoinListener implements Listener {
+public class PlayerRegistryListener implements Listener {
 
     private final DataLoader dataLoader;
 
-    public PlayerJoinListener(PluginCore pluginCore) {
+    public PlayerRegistryListener(PluginCore pluginCore) {
         dataLoader = pluginCore.getDataLoader();
     }
 
     @EventHandler
-    public void onJoin(PlayerJoinEvent event) {
-
+    public void joinRegistryData(PlayerJoinEvent event) {
         if (dataLoader.getPlayerJob(event.getPlayer().getUniqueId()) == null) {
             dataLoader.createPlayerJob(event.getPlayer().getUniqueId());
         }

@@ -4,11 +4,9 @@ import me.bryang.workity.PluginCore;
 import me.bryang.workity.Workity;
 import me.bryang.workity.api.Loader;
 import me.bryang.workity.listener.*;
-import me.bryang.workity.listener.plugin.JobListener;
 import org.bukkit.Bukkit;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.PluginManager;
-
 
 public class ListenersLoader implements Loader {
 
@@ -20,18 +18,16 @@ public class ListenersLoader implements Loader {
 
     @Override
     public void load() {
-
         registerListeners(
-                new PlayerPlaceListener(pluginCore),
-                new PlayerBreakListener(pluginCore),
-                new PlayerKillEntityListener(pluginCore),
-                new PlayerJoinListener(pluginCore),
-                new FurnaceExtractListener(pluginCore),
-                new JobListener(pluginCore));
+                new WorkPlaceListener(pluginCore),
+                new WorkBreakListener(pluginCore),
+                new WorkDeathListener(pluginCore),
+                new PlayerRegistryListener(pluginCore),
+                new WorkFurnaceListener(pluginCore),
+                new WorkExecutorListener(pluginCore));
     }
 
     public void registerListeners(Listener... listeners) {
-
         PluginManager pluginManager = Bukkit.getPluginManager();
         Workity workity = pluginCore.getPlugin();
 

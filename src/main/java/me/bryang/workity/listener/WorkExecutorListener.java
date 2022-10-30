@@ -1,9 +1,9 @@
-package me.bryang.workity.listener.plugin;
+package me.bryang.workity.listener;
 
 import me.bryang.workity.PluginCore;
 import me.bryang.workity.action.Action;
 import me.bryang.workity.data.JobData;
-import me.bryang.workity.events.JobsEvent;
+import me.bryang.workity.events.JobExecuteEvent;
 import me.bryang.workity.loader.DataLoader;
 import me.bryang.workity.manager.VaultHookManager;
 import me.bryang.workity.manager.file.FileDataManager;
@@ -17,7 +17,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 
-public class JobListener implements Listener {
+public class WorkExecutorListener implements Listener {
 
     private final VaultHookManager vaultHookManager;
 
@@ -27,7 +27,7 @@ public class JobListener implements Listener {
 
     private final DataLoader dataLoader;
 
-    public JobListener(PluginCore pluginCore) {
+    public WorkExecutorListener(PluginCore pluginCore) {
 
         this.vaultHookManager = pluginCore.getManagerLoader().getVaultHookManager();
 
@@ -39,9 +39,7 @@ public class JobListener implements Listener {
     }
 
     @EventHandler
-    public void onWork(JobsEvent event) {
-
-
+    public void onWork(JobExecuteEvent event) {
         for (String jobName : configFile.getConfigurationSection("jobs").getKeys(false)) {
 
             Action action = event.getAction();
