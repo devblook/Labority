@@ -1,4 +1,4 @@
-package me.bryang.workity.api;
+package me.bryang.workity.interfaces;
 
 public interface Core {
 

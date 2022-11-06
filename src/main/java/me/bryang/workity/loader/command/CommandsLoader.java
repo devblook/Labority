@@ -1,7 +1,7 @@
 package me.bryang.workity.loader.command;
 
 import me.bryang.workity.PluginCore;
-import me.bryang.workity.api.Loader;
+import me.bryang.workity.interfaces.Loader;
 import me.bryang.workity.commands.JobsCommand;
 import me.fixeddev.commandflow.CommandManager;
 import me.fixeddev.commandflow.annotated.AnnotatedCommandTreeBuilder;

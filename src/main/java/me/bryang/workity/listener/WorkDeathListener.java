@@ -23,6 +23,7 @@ public class WorkDeathListener implements Listener {
 
     @EventHandler
     public void playerKillMob(EntityDamageByEntityEvent event) {
+
         if (event.getDamager().getType() != EntityType.PLAYER) return;
         Player player = (Player) event.getDamager();
 

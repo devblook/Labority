@@ -1,7 +1,7 @@
 package me.bryang.workity;
 
-import me.bryang.workity.api.Core;
-import me.bryang.workity.api.Loader;
+import me.bryang.workity.interfaces.Core;
+import me.bryang.workity.interfaces.Loader;
 import me.bryang.workity.loader.DataLoader;
 import me.bryang.workity.loader.FilesLoader;
 import me.bryang.workity.loader.ListenersLoader;
