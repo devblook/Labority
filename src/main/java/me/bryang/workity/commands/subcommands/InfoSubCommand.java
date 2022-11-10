@@ -2,6 +2,8 @@ package me.bryang.workity.commands.subcommands;
 
 import me.bryang.workity.commands.JobsCommand;
 import me.bryang.workity.data.PlayerData;
+import me.bryang.workity.data.job.BlockJobData;
+import me.bryang.workity.data.job.JobData;
 import me.bryang.workity.loader.DataLoader;
 import me.bryang.workity.manager.file.FileManager;
 import me.fixeddev.commandflow.annotated.CommandClass;
@@ -45,10 +47,12 @@ public class InfoSubCommand implements CommandClass {
         if (configFile.getConfigurationSection("jobs." + jobNameInfo) == null) {
 
             sender.sendMessage(messagesFile.getString("error.unknown-job")
-                    .replace("%job%", configFile.getString("jobs." + jobNameInfo + ".name")));
+                    .replace("%job%", jobNameInfo));
             return true;
 
         }
+
+        JobData jobData = dataLoader.getJob(jobNameInfo);
 
         PlayerData playerDataInfo = dataLoader.getPlayerJob(sender.getUniqueId());
 
@@ -58,17 +62,19 @@ public class InfoSubCommand implements CommandClass {
             for (String message : messagesFile.getStringList("jobs.info.message")) {
 
                 if (!message.contains("%job_format%")) {
-                    sender.sendMessage(message.replace("%job_name%", configFile.getString("jobs." + jobNameInfo + ".name")));
+                    sender.sendMessage(message.replace("%job_name%", jobData.getJobName()));
                     continue;
                 }
 
-                for (String item : configFile.getConfigurationSection("jobs." + jobNameInfo + ".items").getKeys(false)) {
+                for (String item : jobData.getBlockJobDataMap().keySet()) {
+
+                    BlockJobData blockJobData = jobData.getBlockData(item);
 
                     sender.sendMessage(message
                             .replace("%job_format%", "")
                             .replace("%item_name%", item)
-                            .replace("%gain_money%", String.valueOf(configFile.getInt("jobs." + jobNameInfo + ".items." + item + ".money")))
-                            .replace("%gain_xp%", String.valueOf(configFile.getInt("jobs." + jobNameInfo + ".items." + item + ".xp"))));
+                            .replace("%gain_money%", String.valueOf(blockJobData.getGainMoney()))
+                            .replace("%gain_xp%", String.valueOf(blockJobData.getGainXP())));
                 }
             }
 
@@ -79,17 +85,19 @@ public class InfoSubCommand implements CommandClass {
         for (String message : messagesFile.getStringList("jobs.info.message")) {
 
             if (!message.contains("%job_format%")) {
-                sender.sendMessage(message.replace("%job_name%", configFile.getString("jobs." + jobNameInfo + ".name")));
+                sender.sendMessage(message.replace("%job_name%", jobData.getJobName()));
                 continue;
             }
 
-            for (String item : configFile.getConfigurationSection("jobs." + jobNameInfo + ".items").getKeys(false)) {
+            for (String item : jobData.getBlockJobDataMap().keySet()) {
+
+                BlockJobData blockJobData = jobData.getBlockData(item);
 
                 sender.sendMessage(message
                         .replace("%job_format%", "")
                         .replace("%item_name%", item)
-                        .replace("%gain_money%", String.valueOf(configFile.getInt("jobs." + jobNameInfo + ".items." + item + ".money")))
-                        .replace("%gain_xp%", String.valueOf(configFile.getInt("jobs." + jobNameInfo + ".items." + item + ".xp"))));
+                        .replace("%gain_money%", String.valueOf(blockJobData.getGainMoney()))
+                        .replace("%gain_xp%", String.valueOf(blockJobData.getGainXP())));
             }
         }
 
