@@ -5,17 +5,17 @@ import java.util.Map;
 
 public class PlayerData {
 
-    private final Map<String, JobData> jobDataMap = new HashMap<>();
+    private final Map<String, PlayerJobData> jobDataMap = new HashMap<>();
 
     public void addJob(String jobName) {
-        jobDataMap.put(jobName, new JobData(jobName));
+        jobDataMap.put(jobName, new PlayerJobData(jobName));
     }
 
-    public void putJob(String jobName, JobData jobData) {
-        jobDataMap.put(jobName, jobData);
+    public void putJob(String jobName, PlayerJobData playerJobData) {
+        jobDataMap.put(jobName, playerJobData);
     }
 
-    public JobData getJob(String jobName) {
+    public PlayerJobData getJob(String jobName) {
         return jobDataMap.get(jobName);
     }
 
@@ -31,7 +31,7 @@ public class PlayerData {
         return jobDataMap.size();
     }
 
-    public Map<String, JobData> getJobsMap() {
+    public Map<String, PlayerJobData> getJobsMap() {
         return jobDataMap;
     }
 }
