@@ -1,9 +1,10 @@
-package me.bryang.workity.task;
+package me.bryang.workity.activites;
 
 import me.bryang.workity.PluginCore;
 import me.bryang.workity.Workity;
-import me.bryang.workity.data.JobData;
 import me.bryang.workity.data.PlayerData;
+import me.bryang.workity.data.PlayerJobData;
+import me.bryang.workity.interfaces.Activities;
 import me.bryang.workity.loader.DataLoader;
 import me.bryang.workity.manager.file.FileDataManager;
 import me.bryang.workity.manager.file.FileManager;
@@ -11,14 +12,14 @@ import me.bryang.workity.utils.TextUtils;
 
 import java.util.UUID;
 
-public class PluginLoadingTask {
+public class PluginLoadingActivities implements Activities {
 
     private final FileManager configFile;
     private final FileDataManager playersFile;
     private final DataLoader dataLoader;
     private final Workity workity;
 
-    public PluginLoadingTask(PluginCore pluginCore) {
+    public PluginLoadingActivities(PluginCore pluginCore) {
         this.workity = pluginCore.getPlugin();
         this.configFile = pluginCore.getFilesLoader().getConfigFile();
         this.playersFile = pluginCore.getFilesLoader().getPlayersFile();
@@ -26,10 +27,12 @@ public class PluginLoadingTask {
     }
 
     public void loadTask() {
+
         if (playersFile.getPlayersKeys() == null) {
             workity.getLogger().info(" Thanks for using my plugin, don't forget check config.yml");
             return;
         }
+
 
         for (String stringToUUID : playersFile.getPlayersKeys()) {
             UUID playerUniqueId = UUID.fromString(stringToUUID);
@@ -37,12 +40,12 @@ public class PluginLoadingTask {
             PlayerData playerData = dataLoader.getPlayerJob(playerUniqueId);
 
             for (String jobName : playersFile.getJobsKeys(playerUniqueId)) {
-                JobData jobData = new JobData(jobName);
-                jobData.setLevel(playersFile.getJobData(playerUniqueId).getInt(".job-list." + jobName + ".xp"));
-                jobData.setLevel(playersFile.getJobData(playerUniqueId).getInt(".job-list." + jobName + ".level"));
-                jobData.setMaxXP(
+                PlayerJobData playerJobData = new PlayerJobData(jobName);
+                playerJobData.setLevel(playersFile.getJobData(playerUniqueId).getInt(".job-list." + jobName + ".xp"));
+                playerJobData.setLevel(playersFile.getJobData(playerUniqueId).getInt(".job-list." + jobName + ".level"));
+                playerJobData.setMaxXP(
                         TextUtils.calculateNumber(configFile.getString("config.formula.max-xp"), 1));
-                playerData.putJob(jobName, jobData);
+                playerData.putJob(jobName, playerJobData);
             }
         }
     }
