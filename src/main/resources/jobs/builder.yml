@@ -1,0 +1,149 @@
+# Builder job
+job:
+  # Name of the job:
+  name: "Builder"
+
+  # Type [PLAYER_BREAK_BLOCK, PLAYER_PLACE_BLOCK, PLAYER_KILL_ENTITY]
+  type: PLAYER_PLACE_BLOCK
+
+  # Load global stats
+  global_stats: false
+
+  # List of items
+  items:
+    # Format: money: GAIN_MONEY, xp: GAIN_XP_JOB:
+    # Enable stats: For enable data in /jobs info miner.
+
+    STONE:
+
+      money: 1
+      xp: 1
+
+      enabled_stats: false
+
+    ACACIA_WOOD:
+
+      money: 1
+      xp: 1
+
+      enabled_stats: false
+
+    BIRCH_WOOD:
+
+      money: 1
+      xp: 1
+
+      enabled_stats: false
+
+    DARK_OAK_WOOD:
+
+      money: 1
+      xp: 1
+
+      enabled_stats: false
+
+    JUNGLE_WOOD:
+
+      money: 1
+      xp: 1
+
+      enabled_stats: false
+
+    MANGROVE_WOOD:
+
+      money: 1
+      xp: 1
+
+      enabled_stats: false
+
+    OAK_WOOD:
+
+      money: 1
+      xp: 1
+
+      enabled_stats: false
+
+    ACACIA_PLANKS:
+
+      money: 1
+      xp: 1
+
+      enabled_stats: false
+
+    BIRCH_PLANKS:
+
+      money: 1
+      xp: 1
+
+      enabled_stats: false
+
+    DARK_OAK_PLANKS:
+
+      money: 1
+      xp: 1
+
+      enabled_stats: false
+
+    JUNGLE_PLANKS:
+
+      money: 1
+      xp: 1
+
+      enabled_stats: false
+
+    MANGROVE_PLANKS:
+
+      money: 1
+      xp: 1
+
+      enabled_stats: false
+
+    OAK_PLANKS:
+
+      money: 1
+      xp: 1
+
+      enabled_stats: false
+
+    QUARTZ:
+
+      money: 2
+      xp: 2
+
+      enabled_stats: false
+
+    DIAMOND_BLOCK:
+      money: 10
+      xp: 10
+
+      enabled_stats: false
+
+    EMERALD_BLOCK:
+      money: 8
+      xp: 8
+
+      enabled_stats: false
+
+    IRON_BLOCK:
+      money: 5
+      xp: 5
+
+      enabled_stats: false
+
+    REDSTONE_BLOCK:
+      money: 5
+      xp: 5
+
+      enabled_stats: false
+
+    GOLD_BLOCK:
+      money: 5
+      xp: 5
+
+      enabled_stats: false
+
+    CARBON_BLOCK:
+      money: 2
+      xp: 2
+
+      enabled_stats: false
