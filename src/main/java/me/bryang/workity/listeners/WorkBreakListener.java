@@ -1,4 +1,4 @@
-package me.bryang.workity.listener;
+package me.bryang.workity.listeners;
 
 import me.bryang.workity.PluginCore;
 import me.bryang.workity.action.Action;

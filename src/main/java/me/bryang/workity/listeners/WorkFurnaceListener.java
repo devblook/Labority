@@ -1,7 +1,8 @@
-package me.bryang.workity.listener;
+package me.bryang.workity.listeners;
 
 import me.bryang.workity.PluginCore;
 import me.bryang.workity.Workity;
+import me.bryang.workity.loader.DataLoader;
 import me.bryang.workity.manager.file.FileDataManager;
 import me.bryang.workity.manager.file.FileManager;
 import org.bukkit.Material;
@@ -16,10 +17,15 @@ public class WorkFurnaceListener implements Listener {
     private final FileManager configFile;
     private final FileDataManager playersFile;
 
+    private final DataLoader dataLoader;
+
     public WorkFurnaceListener(PluginCore pluginCore) {
-        workity = pluginCore.getPlugin();
+        this.workity = pluginCore.getPlugin();
+
         this.configFile = pluginCore.getFilesLoader().getConfigFile();
         this.playersFile = pluginCore.getFilesLoader().getPlayersFile();
+
+        this.dataLoader = pluginCore.getDataLoader();
     }
 
     @EventHandler
@@ -36,7 +42,7 @@ public class WorkFurnaceListener implements Listener {
                 continue;
             }
 
-            if (!configFile.getConfigurationSection("jobs." + keys + ".items").contains("STONE")) {
+            if (!dataLoader.getJob(keys).getBlockJobDataMap().containsKey("STONE")) {
                 continue;
             }
 
