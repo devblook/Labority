@@ -1,8 +1,8 @@
 package me.bryang.workity.commands.subcommands;
 
 import me.bryang.workity.commands.JobsCommand;
-import me.bryang.workity.data.JobData;
 import me.bryang.workity.data.PlayerData;
+import me.bryang.workity.data.PlayerJobData;
 import me.bryang.workity.loader.DataLoader;
 import me.bryang.workity.manager.file.FileDataManager;
 import me.bryang.workity.manager.file.FileManager;
@@ -91,19 +91,19 @@ public class AddLevelSubCommand implements CommandClass {
             playerData.addJob(jobArgument);
         }
 
-        JobData jobData = playerData.getJob(jobArgument);
+        PlayerJobData playerJobData = playerData.getJob(jobArgument);
 
-        jobData.setLevel(jobData.getLevel() + levelArgument);
-        jobData.setMaxXP(
+        playerJobData.setLevel(playerJobData.getLevel() + levelArgument);
+        playerJobData.setMaxXP(
                 TextUtils.calculateNumber(configFile.getString("config.formula.max-xp"),
-                        jobData.getLevel() + levelArgument));
+                        playerJobData.getLevel() + levelArgument));
 
-        playersFile.setJobData(sender.getUniqueId(), "job-list." + jobArgument + ".level", jobData.getLevel());
+        playersFile.setJobData(sender.getUniqueId(), "job-list." + jobArgument + ".level", playerJobData.getLevel());
         playersFile.setJobData(sender.getUniqueId(), "job-list." + jobArgument + ".xp", 0);
         playersFile.save();
 
         sender.sendMessage(messagesFile.getString("jobs.add-level.message")
-                .replace("%level%", String.valueOf(jobData.getLevel() + levelArgument))
+                .replace("%level%", String.valueOf(playerJobData.getLevel() + levelArgument))
                 .replace("%job%", jobArgument)
                 .replace("%player%", target.getName()));
         return true;
