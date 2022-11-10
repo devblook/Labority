@@ -2,35 +2,44 @@ package me.bryang.workity.loader;
 
 import me.bryang.workity.PluginCore;
 import me.bryang.workity.interfaces.Loader;
-import me.bryang.workity.manager.TaskManager;
+import me.bryang.workity.manager.ActivitiesManager;
 import me.bryang.workity.manager.VaultHookManager;
+import me.bryang.workity.manager.WorkActionManager;
 
 public class ManagerLoader implements Loader {
 
     private final PluginCore pluginCore;
 
-    private TaskManager taskManager;
+    private ActivitiesManager activitiesManager;
     private VaultHookManager vaultHookManager;
+    private WorkActionManager workActionManager;
 
     public ManagerLoader(PluginCore pluginCore) {
         this.pluginCore = pluginCore;
     }
 
     public void load() {
-        taskManager = new TaskManager(pluginCore);
-        taskManager.load();
+        activitiesManager = new ActivitiesManager(pluginCore);
+        activitiesManager.load();
 
         vaultHookManager = new VaultHookManager(pluginCore.getPlugin());
         vaultHookManager.load();
 
+        workActionManager = new WorkActionManager(pluginCore);
+        workActionManager.loadActions();
+
         pluginCore.getPlugin().getLogger().info(" Managers loaded.");
     }
 
-    public TaskManager getTaskManager() {
-        return taskManager;
+    public ActivitiesManager getTaskManager() {
+        return activitiesManager;
     }
 
     public VaultHookManager getVaultHookManager() {
         return vaultHookManager;
+    }
+
+    public WorkActionManager getWorkActionManager() {
+        return workActionManager;
     }
 }
