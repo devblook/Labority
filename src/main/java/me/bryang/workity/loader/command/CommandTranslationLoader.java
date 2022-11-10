@@ -27,6 +27,6 @@ public class CommandTranslationLoader implements TranslationProvider {
                 return messagesFile.getString("error.unknown-number");
 
         }
-        return "Error: Si ves este mensaje, avisa con en el discord de soporte con @ERROR101";
+        return "Error: Si ves este mensaje, avisa con en el discord de soporte escribiendo el error @ERROR101";
     }
 }
