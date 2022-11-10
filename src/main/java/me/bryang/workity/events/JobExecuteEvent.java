@@ -10,12 +10,14 @@ import java.util.UUID;
 public class JobExecuteEvent extends Event {
 
     private static final HandlerList handlerList = new HandlerList();
-    private final UUID target;
+
+    private final UUID targetUniqueId;
+
     private final Action action;
 
-    public JobExecuteEvent(UUID target, Action action) {
+    public JobExecuteEvent(UUID targetUniqueId, Action action) {
         this.action = action;
-        this.target = target;
+        this.targetUniqueId = targetUniqueId;
     }
 
     public static HandlerList getHandlerList() {
@@ -28,7 +30,7 @@ public class JobExecuteEvent extends Event {
     }
 
     public UUID getTarget() {
-        return target;
+        return targetUniqueId;
     }
 
     public Action getAction() {
