@@ -3,16 +3,18 @@ package me.bryang.workity.data;
 import java.util.HashMap;
 import java.util.Map;
 
-public class JobData {
+public class PlayerJobData {
 
     private final String jobName;
     private final Map<String, Integer> itemData = new HashMap<>();
-    int globalStats = 0;
-    private int xpPoints = 0;
+    private int globalStats = 0;
+    private double xpPoints = 0;
     private int maxXP = 0;
     private int level = 1;
 
-    public JobData(String jobName) {
+    private double multiplier = 0;
+
+    public PlayerJobData(String jobName) {
         this.jobName = jobName;
     }
 
@@ -24,7 +26,7 @@ public class JobData {
         xpPoints--;
     }
 
-    public int getXpPoints() {
+    public double getXpPoints() {
         return xpPoints;
     }
 
@@ -44,7 +46,7 @@ public class JobData {
         this.level = level;
     }
 
-    public void setXPPoints(int xpPoints) {
+    public void setXPPoints(double xpPoints) {
         this.xpPoints = xpPoints;
     }
 
@@ -70,6 +72,14 @@ public class JobData {
 
     public void setGlobalStats(int globalStats) {
         this.globalStats = globalStats;
+    }
+
+    public double getMultiplier() {
+        return multiplier;
+    }
+
+    public void setMultiplier(double multiplier) {
+        this.multiplier = multiplier;
     }
 }
 
