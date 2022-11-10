@@ -1,8 +1,8 @@
 package me.bryang.workity.commands.subcommands;
 
 import me.bryang.workity.commands.JobsCommand;
-import me.bryang.workity.data.JobData;
 import me.bryang.workity.data.PlayerData;
+import me.bryang.workity.data.PlayerJobData;
 import me.bryang.workity.loader.DataLoader;
 import me.bryang.workity.manager.file.FileDataManager;
 import me.bryang.workity.manager.file.FileManager;
@@ -92,17 +92,17 @@ public class RemoveLevelSubCommand implements CommandClass {
             playerDataRemoveLevel.addJob(jobArgument);
         }
 
-        JobData jobDataRemoveLevel = playerDataRemoveLevel.getJob(jobArgument);
+        PlayerJobData playerJobDataRemoveLevel = playerDataRemoveLevel.getJob(jobArgument);
 
-        if (jobDataRemoveLevel.getLevel() - levelArgument < 0) {
+        if (playerJobDataRemoveLevel.getLevel() - levelArgument < 0) {
             sender.sendMessage(messagesFile.getString("error.minor-0"));
             return true;
         }
 
-        jobDataRemoveLevel.setLevel(jobDataRemoveLevel.getLevel() - levelArgument);
-        jobDataRemoveLevel.setMaxXP(
+        playerJobDataRemoveLevel.setLevel(playerJobDataRemoveLevel.getLevel() - levelArgument);
+        playerJobDataRemoveLevel.setMaxXP(
                 TextUtils.calculateNumber(configFile.getString("config.formula.max-xp"),
-                        jobDataRemoveLevel.getLevel() - levelArgument));
+                        playerJobDataRemoveLevel.getLevel() - levelArgument));
 
         playersFile.setJobData(sender.getUniqueId(), "job-list." + jobArgument + ".level", levelArgument);
         playersFile.setJobData(sender.getUniqueId(), "job-list." + jobArgument + ".xp", 0);
