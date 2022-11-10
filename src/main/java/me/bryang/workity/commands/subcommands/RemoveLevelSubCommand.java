@@ -68,9 +68,9 @@ public class RemoveLevelSubCommand implements CommandClass {
 
         PlayerData playerDataRemoveLevel = dataLoader.getPlayerJob(targetRemoveLevel.getUniqueId());
 
-        if (playersFile.isConfigurationSection("jobs." + jobArgument)) {
+        if (!playersFile.isConfigurationSection("jobs." + jobArgument)) {
             sender.sendMessage(messagesFile.getString("error.unknown-job")
-                    .replace("%job%", configFile.getString("jobs." + jobArgument + ".name")));
+                    .replace("%job%", jobArgument));
             return true;
         }
 
