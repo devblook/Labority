@@ -21,8 +21,8 @@ public class Action {
         this.entity = null;
     }
 
-    public String getType() {
-        return jobType.name();
+    public JobType getType() {
+        return jobType;
     }
 
     public Entity getEntity() {
