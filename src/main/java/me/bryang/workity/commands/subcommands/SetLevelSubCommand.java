@@ -1,8 +1,8 @@
 package me.bryang.workity.commands.subcommands;
 
 import me.bryang.workity.commands.JobsCommand;
-import me.bryang.workity.data.JobData;
 import me.bryang.workity.data.PlayerData;
+import me.bryang.workity.data.PlayerJobData;
 import me.bryang.workity.loader.DataLoader;
 import me.bryang.workity.manager.file.FileDataManager;
 import me.bryang.workity.manager.file.FileManager;
@@ -73,7 +73,7 @@ public class SetLevelSubCommand implements CommandClass {
             return true;
         }
 
-        if (levelArgument == -1){
+        if (levelArgument == -1) {
 
             sender.sendMessage(messagesFile.getString("error.no-argument")
                     .replace("%usage%", "/jobs set-level [player] [level]"));
@@ -91,10 +91,10 @@ public class SetLevelSubCommand implements CommandClass {
             playerData.addJob(jobArgument);
         }
 
-        JobData jobData = playerData.getJob(jobArgument);
+        PlayerJobData playerJobData = playerData.getJob(jobArgument);
 
-        jobData.setLevel(levelArgument);
-        jobData.setMaxXP(
+        playerJobData.setLevel(levelArgument);
+        playerJobData.setMaxXP(
                 TextUtils.calculateNumber(configFile.getString("config.formula.max-xp"), levelArgument));
 
         playersFile.setJobData(sender.getUniqueId(), "job-list." + jobArgument + ".level", levelArgument);
