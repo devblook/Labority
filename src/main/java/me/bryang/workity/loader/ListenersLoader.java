@@ -3,7 +3,7 @@ package me.bryang.workity.loader;
 import me.bryang.workity.PluginCore;
 import me.bryang.workity.Workity;
 import me.bryang.workity.interfaces.Loader;
-import me.bryang.workity.listener.*;
+import me.bryang.workity.listeners.*;
 import org.bukkit.Bukkit;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.PluginManager;
