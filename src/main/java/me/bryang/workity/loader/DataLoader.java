@@ -2,7 +2,7 @@ package me.bryang.workity.loader;
 
 import me.bryang.workity.Workity;
 import me.bryang.workity.data.PlayerData;
-import me.bryang.workity.data.job.JobData;
+import me.bryang.workity.data.jobs.JobData;
 import me.bryang.workity.interfaces.Loader;
 
 import java.util.HashMap;

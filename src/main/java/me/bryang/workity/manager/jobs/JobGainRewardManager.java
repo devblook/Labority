@@ -2,7 +2,7 @@ package me.bryang.workity.manager.jobs;
 
 import me.bryang.workity.PluginCore;
 import me.bryang.workity.data.PlayerJobData;
-import me.bryang.workity.data.job.BlockJobData;
+import me.bryang.workity.data.jobs.BlockJobData;
 import me.bryang.workity.loader.DataLoader;
 import me.bryang.workity.manager.VaultHookManager;
 import me.bryang.workity.manager.file.FileDataManager;

@@ -1,4 +1,4 @@
-package me.bryang.workity.data.job;
+package me.bryang.workity.data.jobs;
 
 public class BlockJobData {
 

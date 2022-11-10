@@ -1,4 +1,4 @@
-package me.bryang.workity.data.job;
+package me.bryang.workity.data.jobs;
 
 import me.bryang.workity.action.JobType;
 
