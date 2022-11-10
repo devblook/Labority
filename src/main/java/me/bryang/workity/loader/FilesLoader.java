@@ -19,9 +19,11 @@ public class FilesLoader implements Loader {
 
     @Override
     public void load() {
+
         configFile = new FileManager(plugin, "config");
         messagesFile = new FileManager(plugin, "messages");
         playersFile = new FileDataManager(plugin, "players");
+
         plugin.getLogger().info("Bukkit.getLogger Files loaded");
     }
 
