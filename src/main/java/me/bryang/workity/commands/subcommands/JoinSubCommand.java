@@ -53,7 +53,7 @@ public class JoinSubCommand implements CommandClass {
 
         for (String jobName : jobNames) {
 
-            if (!configFile.isConfigurationSection("jobs." + jobName)) {
+            if (!dataLoader.jobExists(jobName)) {
 
                 sender.sendMessage(messagesFile.getString("error.unknown-job")
                         .replace("%job%", jobName));
@@ -63,10 +63,11 @@ public class JoinSubCommand implements CommandClass {
 
             PlayerData playerData = dataLoader.getPlayerJob(sender.getUniqueId());
 
+
             if (playerData.hasTheJob(jobName)) {
 
                 sender.sendMessage(messagesFile.getString("error.already-have-job")
-                        .replace("%job%", configFile.getString("jobs." + jobName + ".name")));
+                        .replace("%job%", dataLoader.getJob(jobName).getJobName()));
                 continue;
 
             }
@@ -109,7 +110,7 @@ public class JoinSubCommand implements CommandClass {
             playersFile.save();
 
             sender.sendMessage(messagesFile.getString("jobs.join.message")
-                    .replace("%job%", configFile.getString("jobs." + jobName + ".name")));
+                    .replace("%job%", dataLoader.getJobDataMap().get(jobName).getJobName()));
 
         }
         return true;
