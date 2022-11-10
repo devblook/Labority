@@ -1,0 +1,64 @@
+
+# Hunter job
+job:
+  # Name of the job:
+  name: "Hunter"
+
+  # Type [PLAYER_BREAK_BLOCK, PLAYER_PLACE_BLOCK, PLAYER_KILL_ENTITY]
+  type: PLAYER_KILL_ENTITY
+
+  # Load global stats
+  global_stats: false
+
+  # List of items
+  items:
+    # Format: money: GAIN_MONEY, xp: GAIN_XP_JOB:
+
+    PLAYER:
+      money: 10
+      xp: 10
+
+      enabled_stats: false
+
+    PIG:
+      money: 5
+      xp: 5
+
+      enabled_stats: false
+
+    COW:
+      money: 5
+      xp: 5
+
+      enabled_stats: false
+
+    MUSHROM_COW:
+      money: 5
+      xp: 5
+
+      enabled_stats: false
+
+    ZOMBIE:
+      money: 5
+      xp: 5
+
+      enabled_stats: false
+
+    SKELETON:
+      money: 5
+      xp: 5
+
+      enabled_stats: false
+
+    SPIDER:
+      money: 5
+      xp: 5
+
+      enabled_stats: false
+
+    CREEPER:
+      money: 5
+      xp: 5
+
+      enabled_stats: false
+
