@@ -1,8 +1,8 @@
 package me.bryang.workity.commands.subcommands;
 
 import me.bryang.workity.commands.JobsCommand;
-import me.bryang.workity.data.JobData;
 import me.bryang.workity.data.PlayerData;
+import me.bryang.workity.data.PlayerJobData;
 import me.bryang.workity.loader.DataLoader;
 import me.bryang.workity.manager.file.FileManager;
 import me.fixeddev.commandflow.annotated.CommandClass;
@@ -47,14 +47,14 @@ public class StatsSubCommand implements CommandClass {
             }
 
             if (message.contains("%job_format")) {
-                for (JobData jobData : playerDataStats.getJobsMap().values()) {
+                for (PlayerJobData playerJobData : playerDataStats.getJobsMap().values()) {
 
                     sender.sendMessage(message
                             .replace("%job_format%", "")
-                            .replace("%job_name%", configFile.getString("jobs." + jobData.getName() + ".name"))
-                            .replace("%level%", String.valueOf(jobData.getLevel()))
-                            .replace("%xp%", String.valueOf(jobData.getXpPoints()))
-                            .replace("%max_xp%", String.valueOf(jobData.getMaxXP())));
+                            .replace("%job_name%", configFile.getString("jobs." + playerJobData.getName() + ".name"))
+                            .replace("%level%", String.valueOf(playerJobData.getLevel()))
+                            .replace("%xp%", String.valueOf(playerJobData.getXpPoints()))
+                            .replace("%max_xp%", String.valueOf(playerJobData.getMaxXP())));
 
                 }
             }
