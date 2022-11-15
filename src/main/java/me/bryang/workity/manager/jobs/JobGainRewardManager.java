@@ -7,12 +7,12 @@ import me.bryang.workity.loader.DataLoader;
 import me.bryang.workity.manager.VaultHookManager;
 import me.bryang.workity.manager.file.FileDataManager;
 import me.bryang.workity.manager.file.FileManager;
-import me.bryang.workity.utils.TextUtils;
+import me.bryang.workity.utils.MathLevelsUtils;
 import net.md_5.bungee.api.ChatMessageType;
 import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.entity.Player;
 
-public class JobGainRewardManager implements WorkAction {
+public class JobGainRewardManager implements JobManager {
 
     private final DataLoader dataLoader;
 
@@ -39,12 +39,12 @@ public class JobGainRewardManager implements WorkAction {
 
         double multiplier = playerJobData.getMultiplier();
 
-        double moneyReward = TextUtils.calculateDoubleNumber(configFile.getString("config.formula.gain-money")
+        double moneyReward = MathLevelsUtils.calculateDoubleNumber(configFile.getString("config.formula.gain-money")
 
                         .replace("%money%", String.valueOf(blockJobData.getGainMoney())),
                 playerJobData.getLevel()) * multiplier;
 
-        double xpReward = TextUtils.calculateNumber(configFile.getString("config.formula.gain-xp")
+        double xpReward = MathLevelsUtils.calculateNumber(configFile.getString("config.formula.gain-xp")
                         .replace("%xp%", String.valueOf(blockJobData.getGainXP())),
                 playerJobData.getLevel()) * (int) multiplier;
 

@@ -8,7 +8,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 
-public class JobActionRewardsManager implements WorkAction {
+public class JobActionRewardsManager implements JobManager {
 
     private final FileManager configFile;
     private final VaultHookManager vaultHookManager;

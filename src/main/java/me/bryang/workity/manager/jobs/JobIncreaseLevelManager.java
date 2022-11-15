@@ -3,10 +3,10 @@ package me.bryang.workity.manager.jobs;
 import me.bryang.workity.PluginCore;
 import me.bryang.workity.data.PlayerJobData;
 import me.bryang.workity.manager.file.FileManager;
-import me.bryang.workity.utils.TextUtils;
+import me.bryang.workity.utils.MathLevelsUtils;
 import org.bukkit.entity.Player;
 
-public class JobIncreaseLevelManager implements WorkAction {
+public class JobIncreaseLevelManager implements JobManager {
 
     private final FileManager configFile;
     private final FileManager messagesFile;
@@ -34,7 +34,7 @@ public class JobIncreaseLevelManager implements WorkAction {
         playerJobData.setLevel(playerJobData.getLevel() + 1);
         playerJobData.setXPPoints(playerJobData.getMaxXP() - playerJobData.getXpPoints());
         playerJobData.setMaxXP(
-                TextUtils.calculateNumber(configFile.getString("config.formula.max-xp"), playerJobData.getLevel()));
+                MathLevelsUtils.calculateNumber(configFile.getString("config.formula.max-xp"), playerJobData.getLevel()));
 
         player.sendMessage(messagesFile.getString("jobs.gain.level")
                 .replace("%new_level%", String.valueOf(playerJobData.getLevel())));

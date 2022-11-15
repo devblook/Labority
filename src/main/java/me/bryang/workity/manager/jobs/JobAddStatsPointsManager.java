@@ -8,7 +8,7 @@ import me.bryang.workity.loader.DataLoader;
 import me.bryang.workity.manager.file.FileDataManager;
 import org.bukkit.entity.Player;
 
-public class JobAddStatsPointsManager implements WorkAction {
+public class JobAddStatsPointsManager implements JobManager {
 
     private final FileDataManager playersFile;
     private final DataLoader dataLoader;
