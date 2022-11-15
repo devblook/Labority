@@ -1,8 +1,8 @@
 package me.bryang.workity.loader;
 
 import me.bryang.workity.PluginCore;
-import me.bryang.workity.interfaces.Loader;
 import me.bryang.workity.manager.ActivitiesManager;
+import me.bryang.workity.manager.ConvertFileToMapManager;
 import me.bryang.workity.manager.VaultHookManager;
 import me.bryang.workity.manager.WorkActionManager;
 
@@ -13,6 +13,7 @@ public class ManagerLoader implements Loader {
     private ActivitiesManager activitiesManager;
     private VaultHookManager vaultHookManager;
     private WorkActionManager workActionManager;
+    private ConvertFileToMapManager convertFileToMapManager;
 
     public ManagerLoader(PluginCore pluginCore) {
         this.pluginCore = pluginCore;
@@ -41,5 +42,9 @@ public class ManagerLoader implements Loader {
 
     public WorkActionManager getWorkActionManager() {
         return workActionManager;
+    }
+
+    public ConvertFileToMapManager getConvertFileToMapManager() {
+        return convertFileToMapManager;
     }
 }
