@@ -3,7 +3,6 @@ package me.bryang.workity.activites;
 import me.bryang.workity.PluginCore;
 import me.bryang.workity.PluginMetrics;
 import me.bryang.workity.Workity;
-import me.bryang.workity.interfaces.Activities;
 import me.bryang.workity.manager.file.FileManager;
 
 public class MetricsLoadingActivities implements Activities {
