@@ -3,19 +3,19 @@ package me.bryang.workity.action;
 import org.bukkit.entity.Entity;
 import org.bukkit.inventory.ItemStack;
 
-public class Action {
+public class JobAction {
 
     private final JobType jobType;
     private final Entity entity;
     private final ItemStack itemStack;
 
-    public Action(JobType jobType, Entity entity) {
+    public JobAction(JobType jobType, Entity entity) {
         this.jobType = jobType;
         this.entity = entity;
         this.itemStack = null;
     }
 
-    public Action(JobType jobType, ItemStack itemStack) {
+    public JobAction(JobType jobType, ItemStack itemStack) {
         this.jobType = jobType;
         this.itemStack = itemStack;
         this.entity = null;
