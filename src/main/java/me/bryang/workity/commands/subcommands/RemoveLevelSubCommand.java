@@ -6,7 +6,7 @@ import me.bryang.workity.data.PlayerJobData;
 import me.bryang.workity.loader.DataLoader;
 import me.bryang.workity.manager.file.FileDataManager;
 import me.bryang.workity.manager.file.FileManager;
-import me.bryang.workity.utils.TextUtils;
+import me.bryang.workity.utils.MathLevelsUtils;
 import me.fixeddev.commandflow.annotated.CommandClass;
 import me.fixeddev.commandflow.annotated.annotation.Command;
 import me.fixeddev.commandflow.annotated.annotation.OptArg;
@@ -101,7 +101,7 @@ public class RemoveLevelSubCommand implements CommandClass {
 
         playerJobDataRemoveLevel.setLevel(playerJobDataRemoveLevel.getLevel() - levelArgument);
         playerJobDataRemoveLevel.setMaxXP(
-                TextUtils.calculateNumber(configFile.getString("config.formula.max-xp"),
+                MathLevelsUtils.calculateNumber(configFile.getString("config.formula.max-xp"),
                         playerJobDataRemoveLevel.getLevel() - levelArgument));
 
         playersFile.setJobData(sender.getUniqueId(), "job-list." + jobArgument + ".level", levelArgument);

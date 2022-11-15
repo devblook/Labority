@@ -4,11 +4,10 @@ import me.bryang.workity.PluginCore;
 import me.bryang.workity.Workity;
 import me.bryang.workity.data.PlayerData;
 import me.bryang.workity.data.PlayerJobData;
-import me.bryang.workity.interfaces.Activities;
 import me.bryang.workity.loader.DataLoader;
 import me.bryang.workity.manager.file.FileDataManager;
 import me.bryang.workity.manager.file.FileManager;
-import me.bryang.workity.utils.TextUtils;
+import me.bryang.workity.utils.MathLevelsUtils;
 
 import java.util.UUID;
 
@@ -44,7 +43,7 @@ public class PluginLoadingActivities implements Activities {
                 playerJobData.setLevel(playersFile.getJobData(playerUniqueId).getInt(".job-list." + jobName + ".xp"));
                 playerJobData.setLevel(playersFile.getJobData(playerUniqueId).getInt(".job-list." + jobName + ".level"));
                 playerJobData.setMaxXP(
-                        TextUtils.calculateNumber(configFile.getString("config.formula.max-xp"), 1));
+                        MathLevelsUtils.calculateNumber(configFile.getString("config.formula.max-xp"), 1));
                 playerData.putJob(jobName, playerJobData);
             }
         }

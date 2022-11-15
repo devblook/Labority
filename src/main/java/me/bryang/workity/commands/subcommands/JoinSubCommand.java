@@ -6,7 +6,7 @@ import me.bryang.workity.loader.DataLoader;
 import me.bryang.workity.manager.VaultHookManager;
 import me.bryang.workity.manager.file.FileDataManager;
 import me.bryang.workity.manager.file.FileManager;
-import me.bryang.workity.utils.TextUtils;
+import me.bryang.workity.utils.MathLevelsUtils;
 import me.fixeddev.commandflow.annotated.CommandClass;
 import me.fixeddev.commandflow.annotated.annotation.Command;
 import me.fixeddev.commandflow.annotated.annotation.OptArg;
@@ -103,7 +103,7 @@ public class JoinSubCommand implements CommandClass {
 
             playerData.addJob(jobName);
             playerData.getJob(jobName).setMaxXP(
-                    TextUtils.calculateNumber(configFile.getString("config.formula.max-xp"), 1));
+                    MathLevelsUtils.calculateNumber(configFile.getString("config.formula.max-xp"), 1));
 
             playersFile.setJobData(sender.getUniqueId(), "job-list." + jobName + ".level", 1);
             playersFile.setJobData(sender.getUniqueId(), "job-list." + jobName + ".xp", 0);
