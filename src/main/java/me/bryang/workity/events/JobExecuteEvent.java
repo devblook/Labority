@@ -1,7 +1,7 @@
 package me.bryang.workity.events;
 
 
-import me.bryang.workity.action.Action;
+import me.bryang.workity.action.JobAction;
 import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
 
@@ -13,10 +13,10 @@ public class JobExecuteEvent extends Event {
 
     private final UUID targetUniqueId;
 
-    private final Action action;
+    private final JobAction jobAction;
 
-    public JobExecuteEvent(UUID targetUniqueId, Action action) {
-        this.action = action;
+    public JobExecuteEvent(UUID targetUniqueId, JobAction jobAction) {
+        this.jobAction = jobAction;
         this.targetUniqueId = targetUniqueId;
     }
 
@@ -33,8 +33,8 @@ public class JobExecuteEvent extends Event {
         return targetUniqueId;
     }
 
-    public Action getAction() {
-        return action;
+    public JobAction getAction() {
+        return jobAction;
     }
 
 

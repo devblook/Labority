@@ -1,7 +1,7 @@
 package me.bryang.workity.listeners;
 
 import me.bryang.workity.PluginCore;
-import me.bryang.workity.action.Action;
+import me.bryang.workity.action.JobAction;
 import me.bryang.workity.action.JobType;
 import me.bryang.workity.events.JobExecuteEvent;
 import me.bryang.workity.manager.file.FileManager;
@@ -32,7 +32,7 @@ public class WorkDeathListener implements Listener {
         }
 
         Bukkit.getPluginManager().callEvent(new JobExecuteEvent(
-                player.getUniqueId(), new Action(JobType.PLAYER_KILL_ENTITY, event.getEntity())
+                player.getUniqueId(), new JobAction(JobType.PLAYER_KILL_ENTITY, event.getEntity())
         ));
     }
 }

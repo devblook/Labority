@@ -1,7 +1,7 @@
 package me.bryang.workity.listeners;
 
 import me.bryang.workity.PluginCore;
-import me.bryang.workity.action.Action;
+import me.bryang.workity.action.JobAction;
 import me.bryang.workity.action.JobType;
 import me.bryang.workity.events.JobExecuteEvent;
 import me.bryang.workity.manager.file.FileManager;
@@ -43,7 +43,7 @@ public class WorkBreakListener implements Listener {
 
         Bukkit.getPluginManager().callEvent(new JobExecuteEvent(
                 event.getPlayer().getUniqueId(),
-                new Action(JobType.PLAYER_BREAK_BLOCK, new ItemStack(block.getType())))
+                new JobAction(JobType.PLAYER_BREAK_BLOCK, new ItemStack(block.getType())))
         );
 
     }

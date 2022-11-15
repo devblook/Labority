@@ -1,7 +1,7 @@
 package me.bryang.workity.listeners;
 
 import me.bryang.workity.PluginCore;
-import me.bryang.workity.action.Action;
+import me.bryang.workity.action.JobAction;
 import me.bryang.workity.data.PlayerJobData;
 import me.bryang.workity.events.JobExecuteEvent;
 import me.bryang.workity.loader.DataLoader;
@@ -27,18 +27,18 @@ public class WorkExecutorListener implements Listener {
     public void onWork(JobExecuteEvent event) {
         for (String jobName : dataLoader.getJobDataMap().keySet()) {
 
-            Action action = event.getAction();
+            JobAction jobAction = event.getAction();
 
-            if (!dataLoader.getJobDataMap().get(jobName).isActivityType(action.getType())) {
+            if (!dataLoader.getJobDataMap().get(jobName).isActivityType(jobAction.getType())) {
                 continue;
             }
 
             String dataRequired;
 
-            if (action.getEntity() != null) {
-                dataRequired = action.getEntity().getType().name().toUpperCase();
+            if (jobAction.getEntity() != null) {
+                dataRequired = jobAction.getEntity().getType().name().toUpperCase();
             } else {
-                dataRequired = action.getItemStack().getType().name().toUpperCase();
+                dataRequired = jobAction.getItemStack().getType().name().toUpperCase();
             }
 
             if (dataLoader.getJobDataMap().get(jobName).getBlockJobDataMap().get(dataRequired) == null) {
