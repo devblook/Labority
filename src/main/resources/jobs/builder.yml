@@ -9,6 +9,7 @@ job:
   # Load global stats
   global_stats: false
 
+
   # List of items
   items:
     # Format: money: GAIN_MONEY, xp: GAIN_XP_JOB:
