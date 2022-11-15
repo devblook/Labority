@@ -13,7 +13,7 @@ public class WorkActionManager {
 
     private final PluginCore pluginCore;
 
-    private final List<WorkAction> workActions = new ArrayList<>();
+    private final List<JobManager> jobManagers = new ArrayList<>();
 
     public WorkActionManager(PluginCore pluginCore) {
         this.pluginCore = pluginCore;
@@ -29,13 +29,13 @@ public class WorkActionManager {
 
     }
 
-    public void addActions(WorkAction... newWorkActions) {
-        workActions.addAll(Arrays.asList(newWorkActions));
+    public void addActions(JobManager... newJobManagers) {
+        jobManagers.addAll(Arrays.asList(newJobManagers));
     }
 
     public void doActions(Player player, String jobName, String itemName, PlayerJobData playerJobData) {
-        for (WorkAction workAction : workActions) {
-            workAction.doWorkAction(player, jobName, itemName, playerJobData);
+        for (JobManager jobManager : jobManagers) {
+            jobManager.doWorkAction(player, jobName, itemName, playerJobData);
         }
     }
 }

@@ -7,7 +7,7 @@ import me.bryang.workity.manager.VaultHookManager;
 import me.bryang.workity.manager.file.FileManager;
 import org.bukkit.entity.Player;
 
-public class JobSetMultiplierManager implements WorkAction {
+public class JobSetMultiplierManager implements JobManager {
 
     private final DataLoader dataLoader;
 
