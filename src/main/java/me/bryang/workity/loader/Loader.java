@@ -1,4 +1,4 @@
-package me.bryang.workity.interfaces;
+package me.bryang.workity.loader;
 
 public interface Loader {
 
