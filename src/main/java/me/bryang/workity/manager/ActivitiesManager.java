@@ -1,10 +1,10 @@
 package me.bryang.workity.manager;
 
 import me.bryang.workity.PluginCore;
+import me.bryang.workity.activites.Activities;
 import me.bryang.workity.activites.JobsLoadingActivities;
 import me.bryang.workity.activites.MetricsLoadingActivities;
 import me.bryang.workity.activites.PluginLoadingActivities;
-import me.bryang.workity.interfaces.Activities;
 
 public class ActivitiesManager {
 
