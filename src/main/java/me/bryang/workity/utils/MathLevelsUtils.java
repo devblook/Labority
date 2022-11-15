@@ -3,7 +3,7 @@ package me.bryang.workity.utils;
 import net.objecthunter.exp4j.Expression;
 import net.objecthunter.exp4j.ExpressionBuilder;
 
-public class TextUtils {
+public class MathLevelsUtils {
 
     public static double calculateDoubleNumber(String format, int level) {
 
