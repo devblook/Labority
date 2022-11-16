@@ -1,7 +1,6 @@
 package me.bryang.workity.loader;
 
 import me.bryang.workity.Workity;
-import me.bryang.workity.manager.file.FileDataManager;
 import me.bryang.workity.manager.file.FileManager;
 
 public class FilesLoader implements Loader {
@@ -10,8 +9,6 @@ public class FilesLoader implements Loader {
 
     private FileManager configFile;
     private FileManager messagesFile;
-    private FileDataManager playersFile;
-
     public FilesLoader(Workity plugin) {
         this.plugin = plugin;
     }
@@ -21,7 +18,6 @@ public class FilesLoader implements Loader {
 
         configFile = new FileManager(plugin, "config");
         messagesFile = new FileManager(plugin, "messages");
-        playersFile = new FileDataManager(plugin, "players");
 
         plugin.getLogger().info("Files loaded");
     }
@@ -35,7 +31,4 @@ public class FilesLoader implements Loader {
         return messagesFile;
     }
 
-    public FileDataManager getPlayersFile() {
-        return playersFile;
-    }
 }
