@@ -4,18 +4,18 @@ import me.bryang.workity.PluginCore;
 import me.bryang.workity.data.PlayerJobData;
 import me.bryang.workity.data.jobs.BlockJobData;
 import me.bryang.workity.data.jobs.JobData;
+import me.bryang.workity.database.Database;
 import me.bryang.workity.loader.DataLoader;
-import me.bryang.workity.manager.file.FileDataManager;
 import org.bukkit.entity.Player;
 
 public class JobAddStatsPointsManager implements JobManager {
 
-    private final FileDataManager playersFile;
+    private final Database database;
     private final DataLoader dataLoader;
 
 
     public JobAddStatsPointsManager(PluginCore pluginCore) {
-        this.playersFile = pluginCore.getFilesLoader().getPlayersFile();
+        this.database = pluginCore.getDatabaseLoader().getDatabase();
 
         this.dataLoader = pluginCore.getDataLoader();
     }
@@ -33,29 +33,31 @@ public class JobAddStatsPointsManager implements JobManager {
             }
 
 
-            int itemDataStats = playersFile.getJobData(player.getUniqueId()).getInt(".stats", -1);
+            int itemDataStats = database.getJobIntData(player.getUniqueId(), jobName, "stats.item." + itemName);
 
             if (itemDataStats == -1) {
-                playersFile.setJobData(player.getUniqueId(), "job-list." + jobData.getJobName() + ".items." + itemName + "stats.", 1);
-            } else {
+                database.insertJobData(player.getUniqueId(), jobName, "stats.item." + itemName, 1);
 
-                playersFile.setJobData(player.getUniqueId(), "job-list." + jobData.getJobName() + ".items." + itemName + "stats", itemDataStats + 1);
+            } else {
+                database.insertJobData(player.getUniqueId(), jobName, "stats.item." + itemName, itemDataStats + 1);
             }
 
+            database.save();
             playerJobData.getJobData().put(itemName, itemDataStats + 1);
             return;
         }
 
 
-        int itemDataStats = playersFile.getJobData(player.getUniqueId()).getInt(".stats", -1);
+        int itemDataStats = database.getIntData(player.getUniqueId(), "stats");
 
         if (itemDataStats == -1) {
-            playersFile.setJobData(player.getUniqueId(), "job-list." + playerJobData + "action-stats.", 1);
+            database.insertData(player.getUniqueId(), "stats", 1);
         } else {
 
-            playersFile.setJobData(player.getUniqueId(), "job-list." + playerJobData + ".action-stats", itemDataStats + 1);
+            database.insertData(player.getUniqueId(), "stats", itemDataStats + 1);
         }
 
+        database.save();
         playerJobData.addGlobalStats();
 
 

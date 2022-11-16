@@ -2,8 +2,8 @@ package me.bryang.workity.commands.subcommands;
 
 import me.bryang.workity.commands.JobsCommand;
 import me.bryang.workity.data.PlayerData;
+import me.bryang.workity.database.Database;
 import me.bryang.workity.loader.DataLoader;
-import me.bryang.workity.manager.file.FileDataManager;
 import me.bryang.workity.manager.file.FileManager;
 import me.fixeddev.commandflow.annotated.CommandClass;
 import me.fixeddev.commandflow.annotated.annotation.Command;
@@ -13,13 +13,13 @@ import org.bukkit.entity.Player;
 public class LeaveAllSubCommand implements CommandClass {
 
     private final FileManager messagesFile;
-    private final FileDataManager playersFile;
 
     private final DataLoader dataLoader;
+    private final Database database;
 
     public LeaveAllSubCommand(JobsCommand jobsCommand) {
         this.messagesFile = jobsCommand.getPluginCore().getFilesLoader().getMessagesFile();
-        this.playersFile = jobsCommand.getPluginCore().getFilesLoader().getPlayersFile();
+        this.database = jobsCommand.getPluginCore().getDatabaseLoader().getDatabase();
 
         this.dataLoader = jobsCommand.getPluginCore().getDataLoader();
     }
@@ -40,11 +40,15 @@ public class LeaveAllSubCommand implements CommandClass {
 
         playerDataLeaveAll.getJobsMap().clear();
 
-        for (String text : playersFile.getJobsKeys(sender.getUniqueId())) {
-            playersFile.setJobData(sender.getUniqueId(), "job-list." + text + ".level", "");
-            playersFile.setJobData(sender.getUniqueId(), "job-list." + text + ".xp", "");
-            playersFile.save();
+        for (String jobName : database.getPlayerJobs(sender.getUniqueId())) {
+
+            database
+                    .insertJobData(sender.getUniqueId(), jobName, "level", "")
+                    .insertJobData(sender.getUniqueId(), jobName, "xp", "")
+                    .save();
+
         }
+
         sender.sendMessage(messagesFile.getString("jobs.leave-all.message"));
         return true;
     }

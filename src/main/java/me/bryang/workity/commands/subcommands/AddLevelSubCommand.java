@@ -3,8 +3,8 @@ package me.bryang.workity.commands.subcommands;
 import me.bryang.workity.commands.JobsCommand;
 import me.bryang.workity.data.PlayerData;
 import me.bryang.workity.data.PlayerJobData;
+import me.bryang.workity.database.Database;
 import me.bryang.workity.loader.DataLoader;
-import me.bryang.workity.manager.file.FileDataManager;
 import me.bryang.workity.manager.file.FileManager;
 import me.bryang.workity.utils.MathLevelsUtils;
 import me.fixeddev.commandflow.annotated.CommandClass;
@@ -18,14 +18,15 @@ public class AddLevelSubCommand implements CommandClass {
 
     private final FileManager configFile;
     private final FileManager messagesFile;
-    private final FileDataManager playersFile;
+
+    private final Database database;
 
     private final DataLoader dataLoader;
 
     public AddLevelSubCommand(JobsCommand jobsCommand) {
         this.messagesFile = jobsCommand.getPluginCore().getFilesLoader().getMessagesFile();
         this.configFile = jobsCommand.getPluginCore().getFilesLoader().getConfigFile();
-        this.playersFile = jobsCommand.getPluginCore().getFilesLoader().getPlayersFile();
+        this.database = jobsCommand.getPluginCore().getDatabaseLoader().getDatabase();
 
         this.dataLoader = jobsCommand.getPluginCore().getDataLoader();
     }
@@ -68,7 +69,7 @@ public class AddLevelSubCommand implements CommandClass {
 
         PlayerData playerData = dataLoader.getPlayerJob(target.getUniqueId());
 
-        if (!playersFile.isConfigurationSection("jobs." + jobArgument)) {
+        if (!dataLoader.jobExists(jobArgument)) {
             sender.sendMessage(messagesFile.getString("error.unknown-job")
                     .replace("%job%", jobArgument));
             return true;
@@ -98,9 +99,10 @@ public class AddLevelSubCommand implements CommandClass {
                 MathLevelsUtils.calculateNumber(configFile.getString("config.formula.max-xp"),
                         playerJobData.getLevel() + levelArgument));
 
-        playersFile.setJobData(sender.getUniqueId(), "job-list." + jobArgument + ".level", playerJobData.getLevel());
-        playersFile.setJobData(sender.getUniqueId(), "job-list." + jobArgument + ".xp", 0);
-        playersFile.save();
+        database
+                .insertJobData(sender.getUniqueId(), jobArgument, "level", playerJobData.getLevel())
+                .insertJobData(sender.getUniqueId(), jobArgument, "xp", 0)
+                .save();
 
         sender.sendMessage(messagesFile.getString("jobs.add-level.message")
                 .replace("%level%", String.valueOf(playerJobData.getLevel() + levelArgument))

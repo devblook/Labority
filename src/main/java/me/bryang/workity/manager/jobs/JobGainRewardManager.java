@@ -3,9 +3,9 @@ package me.bryang.workity.manager.jobs;
 import me.bryang.workity.PluginCore;
 import me.bryang.workity.data.PlayerJobData;
 import me.bryang.workity.data.jobs.BlockJobData;
+import me.bryang.workity.database.Database;
 import me.bryang.workity.loader.DataLoader;
 import me.bryang.workity.manager.VaultHookManager;
-import me.bryang.workity.manager.file.FileDataManager;
 import me.bryang.workity.manager.file.FileManager;
 import me.bryang.workity.utils.MathLevelsUtils;
 import net.md_5.bungee.api.ChatMessageType;
@@ -17,7 +17,7 @@ public class JobGainRewardManager implements JobManager {
     private final DataLoader dataLoader;
 
     private final FileManager configFile;
-    private final FileDataManager playersFile;
+    private final Database database;
 
     private final VaultHookManager vaultHookManager;
 
@@ -26,7 +26,7 @@ public class JobGainRewardManager implements JobManager {
         this.dataLoader = pluginCore.getDataLoader();
 
         this.configFile = pluginCore.getFilesLoader().getConfigFile();
-        this.playersFile = pluginCore.getFilesLoader().getPlayersFile();
+        this.database = pluginCore.getDatabaseLoader().getDatabase();
 
         this.vaultHookManager = pluginCore.getManagerLoader().getVaultHookManager();
     }
@@ -57,8 +57,8 @@ public class JobGainRewardManager implements JobManager {
                         .replace("%money%", String.valueOf(moneyReward))
                         .replace("%xp%", String.valueOf(xpReward))));
 
-        playersFile.setJobData(player.getUniqueId(), "job-list." + playerJobData.getName() + ".level", "");
-        playersFile.setJobData(player.getUniqueId(), "job-list." + playerJobData.getName() + ".xp", "");
-        playersFile.save();
+        database
+                .insertJobData(player.getUniqueId(), jobName, "xp", playerJobData.getXpPoints() + xpReward)
+                .save();
     }
 }
