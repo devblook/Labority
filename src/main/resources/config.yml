@@ -3,6 +3,18 @@
 
 config:
 
+  # Database [NONE, MySQL]
+  database:
+
+    type: NONE
+
+    hostname: hostname
+    port: 25565
+    database: database
+
+    username: username
+    password: password
+
   # Limit of jobs each player.
   limit-jobs:
 
