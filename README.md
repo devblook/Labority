@@ -11,7 +11,7 @@ You can do:
 - Create jobs.
 - Give rewards if a player go to a specific level.
 - Multiply the money and xp.
-- Join/Leave more than one job using a single command.
+- Join/leave more than one job using a single command.
 
 ### Permissions:
 
