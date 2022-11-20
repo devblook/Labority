@@ -6,10 +6,12 @@ A job plugin that allows you to customize your jobs in an optimized way.
 
 ### Features:
 
-- Messages personalizables.
-- You can create jobs.
-- You can give rewards if a player go to a specific level.
-- You can multiply the money and xp.
+You can do:
+- Customizable messages.
+- Create jobs.
+- Give rewards if a player go to a specific level.
+- Multiply the money and xp.
+- Join/Leave more than one job using a single command.
 
 ### Permissions:
 
@@ -21,5 +23,6 @@ A job plugin that allows you to customize your jobs in an optimized way.
 - Woodcutter
 - Hunter
 - Builder
+- Crafter
 
 If you want support check [the server]( https://discord.devblook.team/)
