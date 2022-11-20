@@ -1,6 +1,9 @@
 #
 # Config
 
+# Wiki: https://github.com/devblook/workity/wiki
+# Discord support: http://discord.devblook.team/
+
 config:
 
   # Database [NONE, MySQL]
@@ -11,6 +14,8 @@ config:
     hostname: hostname
     port: 25565
     database: database
+
+    tablename: tablename
 
     username: username
     password: password
