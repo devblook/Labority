@@ -8,7 +8,7 @@ A job plugin that allows you to customize your jobs in an optimized way.
 
 You can do:
 - Customizable messages.
-- Create jobs.
+- [Create jobs.](https://github.com/devblook/workity/wiki/Create-jobs)
 - Give rewards if a player go to a specific level.
 - Multiply the money and xp.
 - Join/leave more than one job using a single command.
