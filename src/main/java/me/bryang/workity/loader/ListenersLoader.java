@@ -21,6 +21,7 @@ public class ListenersLoader implements Loader {
                 new WorkPlaceListener(pluginCore),
                 new WorkBreakListener(pluginCore),
                 new WorkDeathListener(pluginCore),
+                new WorkCraftListener(),
                 new PlayerRegistryListener(pluginCore),
                 new WorkFurnaceListener(pluginCore),
                 new WorkExecutorListener(pluginCore));
