@@ -25,5 +25,5 @@ You can do:
 - Builder
 - Crafter
 
-If you want support check [the server support.]( https://discord.devblook.team/)
+If you want support check [the server support.](https://discord.devblook.team/)
 To see the wiki [click there.](https://github.com/devblook/workity/wiki)
