@@ -1,0 +1,32 @@
+# Crafter job
+job:
+  # Name of the job:
+  name: "Crafter"
+
+  # List of types: https://github.com/devblook/workity/wiki/Event-types
+  type: PLAYER_CRAFT_ITEM
+
+  # List of items
+  items:
+    # Format: money: GAIN_MONEY, xp: GAIN_XP_JOB:
+
+    WOODEN_SWORD:
+      money: 2
+      xp: 2
+
+    STONE_SWORD:
+      money: 3
+      xp: 3
+
+    IRON_SWORD:
+      money: 4
+      xp: 4
+
+    GOLD_SWORD:
+      money: 3
+      xp: 3
+
+    DIAMOND_SWORD:
+      money: 5
+      xp: 5
+

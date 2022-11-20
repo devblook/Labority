@@ -2,6 +2,7 @@
 job:
   name: "Woodcutter"
 
+  # List of types: https://github.com/devblook/workity/wiki/Event-types
   type: PLAYER_BREAK_BLOCK
 
   # List of items

@@ -1,69 +1,54 @@
 
 
-  # Miner job:
-  job:
+# Miner job:
+job:
 
-    # Name of the job:
-    name: "Miner"
+  # Name of the job:
+  name: "Miner"
 
-    # Type [PLAYER_BREAK_BLOCK, PLAYER_PLACE_BLOCK, PLAYER_KILL_ENTITY]
-    type: PLAYER_BREAK_BLOCK
+  # List of types: https://github.com/devblook/workity/wiki/Event-types
+  type: PLAYER_BREAK_BLOCK
 
-    # Allow global stats
-    global_stats: true
+  # List of items
+   items:
 
-    # List of items
-    items:
+    # Format: money: GAIN_MONEY, xp: GAIN_XP_JOB:
 
-      # Format: money: GAIN_MONEY, xp: GAIN_XP_JOB:
+    STONE:
 
-      STONE:
+      money: 1
+      xp: 1
 
-        money: 1
-        xp: 1
+    COAL_ORE:
 
-        enabled_stats: false
+      money: 2
+      xp: 2
 
-      COAL_ORE:
-        money: 2
-        xp: 2
 
-        enabled_stats: false
+    IRON_ORE:
+      money: 2
+      xp: 2
 
-      IRON_ORE:
-        money: 2
-        xp: 2
+    GOLD_ORE:
+      money: 3
+      xp: 3
 
-        enabled_stats: false
+    DIAMOND_ORE:
+      money: 5
+      xp: 5
 
-      GOLD_ORE:
-        money: 3
-        xp: 3
 
-        enabled_stats: false
+    EMERALD_ORE:
+      money: 4
+      xp: 4
 
-      DIAMOND_ORE:
-        money: 5
-        xp: 5
+    REDSTONE_ORE:
+      money: 3
+      xp: 4
 
-        enabled_stats: false
 
-      EMERALD_ORE:
-        money: 4
-        xp: 4
-
-        enabled_stats: false
-
-      REDSTONE_ORE:
-        money: 3
-        xp: 4
-
-        enabled_stats: false
-
-      LAPIZ_ORE:
-        money: 3
-        xp: 3
-
-        enabled_stats: false
+    LAPIZ_ORE:
+      money: 3
+      xp: 3
 
 
