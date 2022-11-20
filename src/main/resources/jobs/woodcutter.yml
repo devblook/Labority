@@ -2,52 +2,38 @@
 job:
   name: "Woodcutter"
 
-  # Type [PLAYER_BREAK_BLOCK, PLAYER_PLACE_BLOCK, PLAYER_KILL_ENTITY]
   type: PLAYER_BREAK_BLOCK
-
-  # Load global stats
-  global_stats: false
 
   # List of items
   items:
+
+    # Format: money: GAIN_MONEY, xp: GAIN_XP_JOB:
     ACACIA_LOG:
 
       money: 1
       xp: 1
-
-      enabled_stats: false
 
     BIRCH_LOG:
 
       money: 1
       xp: 1
 
-      enabled_stats: false
-
     DARK_OAK_LOG:
 
       money: 1
       xp: 1
-
-      enabled_stats: false
 
     JUNGLE_LOG:
 
       money: 1
       xp: 1
 
-      enabled_stats: false
-
     MANGROVE_LOG:
 
       money: 1
       xp: 1
 
-      enabled_stats: false
-
     OAK_LOG:
 
       money: 1
       xp: 1
-
-      enabled_stats: false
