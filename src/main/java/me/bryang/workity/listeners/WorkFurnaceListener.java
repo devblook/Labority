@@ -37,7 +37,6 @@ public class WorkFurnaceListener implements Listener {
                     .equalsIgnoreCase("PLAYER_BREAK_BLOCK")) {
                 continue;
             }
-
             if (!database.getPlayerJobs(event.getPlayer().getUniqueId()).contains(keys)) {
                 continue;
             }
