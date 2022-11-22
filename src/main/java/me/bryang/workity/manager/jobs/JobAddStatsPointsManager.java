@@ -2,8 +2,6 @@ package me.bryang.workity.manager.jobs;
 
 import me.bryang.workity.PluginCore;
 import me.bryang.workity.data.PlayerJobData;
-import me.bryang.workity.data.jobs.BlockJobData;
-import me.bryang.workity.data.jobs.JobData;
 import me.bryang.workity.database.Database;
 import me.bryang.workity.loader.DataLoader;
 import org.bukkit.entity.Player;

@@ -2,12 +2,8 @@ package me.bryang.workity.database;
 
 import me.bryang.workity.Workity;
 import me.bryang.workity.manager.file.FileManager;
-import org.bukkit.entity.Player;
-import org.checkerframework.checker.guieffect.qual.UI;
-
 
 import java.io.File;
-import java.nio.charset.StandardCharsets;
 import java.util.*;
 
 public class PlayerFilesDatabase implements Database{

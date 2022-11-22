@@ -1,6 +1,5 @@
 package me.bryang.workity;
 
-import me.bryang.workity.database.Database;
 import me.bryang.workity.loader.*;
 import me.bryang.workity.loader.command.CommandsLoader;
 
