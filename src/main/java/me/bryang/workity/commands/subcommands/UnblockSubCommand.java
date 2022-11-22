@@ -25,6 +25,7 @@ public class UnblockSubCommand implements CommandClass {
 
         this.jobStatusSet = jobsCommand.getPluginCore().getDataLoader().getJobStatusSet();
     }
+
     @Command(
             names = "unblock",
             permission = "jobs.admin")
@@ -35,19 +36,19 @@ public class UnblockSubCommand implements CommandClass {
             @OptArg("") String jobName) {
 
 
-        if (jobName.isEmpty()){
+        if (jobName.isEmpty()) {
             sender.sendMessage(messagesFile.getString("error.no-argument")
                     .replace("%usage%", "/jobs block [-all/<job>]"));
             return true;
         }
 
-        if (jobName.equalsIgnoreCase("-all")){
+        if (jobName.equalsIgnoreCase("-all")) {
             jobStatusSet.clear();
             sender.sendMessage(messagesFile.getString("jobs.unblock.all"));
             return true;
         }
 
-        if (!dataLoader.jobExists(jobName)){
+        if (!dataLoader.jobExists(jobName)) {
             return true;
         }
 

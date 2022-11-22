@@ -6,7 +6,7 @@ import me.bryang.workity.manager.file.FileManager;
 import java.io.File;
 import java.util.*;
 
-public class PlayerFilesDatabase implements Database{
+public class PlayerFilesDatabase implements Database {
 
 
     private final Workity workity;
@@ -15,20 +15,20 @@ public class PlayerFilesDatabase implements Database{
     List<String> listUniqueIds;
 
 
-    public PlayerFilesDatabase(Workity workity){
+    public PlayerFilesDatabase(Workity workity) {
         this.workity = workity;
 
         initDatabase();
     }
 
     @Override
-    public void initDatabase(){
+    public void initDatabase() {
         File jobsFolder = new File(workity.getDataFolder().getPath() + "/players");
         jobsFolder.mkdir();
     }
 
     @Override
-    public void createData(UUID playerUniqueId){
+    public void createData(UUID playerUniqueId) {
 
         FileManager fileManager = new FileManager(workity, "players/" + playerUniqueId);
         playerList.put(playerUniqueId, fileManager);

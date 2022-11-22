@@ -6,7 +6,7 @@ import me.bryang.workity.database.Database;
 import me.bryang.workity.database.PlayerFilesDatabase;
 import me.bryang.workity.manager.file.FileManager;
 
-public class DatabaseLoader implements Loader{
+public class DatabaseLoader implements Loader {
 
     private final Workity workity;
 
@@ -22,12 +22,12 @@ public class DatabaseLoader implements Loader{
     @Override
     public void load() {
 
-        if (configFile.getString("database.type").equalsIgnoreCase("NONE")){
+        if (configFile.getString("database.type").equalsIgnoreCase("NONE")) {
             database = new PlayerFilesDatabase(workity);
         }
     }
 
-    public Database getDatabase(){
+    public Database getDatabase() {
         return database;
     }
 }

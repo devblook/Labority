@@ -14,7 +14,6 @@ public class JobIncreaseLevelManager implements JobManager {
     private final Database database;
 
 
-
     public JobIncreaseLevelManager(PluginCore pluginCore) {
         this.configFile = pluginCore.getFilesLoader().getConfigFile();
         this.messagesFile = pluginCore.getFilesLoader().getMessagesFile();

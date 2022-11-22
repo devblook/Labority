@@ -63,7 +63,7 @@ public class JoinSubCommand implements CommandClass {
 
             }
 
-            if (dataLoader.getJobStatusSet().contains(jobName)){
+            if (dataLoader.getJobStatusSet().contains(jobName)) {
                 sender.sendMessage(messagesFile.getString("error.blocked-job")
                         .replace("%job%", jobName));
                 continue;

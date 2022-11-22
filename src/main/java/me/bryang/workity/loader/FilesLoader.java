@@ -9,6 +9,7 @@ public class FilesLoader implements Loader {
 
     private FileManager configFile;
     private FileManager messagesFile;
+
     public FilesLoader(Workity plugin) {
         this.plugin = plugin;
     }
