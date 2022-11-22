@@ -5,6 +5,9 @@ import java.util.UUID;
 
 public interface Database {
 
+    void initDatabase();
+
+    void createData(UUID playerUniqueId);
     Database insertJobData(UUID playerUniqueId, String jobName, String playerData, String newData);
     Database insertJobData(UUID playerUniqueId, String jobName, String playerData, int newData);
     Database insertJobData(UUID playerUniqueId, String jobName, String playerData, double newData);
@@ -22,7 +25,7 @@ public interface Database {
 
     List<String> getPlayerList();
     List<String> getPlayerJobs(UUID playerUniqueId);
-    void save();
+    void savePlayer(UUID playerUniqueId);
 
 
 
