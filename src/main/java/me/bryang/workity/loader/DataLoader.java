@@ -4,17 +4,18 @@ import me.bryang.workity.Workity;
 import me.bryang.workity.data.PlayerData;
 import me.bryang.workity.data.jobs.JobData;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
+
 
 public class DataLoader implements Loader {
 
     private final Map<UUID, PlayerData> playerJobDataMap = new HashMap<>();
+
     private final Map<String, JobData> jobDataMap = new HashMap<>();
+    private final Set<String> jobStatusSet = new HashSet<>();
 
     private final Workity workity;
-    double serverMultiplier;
+    private double serverMultiplier;
 
     public DataLoader(Workity workity) {
         this.workity = workity;
@@ -40,7 +41,11 @@ public class DataLoader implements Loader {
     }
 
     public boolean jobExists(String jobName) {
-        return jobDataMap.get(jobName) != null;
+        return jobDataMap.containsKey(jobName);
+    }
+
+    public Set<String> getJobStatusSet() {
+        return jobStatusSet;
     }
 
     public double getServerMultiplier() {
