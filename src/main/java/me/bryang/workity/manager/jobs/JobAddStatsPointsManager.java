@@ -23,38 +23,26 @@ public class JobAddStatsPointsManager implements JobManager {
     @Override
     public void doWorkAction(Player player, String jobName, String itemName, PlayerJobData playerJobData) {
 
-        JobData jobData = dataLoader.getJobDataMap().get(jobName);
-        BlockJobData blockJobData = jobData.getBlockData(itemName);
 
-        if (!jobData.isGlobalStatus()) {
-
-            if (blockJobData.isDisableStatus()) {
-                return;
-            }
-
-
-            int itemDataStats = database.getJobIntData(player.getUniqueId(), jobName, "stats.item." + itemName);
-
-            if (itemDataStats == -1) {
-                database.insertJobData(player.getUniqueId(), jobName, "stats.item." + itemName, 1);
-
-            } else {
-                database.insertJobData(player.getUniqueId(), jobName, "stats.item." + itemName, itemDataStats + 1);
-            }
-
-            database.save();
-            playerJobData.getJobData().put(itemName, itemDataStats + 1);
-            return;
-        }
-
-
-        int itemDataStats = database.getIntData(player.getUniqueId(), "stats");
+        int itemDataStats = database.getJobIntData(player.getUniqueId(), jobName, "stats.item." + itemName);
 
         if (itemDataStats == -1) {
+            database.insertJobData(player.getUniqueId(), jobName, "stats.item." + itemName, 1);
+
+        } else {
+            database.insertJobData(player.getUniqueId(), jobName, "stats.item." + itemName, itemDataStats + 1);
+        }
+
+        playerJobData.getJobData().put(itemName, itemDataStats + 1);
+
+
+        int globalStats = database.getIntData(player.getUniqueId(), "stats");
+
+        if (globalStats == -1) {
             database.insertData(player.getUniqueId(), "stats", 1);
         } else {
 
-            database.insertData(player.getUniqueId(), "stats", itemDataStats + 1);
+            database.insertData(player.getUniqueId(), "stats", globalStats + 1);
         }
 
         database.save();
