@@ -24,6 +24,8 @@ jobs:
       - "&8- &f/jobs set-level &c[player] [job] [level]"
       - "&8- &f/jobs remove-level &c[player] [job] [level]"
       - "&8- &f/jobs set-multiplier &c[number]"
+      - "&8- &f/jobs block &a[job/-all]"
+      - "&8- &f/jobs unblock &a[job/-all]"
 
   # Reload message.
   reload: "&a[Server] &8| &fPlugin reloaded."
@@ -113,6 +115,17 @@ jobs:
 
     # Message when you set a multiplier.
     set: "&a[Server] &8| &FYou set the multiplier &a%multiplier%."
+
+  block:
+
+    all: "&a[Server] &8| &fYou blocked all jobs."
+    job: "&a[Server] &8| &fYou blocked the job &a%job%&f."
+
+  unblock:
+
+    all: "&a[Server] &8| &fYou unblocked all jobs."
+    block: "&a[Server] &8| &fYou unblock the job &a%job%&f."
+
 error:
 
   # When the player is using the console.
@@ -135,9 +148,12 @@ error:
 
   # When you put a negative number.
   negative-number: "&a[Server] &8| &fYou put a negative number, put a number mayor to 0."
+
   # Job error messages:
   #
 
+  # When the player blocked a job.
+  blocked-job: "&a[Server] &8| &fThe job is blocked at this moment: &a%job%&f."
 
   # When the player is not putting a job.
   unknown-job: "&a[Server] &8| &fUnknown job: &a%job%&f."
