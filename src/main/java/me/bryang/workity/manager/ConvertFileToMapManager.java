@@ -23,8 +23,6 @@ public class ConvertFileToMapManager {
         FileManager fileManager = new FileManager(workity, filePath);
 
         String name = fileManager.getString("job.name");
-        boolean globalStats = fileManager.getBoolean("job.global-status");
-
         JobType activityType = JobType.valueOf(fileManager.getString("job.type").toUpperCase());
 
         Map<String, BlockJobData> materialBlockJobDataMap = new HashMap<>();
@@ -34,11 +32,10 @@ public class ConvertFileToMapManager {
             int money = fileManager.getInt("job.items." + keys + ".money");
             int xp = fileManager.getInt("job.items." + keys + ".xp");
 
-            boolean enableStatus = fileManager.getBoolean("job.items." + keys + ".enable-status");
 
-            materialBlockJobDataMap.put(keys, new BlockJobData(money, xp, enableStatus));
+            materialBlockJobDataMap.put(keys, new BlockJobData(money, xp));
         }
 
-        return new JobData(name, globalStats, activityType, materialBlockJobDataMap);
+        return new JobData(name, activityType, materialBlockJobDataMap);
     }
 }
