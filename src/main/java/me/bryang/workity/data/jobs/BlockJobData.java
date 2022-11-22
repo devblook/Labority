@@ -5,14 +5,12 @@ public class BlockJobData {
     private final int gainXP;
     private final int gainMoney;
 
-    private final boolean enableStatus;
 
-    public BlockJobData(int gainMoney, int gainXP, boolean enableStatus) {
+    public BlockJobData(int gainMoney, int gainXP) {
 
         this.gainMoney = gainMoney;
         this.gainXP = gainXP;
 
-        this.enableStatus = enableStatus;
 
     }
 
@@ -25,8 +23,5 @@ public class BlockJobData {
         return gainMoney;
     }
 
-    public boolean isDisableStatus() {
-        return !enableStatus;
-    }
 
 }

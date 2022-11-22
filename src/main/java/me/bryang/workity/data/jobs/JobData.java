@@ -11,15 +11,12 @@ public class JobData {
     private final Map<String, BlockJobData> blockJobDataMap;
     private final JobType activityType;
 
-    private final boolean globalStatus;
 
-
-    public JobData(String jobName, boolean globalStatus, JobType activityType,
+    public JobData(String jobName, JobType activityType,
                    Map<String, BlockJobData> blockJobDataMap) {
 
         this.jobName = jobName;
 
-        this.globalStatus = globalStatus;
         this.activityType = activityType;
         this.blockJobDataMap = blockJobDataMap;
     }
@@ -40,8 +37,5 @@ public class JobData {
         return blockJobDataMap.get(blockName);
     }
 
-    public boolean isGlobalStatus() {
-        return globalStatus;
-    }
 
 }
