@@ -1,3 +1,5 @@
+note: project abandoned, this is read-only
+
 [![CodeFactor](https://www.codefactor.io/repository/github/devblook/workity/badge)](https://www.codefactor.io/repository/github/devblook/workity)
 
 # Workity
