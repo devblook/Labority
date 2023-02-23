@@ -43,9 +43,10 @@ public class LeaveAllSubCommand implements CommandClass {
         for (String jobName : database.getPlayerJobs(sender.getUniqueId())) {
 
             database
-                    .insertJobData(sender.getUniqueId(), jobName, "level", "")
-                    .insertJobData(sender.getUniqueId(), jobName, "xp", "")
-                    .save();
+                    .initActivity(sender.getUniqueId(), true)
+                    .insertJobData(jobName, "level", "")
+                    .insertJobData(jobName, "xp", "")
+                    .savePlayerAndCloseActivity();
 
         }
 

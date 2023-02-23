@@ -2,6 +2,7 @@ package me.bryang.workity;
 
 import me.bryang.workity.loader.*;
 import me.bryang.workity.loader.command.CommandsLoader;
+import me.bryang.workity.loader.database.DatabaseLoader;
 
 public class PluginCore implements Core {
 

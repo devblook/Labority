@@ -58,7 +58,8 @@ public class JobGainRewardManager implements JobManager {
                         .replace("%xp%", String.valueOf(xpReward))));
 
         database
-                .insertJobData(player.getUniqueId(), jobName, "xp", playerJobData.getXpPoints() + xpReward)
-                .save();
+                .initActivity(player.getUniqueId(), true)
+                .insertJobData(jobName, "xp", playerJobData.getXpPoints() + xpReward)
+                .savePlayerAndCloseActivity();
     }
 }

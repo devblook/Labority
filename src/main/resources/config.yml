@@ -6,10 +6,10 @@
 
 config:
 
-  # Database [NONE, MySQL]
+  # Database [YML, JSON, MySQL]
   database:
 
-    type: NONE
+    type: YML
 
     hostname: hostname
     port: 25565

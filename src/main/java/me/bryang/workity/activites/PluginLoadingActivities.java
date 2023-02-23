@@ -45,8 +45,12 @@ public class PluginLoadingActivities implements Activities {
             for (String jobName : database.getPlayerJobs(playerUniqueId)) {
                 PlayerJobData playerJobData = new PlayerJobData(jobName);
 
-                playerJobData.setLevel(database.getJobIntData(playerUniqueId, jobName, "xp"));
-                playerJobData.setLevel(database.getJobIntData(playerUniqueId, jobName, "level"));
+                database.initActivity(playerUniqueId, false);
+
+                playerJobData.setLevel(database.getJobIntData(jobName, "xp"));
+                playerJobData.setLevel(database.getJobIntData(jobName, "level"));
+
+                database.closeActivity();
 
                 playerJobData.setMaxXP(
                         MathLevelsUtils.calculateNumber(configFile.getString("config.formula.max-xp"), 1));

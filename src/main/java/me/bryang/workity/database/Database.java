@@ -9,32 +9,34 @@ public interface Database {
 
     void createData(UUID playerUniqueId);
 
-    Database insertJobData(UUID playerUniqueId, String jobName, String playerData, String newData);
+    Database initActivity(UUID playerUniqueId, boolean toSet);
 
-    Database insertJobData(UUID playerUniqueId, String jobName, String playerData, int newData);
+    Database insertJobData(String jobName, String playerData, String newData);
 
-    Database insertJobData(UUID playerUniqueId, String jobName, String playerData, double newData);
+    Database insertJobData(String jobName, String playerData, int newData);
 
-    void insertData(UUID playerUniqueId, String playerData, int newData);
+    Database insertJobData(String jobName, String playerData, double newData);
 
-    String getJobStringData(UUID playerUniqueId, String jobName, String playerData);
+    void insertData(String playerData, int newData);
 
-    int getJobIntData(UUID playerUniqueId, String jobName, String playerData);
+    String getJobStringData(String jobName, String playerData);
 
-    double getJobDoubleData(UUID playerUniqueId, String jobName, String playerData);
+    int getJobIntData(String jobName, String playerData);
 
-    String getStringData(UUID playerUniqueId, String playerData);
+    double getJobDoubleData(String jobName, String playerData);
 
-    int getIntData(UUID playerUniqueId, String playerData);
+    String getStringData(String playerData);
 
-    double getDoubleData(UUID playerUniqueId, String playerData);
+    int getIntData(String playerData);
+
+    double getDoubleData(String playerData);
 
 
     List<String> getPlayerList();
 
     List<String> getPlayerJobs(UUID playerUniqueId);
 
-    void savePlayer(UUID playerUniqueId);
-
+    void savePlayerAndCloseActivity();
+    void closeActivity();
 
 }

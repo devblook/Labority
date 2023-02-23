@@ -41,9 +41,10 @@ public class JobIncreaseLevelManager implements JobManager {
                 MathLevelsUtils.calculateNumber(configFile.getString("config.formula.max-xp"), playerJobData.getLevel()));
 
         database
-                .insertJobData(player.getUniqueId(), jobName, "level", playerJobData.getLevel() + 1)
-                .insertJobData(player.getUniqueId(), jobName, "xp", 0)
-                .save();
+                .initActivity(player.getUniqueId(), true)
+                .insertJobData(jobName, "level", playerJobData.getLevel() + 1)
+                .insertJobData(jobName, "xp", 0)
+                .savePlayerAndCloseActivity();
 
         player.sendMessage(messagesFile.getString("jobs.gain.level")
                 .replace("%new_level%", String.valueOf(playerJobData.getLevel())));

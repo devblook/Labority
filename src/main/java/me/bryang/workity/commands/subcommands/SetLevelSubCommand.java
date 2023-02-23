@@ -49,7 +49,7 @@ public class SetLevelSubCommand implements CommandClass {
 
         }
 
-        Player target = Bukkit.getPlayer(targetArgument);
+        Player target = Bukkit.getPlayerExact(targetArgument);
 
         if (target == null) {
             sender.sendMessage(messagesFile.getString("error.no-online"));
@@ -97,10 +97,12 @@ public class SetLevelSubCommand implements CommandClass {
         playerJobData.setMaxXP(
                 MathLevelsUtils.calculateNumber(configFile.getString("config.formula.max-xp"), levelArgument));
 
+
         database
-                .insertJobData(sender.getUniqueId(), jobArgument, "level", playerJobData.getLevel())
-                .insertJobData(sender.getUniqueId(), jobArgument, "xp", 0)
-                .save();
+                .initActivity(sender.getUniqueId(), true)
+                .insertJobData(jobArgument, "level", playerJobData.getLevel())
+                .insertJobData(jobArgument, "xp", 0)
+                .savePlayerAndCloseActivity();
 
         sender.sendMessage(messagesFile.getString("jobs.set-level.message")
                 .replace("%level%", String.valueOf(levelArgument))

@@ -114,9 +114,10 @@ public class JoinSubCommand implements CommandClass {
                     MathLevelsUtils.calculateNumber(configFile.getString("config.formula.max-xp"), 1));
 
             database
-                    .insertJobData(sender.getUniqueId(), jobName, "level", 1)
-                    .insertJobData(sender.getUniqueId(), jobName, "xp", 0)
-                    .save();
+                    .initActivity(sender.getUniqueId(), true)
+                    .insertJobData(jobName, "level", 1)
+                    .insertJobData(jobName, "xp", 0)
+                    .savePlayerAndCloseActivity();
 
 
             sender.sendMessage(messagesFile.getString("jobs.join.message")

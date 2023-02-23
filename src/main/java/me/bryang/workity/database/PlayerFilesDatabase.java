@@ -14,11 +14,13 @@ public class PlayerFilesDatabase implements Database {
     private final Map<UUID, FileManager> playerList = new HashMap<>();
     List<String> listUniqueIds;
 
+    FileManager playerFile;
+
+
 
     public PlayerFilesDatabase(Workity workity) {
         this.workity = workity;
 
-        initDatabase();
     }
 
     @Override
@@ -37,57 +39,63 @@ public class PlayerFilesDatabase implements Database {
     }
 
     @Override
-    public Database insertJobData(UUID playerUniqueId, String jobName, String playerData, String newData) {
-        playerList.get(playerUniqueId).set(playerUniqueId + ".jobs. " + jobName + "." + playerData, newData);
+    public Database initActivity(UUID playerUniqueID, boolean toSet){
+        playerFile = playerList.get(playerUniqueID);
+
+        return this;
+    }
+    @Override
+    public Database insertJobData(String jobName, String playerData, String newData) {
+        playerFile.set("jobs. " + jobName + "." + playerData, newData);
         return this;
     }
 
     @Override
-    public Database insertJobData(UUID playerUniqueId, String jobName, String playerData, int newData) {
-        playerList.get(playerUniqueId).set(playerUniqueId + ".jobs. " + jobName + "." + playerData, newData);
+    public Database insertJobData(String jobName, String playerData, int newData) {
+        playerFile.set("jobs. " + jobName + "." + playerData, newData);
         return this;
     }
 
     @Override
-    public Database insertJobData(UUID playerUniqueId, String jobName, String playerData, double newData) {
-        playerList.get(playerUniqueId).set(playerUniqueId + ".jobs. " + jobName + "." + playerData, newData);
+    public Database insertJobData(String jobName, String playerData, double newData) {
+        playerFile.set("jobs. " + jobName + "." + playerData, newData);
         return this;
     }
 
     @Override
-    public void insertData(UUID playerUniqueId, String playerData, int newData) {
-        playerList.get(playerUniqueId).set(playerUniqueId + ".jobs. " + playerData, newData);
+    public void insertData(String playerData, int newData) {
+        playerFile.set("jobs. " + playerData, newData);
     }
 
 
     @Override
-    public String getJobStringData(UUID playerUniqueId, String jobName, String playerData) {
-        return playerList.get(playerUniqueId).getString(playerUniqueId + ".jobs." + jobName + "." + playerData);
+    public String getJobStringData(String jobName, String playerData) {
+        return playerFile.getString("jobs." + jobName + "." + playerData);
     }
 
     @Override
-    public int getJobIntData(UUID playerUniqueId, String jobName, String playerData) {
-        return playerList.get(playerUniqueId).getInt(playerUniqueId + ".jobs." + jobName + "." + playerData, -1);
+    public int getJobIntData(String jobName, String playerData) {
+        return playerFile.getInt( "jobs." + jobName + "." + playerData, -1);
     }
 
     @Override
-    public double getJobDoubleData(UUID playerUniqueId, String jobName, String playerData) {
-        return playerList.get(playerUniqueId).getDouble(playerUniqueId + ".jobs." + jobName + "." + playerData, -1);
+    public double getJobDoubleData(String jobName, String playerData) {
+        return playerFile.getDouble("jobs." + jobName + "." + playerData, -1);
     }
 
     @Override
-    public String getStringData(UUID playerUniqueId, String playerData) {
-        return playerList.get(playerUniqueId).getString(playerUniqueId + "." + playerData);
+    public String getStringData(String playerData) {
+        return playerFile.getString( playerData);
     }
 
     @Override
-    public int getIntData(UUID playerUniqueId, String playerData) {
-        return playerList.get(playerUniqueId).getInt(playerUniqueId + "." + playerData, -1);
+    public int getIntData(String playerData) {
+        return playerFile.getInt(playerData, -1);
     }
 
     @Override
-    public double getDoubleData(UUID playerUniqueId, String playerData) {
-        return playerList.get(playerUniqueId).getDouble(playerUniqueId + "." + playerData, -1);
+    public double getDoubleData(String playerData) {
+        return playerFile.getDouble(playerData, -1);
     }
 
     @Override
@@ -101,7 +109,13 @@ public class PlayerFilesDatabase implements Database {
     }
 
     @Override
-    public void savePlayer(UUID playerUniqueID) {
+    public void savePlayerAndCloseActivity() {
+        playerFile.save();
+        playerFile = null;
+    }
 
+    @Override
+    public void closeActivity(){
+        playerFile = null;
     }
 }

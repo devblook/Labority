@@ -68,9 +68,10 @@ public class LeaveSubCommand implements CommandClass {
             playerDataLeave.removeJob(jobName);
 
             database
-                    .insertJobData(sender.getUniqueId(), jobName, "level", "")
-                    .insertJobData(sender.getUniqueId(), jobName, "xp", "")
-                    .save();
+                    .initActivity(sender.getUniqueId(), true)
+                    .insertJobData(jobName, "level", "")
+                    .insertJobData(jobName, "xp", "")
+                    .savePlayerAndCloseActivity();
 
             sender.sendMessage(messagesFile.getString("jobs.leave.message")
                     .replace("%job%", configFile.getString("jobs." + jobName + ".name")));

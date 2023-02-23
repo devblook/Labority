@@ -61,22 +61,16 @@ public class StatsSubCommand implements CommandClass {
             if (message.contains("%action_format")) {
                 for (String jobName : playerDataStats.getJobsMap().keySet()) {
 
-                    if (dataLoader.getJob(jobName).isGlobalStatus()) {
-                        sender.sendMessage(message
-                                .replace("%action-name%",
+                    sender.sendMessage(message
+                            .replace("%action-name%",
                                         messagesFile.getString("jobs.stats.global." + jobName))
 
-                                .replace("%action_value%",
+                            .replace("%action_value%",
                                         String.valueOf(playerDataStats.getJob(jobName).getGlobalStats())));
-                        continue;
-                    }
+
+
 
                     for (String itemName : playerDataStats.getJob(jobName).getJobData().keySet()) {
-
-
-                        if (dataLoader.getJob(jobName).getBlockData(itemName).isDisableStatus()) {
-                            continue;
-                        }
 
                         sender.sendMessage(message
 

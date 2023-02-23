@@ -50,7 +50,7 @@ public class RemoveLevelSubCommand implements CommandClass {
 
         }
 
-        Player targetRemoveLevel = Bukkit.getPlayer(targetArgument);
+        Player targetRemoveLevel = Bukkit.getPlayerExact(targetArgument);
 
         if (targetRemoveLevel == null) {
             sender.sendMessage(messagesFile.getString("error.no-online"));
@@ -106,9 +106,10 @@ public class RemoveLevelSubCommand implements CommandClass {
 
 
         database
-                .insertJobData(sender.getUniqueId(), jobArgument, "level", playerJobDataRemoveLevel.getLevel())
-                .insertJobData(sender.getUniqueId(), jobArgument, "xp", 0)
-                .save();
+                .initActivity(sender.getUniqueId(), true)
+                .insertJobData(jobArgument, "level", playerJobDataRemoveLevel.getLevel())
+                .insertJobData(jobArgument, "xp", 0)
+                .savePlayerAndCloseActivity();
 
         sender.sendMessage(messagesFile.getString("jobs.remove-level.message")
                 .replace("%level%", String.valueOf(levelArgument))
